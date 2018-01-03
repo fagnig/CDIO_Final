@@ -1,7 +1,7 @@
 package spil;
 
 public class GUIController {
-	private static GUIController guiController = new GUIController();
+	private static final GUIController guiController = new GUIController();
 	
 	private GUIController(){}
 	
