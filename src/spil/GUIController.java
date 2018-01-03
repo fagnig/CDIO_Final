@@ -46,8 +46,7 @@ public class GUIController {
 	
 	public boolean getYesNo(String message) 
 	{
-		//return (gui.getUserLeftButtonPressed(message, Language.yes(), Language.no());
-		return true;
+		return (gui.getUserLeftButtonPressed(message, Language.yes(), Language.no()));
 	}
 	
 	public int getInteger(String message, int[] limits) 
