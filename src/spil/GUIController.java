@@ -11,7 +11,7 @@ public class GUIController {
 	private GUIController(){}
 	private GUI gui;
 	
-	public GUIController getInstance()
+	public static GUIController getInstance()
 	{
 		return guiController;	
 	}
@@ -25,7 +25,7 @@ public class GUIController {
 		//		fieldsGUI[i] = new GUI_Start(fields[i].getName(), fields[i].getSubText(), fields[i].getDescription(), fields[i].getPrimaryColor(), fields[i].getSecondaryColor());
 		//	}
 		//}
-		
+
 		//gui = new GUI(fieldsGUI);
 	}
 	
@@ -44,14 +44,10 @@ public class GUIController {
 		gui.setDice(t[0], t[1]);
 	}
 	
-	public void getYesNo(String message) 
+	public boolean getYesNo(String message) 
 	{
-		//if (gui.getUserButtonPressed(message, Language.yes(), Language.no())==Language.yes())
-		//{
-		//	return true
-		//} else {
-		//	return false
-		//}
+		//return (gui.getUserLeftButtonPressed(message, Language.yes(), Language.no());
+		return true;
 	}
 	
 	public int getInteger(String message, int[] limits) 
