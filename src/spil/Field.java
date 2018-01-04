@@ -17,7 +17,7 @@ public abstract class Field {
         type = newType;
     }
 
-    public abstract void landOnField();
+    public abstract void landOnField(Player landingPlayer);
 
     public int getType() {
         return type;
@@ -38,4 +38,9 @@ public abstract class Field {
     public Color[] getColor() {
         return color;
     }
+
+    public String getPriceString(){
+        return "";
+    }
+
 }
