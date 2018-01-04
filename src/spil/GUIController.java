@@ -18,13 +18,21 @@ public class GUIController {
 	
 	public void initFields()
 	{
-		//ModelController mC = modelController.getInstance();
-		//Field[] fields = mC.getBoard().getFields();
-		//for(int i=0; i>=fields.length(), i++){
-		//	if fields[i].getType() == 0{
-		//		fieldsGUI[i] = new GUI_Start(fields[i].getName(), fields[i].getSubText(), fields[i].getDescription(), fields[i].getPrimaryColor(), fields[i].getSecondaryColor());
-		//	}
-		//}
+		//0 = Start
+		//1 = Street
+		//2 = Chance
+		//3 = Brewery
+		//4 = Jail
+		//5 = Shipping
+		//6 = Refuge
+
+		ModelController mC = ModelController.getInstance();
+		Field[] fields = mC.getBoard().getFields();
+		for(int i=0; i>=fields.length; i++){
+			if (fields[i].getType() == 0){
+				fieldsGUI[i] = new GUI_Start(fields[i].getName(), fields[i].getSubText(), fields[i].getDescription(), fields[i].getColor()[0], fields[i].getColor()[1]);
+			}
+		}
 
 		//gui = new GUI(fieldsGUI);
 	}
