@@ -26,6 +26,10 @@ public class BuildableField extends OwnableField {
     public void Build(){
         // to do
     }
+    
+    public int getType() {
+    	return type;
+    }
 
     @Override
     public String getPriceString() {

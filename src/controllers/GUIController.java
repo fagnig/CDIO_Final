@@ -5,12 +5,13 @@ import java.awt.Color;
 import gui_fields.*;
 import gui_main.*;
 import model.Language;
+import fields.*;
 
 public class GUIController {
-	private static final GUIController guiController = new GUIController();
+	private static GUIController guiController = new GUIController();
 	// array der holder GUI felter
 	private GUI_Field[] fieldsGUI;
-	private GUIController(){}
+	private GUIController(){initFields();}
 	private GUI gui;
 	
 	public static GUIController getInstance()
@@ -18,7 +19,7 @@ public class GUIController {
 		return guiController;	
 	}
 	
-	public void initFields()
+	public GUI_Field[] initFields()
 	{
 //		//0 = Start
 //		//1 = Street
@@ -41,32 +42,53 @@ public class GUIController {
 		
 //		eksempel
 //		
-//		fieldsGUI = new GUI_Field[40];
-//		ModelController mC = ModelController.getInstance();
-//		Field[] fields = mC.getBoard().getFields();
-//		
-//		for (int i = 0; i<40 ; i++) {
-//			int type = fields[i].getType;
-//			switch (type) {
-//			case 1:
-//				fieldsGUI[i] = new GUI_Street();
-//				fieldsGUI[i].
-//			break;
-//			case 2: fieldsGUI[i] = new GUI_Chance();
-//			break
-//			}	
-//			
-//			
-//		}
+		fieldsGUI = new GUI_Field[40];
+		ModelController mC = ModelController.getInstance();
+		Field[] fields = mC.getFields();
+		fieldsGUI[0] = new GUI_Start();
+		int type = 0;
+		for (int i = 1; i<40 ; i++) {
+			type = fields[i].getType();
+			switch (type) {
+			case 1:
+				fieldsGUI[i] = new GUI_Chance();
+				fieldsGUI[i].setTitle(fields[i].getName());
+				fieldsGUI[i].setDescription(fields[i].getName());
+			break;
+			case 2: 
+			case 3: 
+				fieldsGUI[i] = new GUI_Tax();
+				fieldsGUI[i].setTitle(fields[i].getName());
+				fieldsGUI[i].setDescription(fields[i].getName());
+			break;
+			case 4: 
+				fieldsGUI[i] = new GUI_Street();
+				fieldsGUI[i].setTitle(fields[i].getName());
+				fieldsGUI[i].setDescription(fields[i].getName());
+			break;
+			case 5: 
+				fieldsGUI[i] = new GUI_Brewery();
+				fieldsGUI[i].setTitle(fields[i].getName());
+				fieldsGUI[i].setDescription(fields[i].getName());
+			break;
+			case 6: 
+				fieldsGUI[i] = new GUI_Shipping();
+				fieldsGUI[i].setTitle(fields[i].getName());
+				fieldsGUI[i].setDescription(fields[i].getName());
+			break;
+			default: fieldsGUI[i] = new GUI_Start();
+			}	
+			
+			
+		}
+		
+		return fieldsGUI;
 		
 		
 		
-		
-//		fieldsGUI[0] = new GUI_Start();
-//		for (int i = 1; i< 40; i++) {
-//			fieldsGUI[i] = new GUI_Street();
-//		}
-		gui = new GUI(fieldsGUI);
+	}
+	public void startGUI(GUI_Field[] yup) {
+		gui = new GUI(yup);
 	}
 	
 	public void showMessage(String message) 

@@ -15,4 +15,7 @@ public class IncomeTaxField extends TaxField {
      //to do
 
     }
+    public int getType() {
+    	return type;
+    }
 }

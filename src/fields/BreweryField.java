@@ -2,7 +2,7 @@ package fields;
 
 import java.awt.*;
 
-import model.Player;
+import model.*;
 
 public class BreweryField extends OwnableField {
 
@@ -21,4 +21,8 @@ public class BreweryField extends OwnableField {
     public String getPriceString() {
         return super.getPriceString();
     }
+    public int getType() {
+    	return type;
+    }
+    
 }

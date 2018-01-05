@@ -19,4 +19,8 @@ public class ShippingField extends OwnableField {
     public String getPriceString() {
         return super.getPriceString();
     }
+    public int getType() {
+    	return type;
+    }
 }
+

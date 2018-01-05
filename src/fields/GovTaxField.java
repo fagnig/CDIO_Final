@@ -16,6 +16,9 @@ public class GovTaxField extends TaxField {
         //to do later
         //landingPlayer.add(-1000);
     }
+    public int getType() {
+    	return type;
+    }
 
 
 }

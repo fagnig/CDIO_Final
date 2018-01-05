@@ -1,23 +1,25 @@
 package controllers;
 
-import model.Board;
-import model.Dice;
-import model.Player;
+import model.*;
+import fields.*;
+
 
 public class ModelController {
-    private static final ModelController modelController = new ModelController();
-    private Player[] players;
-    private Board board;
-    private Dice dice;
+    private static ModelController modelController = new ModelController();
+//    private Player[] players;
+      private Board board;
+//    private Dice dice;
 
-    private ModelController(){}
+    private ModelController(){
+    	board = new Board();
+    }
 
     public static ModelController getInstance()
     {
         return modelController;
     }
 
-    public Board getBoard() {
-        return board;
-    }
+	public Field[] getFields() {
+		return board.getFields();
+	}
 }
