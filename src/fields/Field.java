@@ -17,6 +17,7 @@ public abstract class Field {
     }
 
     public abstract void landOnField(Player landingPlayer);
+    
 
     public int getType() {
         return type;

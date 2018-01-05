@@ -12,11 +12,15 @@ public class BuildableField extends OwnableField {
         super(newName, primary, secondary, newGroup,newRent, price);
         buildingPrice = newBuildingPrice;
         buildable = true;
+        type = 4;
     }
 
     @Override
     public void landOnField(Player landingPlayer) {
         // to do
+    }
+    public int getBuildingPrice() {
+    	return buildingPrice;
     }
 
     public void Build(){
