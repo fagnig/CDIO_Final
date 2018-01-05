@@ -18,26 +18,31 @@ public class GUIController {
 	
 	public void initFields()
 	{
-		//0 = Start
-		//1 = Street
-		//2 = Chance
-		//3 = Brewery
-		//4 = Jail
-		//5 = Shipping
-		//6 = Refuge
-
-		ModelController mC = ModelController.getInstance();
-		Field[] fields = mC.getBoard().getFields();
-		for(int i=0; i>=fields.length; i++){
-			if (fields[i].getType() == 0){
-				fieldsGUI[i] = new GUI_Start(fields[i].getName(), fields[i].getSubText(), fields[i].getDescription(), fields[i].getColor()[0], fields[i].getColor()[1]);
-			}
-			if (fields[i].getType() == 1){
-				fieldsGUI[i] = new GUI_Street(fields[i].getName(), fields[i].getSubText(), fields[i].getDescription(), fields[i].getPriceString(),fields[i].getColor()[0], fields[i].getColor()[1]);
-			}
+//		//0 = Start
+//		//1 = Street
+//		//2 = Chance
+//		//3 = Brewery
+//		//4 = Jail
+//		//5 = Shipping
+//		//6 = Refuge
+//
+//		ModelController mC = ModelController.getInstance();
+//		Field[] fields = mC.getBoard().getFields();
+//		for(int i=0; i>=fields.length; i++){
+//			if (fields[i].getType() == 0){
+//				fieldsGUI[i] = new GUI_Start(fields[i].getName(), fields[i].getSubText(), fields[i].getDescription(), fields[i].getColor()[0], fields[i].getColor()[1]);
+//			}
+//			if (fields[i].getType() == 1){
+//				fieldsGUI[i] = new GUI_Street(fields[i].getName(), fields[i].getSubText(), fields[i].getDescription(), fields[i].getPriceString(),fields[i].getColor()[0], fields[i].getColor()[1]);
+//			}
+//		}
+		
+		fieldsGUI = new GUI_Field[40];
+		fieldsGUI[0] = new GUI_Start();
+		for (int i = 1; i< 40; i++) {
+			fieldsGUI[i] = new GUI_Street();
 		}
-
-		//gui = new GUI(fieldsGUI);
+		gui = new GUI(fieldsGUI);
 	}
 	
 	public void showMessage(String message) 
