@@ -10,7 +10,7 @@ public class MasterController {
 
 		GUIController guiC = GUIController.getInstance();
 		guiC.initFields();
-		guiC.showMessage("hej");
+		guiC.showMessage("hej"); 
 	}
 
 }

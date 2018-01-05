@@ -37,7 +37,7 @@ public class GUIController {
 //			}
 //		}
 		
-		fieldsGUI = new GUI_Field[40];
+		fieldsGUI = new GUI_Field[40]; 
 		fieldsGUI[0] = new GUI_Start();
 		for (int i = 1; i< 40; i++) {
 			fieldsGUI[i] = new GUI_Street();
