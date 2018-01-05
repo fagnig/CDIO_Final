@@ -17,4 +17,14 @@ public class Wallet {
     public Wallet(int newBalance){
         balance = newBalance;
     }
+    public void addJailCard(int amount) {
+    	jailCard =+ amount;
+    }
+    public void removeJailCard(int amount) {
+    	jailCard =- amount;
+    }
+    
+    public int getJailCard() {
+    	return jailCard;
+    }
 }
