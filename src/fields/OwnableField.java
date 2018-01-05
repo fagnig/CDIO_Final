@@ -1,6 +1,8 @@
-package spil;
+package fields;
 
 import java.awt.*;
+
+import model.Player;
 
 public abstract class OwnableField extends Field {
 
@@ -9,8 +11,8 @@ public abstract class OwnableField extends Field {
     protected Player owner;
     protected Boolean buildable = false;
 
-    public OwnableField (String newName, String newSubText, String newDescription, Color primary, Color secondary, int newType, int newGroup, int[] newRent, int newPrice){
-        super(newName, newSubText, newDescription, primary, secondary, newType);
+    public OwnableField (String newName, Color primary, Color secondary, int newGroup, int[] newRent, int newPrice){
+        super(newName, primary, secondary);
         rent = newRent;
         group = newGroup;
         price = newPrice;

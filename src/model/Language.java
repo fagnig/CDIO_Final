@@ -1,4 +1,4 @@
-package spil;
+package model;
 
 public class Language {
 	public static String yes() {

@@ -1,9 +1,10 @@
-package spil;
+package controllers;
 
 import java.awt.Color;
 
 import gui_fields.*;
 import gui_main.*;
+import model.Language;
 
 public class GUIController {
 	private static final GUIController guiController = new GUIController();
@@ -38,33 +39,33 @@ public class GUIController {
 //			}
 //		}
 		
-		eksempel
-		
-		fieldsGUI = new GUI_Field[40];
-		ModelController mC = ModelController.getInstance();
-		Field[] fields = mC.getBoard().getFields();
-		
-		for (int i = 0; i<40 ; i++) {
-			int type = fields[i].getType;
-			switch (type) {
-			case 1:
-				fieldsGUI[i] = new GUI_Street();
-				fieldsGUI[i].
-			break;
-			case 2: fieldsGUI[i] = new GUI_Chance();
-			break
-			}	
-			
-			
-		}
-		
-		
+//		eksempel
+//		
+//		fieldsGUI = new GUI_Field[40];
+//		ModelController mC = ModelController.getInstance();
+//		Field[] fields = mC.getBoard().getFields();
+//		
+//		for (int i = 0; i<40 ; i++) {
+//			int type = fields[i].getType;
+//			switch (type) {
+//			case 1:
+//				fieldsGUI[i] = new GUI_Street();
+//				fieldsGUI[i].
+//			break;
+//			case 2: fieldsGUI[i] = new GUI_Chance();
+//			break
+//			}	
+//			
+//			
+//		}
 		
 		
-		fieldsGUI[0] = new GUI_Start();
-		for (int i = 1; i< 40; i++) {
-			fieldsGUI[i] = new GUI_Street();
-		}
+		
+		
+//		fieldsGUI[0] = new GUI_Start();
+//		for (int i = 1; i< 40; i++) {
+//			fieldsGUI[i] = new GUI_Street();
+//		}
 		gui = new GUI(fieldsGUI);
 	}
 	

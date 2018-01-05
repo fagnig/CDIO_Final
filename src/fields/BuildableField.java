@@ -1,13 +1,15 @@
-package spil;
+package fields;
 
 import java.awt.*;
+
+import model.Player;
 
 public class BuildableField extends OwnableField {
 
     private int buildingPrice;
 
-    public BuildableField (String newName, String newSubText, String newDescription, Color primary, Color secondary, int newType, int newGroup, int[] newRent, int price, int newBuildingPrice){
-        super(newName, newSubText, newDescription, primary, secondary, newType, newGroup,newRent, price);
+    public BuildableField (String newName, Color primary, Color secondary,  int newGroup, int[] newRent, int price, int newBuildingPrice){
+        super(newName, primary, secondary, newGroup,newRent, price);
         buildingPrice = newBuildingPrice;
         buildable = true;
     }

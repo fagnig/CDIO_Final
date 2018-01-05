@@ -1,4 +1,4 @@
-package spil;
+package model;
 
 public class Wallet {
     private int[] fields = new int[40];

@@ -1,4 +1,8 @@
-package spil;
+package controllers;
+
+import model.Board;
+import model.Dice;
+import model.Player;
 
 public class ModelController {
     private static final ModelController modelController = new ModelController();

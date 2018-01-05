@@ -1,4 +1,4 @@
-package spil;
+package controllers;
 
 public class MasterController {
 

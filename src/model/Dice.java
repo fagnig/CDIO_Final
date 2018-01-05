@@ -1,4 +1,4 @@
-package spil;
+package model;
 
 import java.util.Random;
 

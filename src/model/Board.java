@@ -1,8 +1,11 @@
-package spil;
+package model;
+
+import fields.Field;
 
 public class Board {
 
     private Field[] fields  = new Field[40];
+    
     public Board(){
         init();
     }

@@ -1,6 +1,8 @@
-package spil;
+package model;
 
 import java.awt.Color;
+
+import controllers.MasterController;
 
 public class Player {
 
