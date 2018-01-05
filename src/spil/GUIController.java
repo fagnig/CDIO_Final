@@ -7,6 +7,7 @@ import gui_main.*;
 
 public class GUIController {
 	private static final GUIController guiController = new GUIController();
+	// array der holder GUI felter
 	private GUI_Field[] fieldsGUI;
 	private GUIController(){}
 	private GUI gui;
@@ -37,7 +38,29 @@ public class GUIController {
 //			}
 //		}
 		
-		fieldsGUI = new GUI_Field[40]; 
+		eksempel
+		
+		fieldsGUI = new GUI_Field[40];
+		ModelController mC = ModelController.getInstance();
+		Field[] fields = mC.getBoard().getFields();
+		
+		for (int i = 0; i<40 ; i++) {
+			int type = fields[i].getType;
+			switch (type) {
+			case 1:
+				fieldsGUI[i] = new GUI_Street();
+				fieldsGUI[i].
+			break;
+			case 2: fieldsGUI[i] = new GUI_Chance();
+			break
+			}	
+			
+			
+		}
+		
+		
+		
+		
 		fieldsGUI[0] = new GUI_Start();
 		for (int i = 1; i< 40; i++) {
 			fieldsGUI[i] = new GUI_Street();
