@@ -27,4 +27,7 @@ public class Wallet {
     public int getJailCard() {
     	return jailCard;
     }
+    public int getBalance() {
+    	return balance;
+    }
 }

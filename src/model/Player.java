@@ -8,14 +8,14 @@ public class Player {
 
     private Wallet wallet;
     private String name;
-    private Color color;
+//    private Color color;
     private Boolean free = true;
     private Boolean bankrupt = false;
     private int location = 0; 
  
-    public Player(String newName,Color newColor) {
+    public Player(String newName) {
     	name = newName;
-    	color = newColor;
+//    	color = newColor;
     	// oprettet et objekt af wallet typen. Forventer at få en start balance
     	wallet = new Wallet(MasterController.PLAYER_STARTBALANCE);
     }
@@ -27,7 +27,7 @@ public class Player {
     
     // "Teleporterer" spilleren til feltet.
     public void forceMove(int newLocation) {
-    	location = newLocation;
+    	location = newLocation%40;
     }
     
     public Boolean isFree() {
@@ -44,6 +44,12 @@ public class Player {
     public void setBankrupt(Boolean b) {
     	bankrupt = b;
     }
+    public String getName() {
+    	return name;
+    }
+//    public String getColor() {
+//    	return color.toString();
+//    }
     
     public void receiveMoney(int amount) {
     // kaldet på Wallet (metodekald)
@@ -54,4 +60,11 @@ public class Player {
         // kaldet på Wallet (metodekald)
         	wallet.addMoney(-amount);
         }
+
+	public int getLocation() {
+		return location;
+	}
+	public int getBalance() {
+		return wallet.getBalance();
+	}
 }
