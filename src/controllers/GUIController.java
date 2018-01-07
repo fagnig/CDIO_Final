@@ -131,7 +131,13 @@ public class GUIController {
 			players = new GUI_Player[numOfPlayers];
 			String[] playerNames = new String[numOfPlayers];
 			for (int i = 0; i<numOfPlayers; i++) {
+				while (true) {
 				playerNames[i] = gui.getUserString("spiller " + (i+1)+ " hedder hvad?");
+				if (playerNames[i].equals(" ")|| playerNames[i].length() == 0) {
+					getOk("indtast et rigtigt navn");
+				}
+				else break;
+				}
 				String b = gui.getUserSelection("vælg en farve mester","red", "blue","black","yellow","cyan","pink");
 				GUI_Car a = new GUI_Car();
 				if (b.equals("red"))
