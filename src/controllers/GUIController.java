@@ -121,38 +121,38 @@ public class GUIController {
 		return gui.getUserString(message);
 	}
 	public String getOk(String message) {
-		return gui.getUserButtonPressed(message,"okay");
+		return gui.getUserButtonPressed(message,Language.okay());
 	}
 	
 	public String[] makePlayers() {
 		while (true) {
-		int numOfPlayers = gui.getUserInteger("hvor mange spillere er i?", MasterController.GAME_PLAYERS_MIN, MasterController.GAME_PLAYERS_MAX);
+		int numOfPlayers = gui.getUserInteger(Language.numberOfPlayers(), MasterController.GAME_PLAYERS_MIN, MasterController.GAME_PLAYERS_MAX);
 		if (numOfPlayers >= MasterController.GAME_PLAYERS_MIN && numOfPlayers < MasterController.GAME_PLAYERS_MAX ) {
 			players = new GUI_Player[numOfPlayers];
 			String[] playerNames = new String[numOfPlayers];
 			for (int i = 0; i<numOfPlayers; i++) {
 				while (true) {
-				playerNames[i] = gui.getUserString("spiller " + (i+1)+ " hedder hvad?");
+				playerNames[i] = gui.getUserString(Language.player() + (i+1)+ Language.name());
 				if (playerNames[i].equals(" ")|| playerNames[i].length() == 0) {
-					getOk("indtast et rigtigt navn");
+					getOk(Language.realName());
 				}
 				else break;
 				}
-				String b = gui.getUserSelection("vælg en farve mester","red", "blue","black","yellow","cyan","pink");
+				String b = gui.getUserSelection(Language.pickColor(),Language.red(), Language.blue(),Language.gray(),Language.yellow(),Language.cyan(),Language.pink());
 				GUI_Car a = new GUI_Car();
-				if (b.equals("red"))
+				if (b.equals(Language.red()))
 					a.setPrimaryColor(Color.red);
-				if (b.equals("blue"))
+				if (b.equals(Language.blue()))
 					a.setPrimaryColor(Color.blue);
-				if (b.equals("black"))
+				if (b.equals(Language.gray()))
 					a.setPrimaryColor(Color.black);
-				if (b.equals("yellow"))
+				if (b.equals(Language.yellow()))
 					a.setPrimaryColor(Color.yellow);
-				if (b.equals("cyan"))
+				if (b.equals(Language.cyan()))
 					a.setPrimaryColor(Color.cyan);
-				if (b.equals("pink"))
+				if (b.equals(Language.pink()))
 					a.setPrimaryColor(Color.pink);
-				a.setSecondaryColor(Color.black);
+				a.setSecondaryColor(Color.gray);
 				
 				players[i] = new GUI_Player(playerNames[i],MasterController.PLAYER_STARTBALANCE,a);
 				gui.addPlayer(players[i]);
@@ -161,7 +161,7 @@ public class GUIController {
 				
 			return playerNames;
 		}
-		else gui.getUserButtonPressed("ugyldigt antal spillere, prøv igen","okay");
+		else gui.getUserButtonPressed(Language.invalidPlayers(),Language.okay());
 		}
 	}
 	
