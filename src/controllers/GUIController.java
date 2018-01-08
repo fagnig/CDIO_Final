@@ -72,11 +72,20 @@ public class GUIController {
 				fieldsGUI[i] = new GUI_Shipping();
 	
 			break;
+			case 7:
+				fieldsGUI[i] = new GUI_Refuge();
+				
+			break;
+			case 8: fieldsGUI[i] = new GUI_Jail();
+			
+			break;
+			
 			default: fieldsGUI[i] = new GUI_Start();
 			}
 			fieldsGUI[i].setTitle(fields[i].getName());
 			fieldsGUI[i].setDescription(fields[i].getName());
 			fieldsGUI[i].setBackGroundColor(fields[i].getColor()[0]);
+			fieldsGUI[i].setForeGroundColor(fields[i].getColor()[1]);
 			
 			
 		}
