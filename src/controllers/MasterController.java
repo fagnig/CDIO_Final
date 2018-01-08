@@ -17,10 +17,11 @@ public class MasterController {
 		guiC.initFields();
 		Player[] players = modC.makePlayers(guiC.makePlayers());
 		while (true) {
-			guiC.getOk("slå med terningen mester");
+			guiC.getOk(Language.roll());
 			players[currentturn].move(modC.roll());
 			players[currentturn].receiveMoney(500);
 			guiC.updateGUI(players,modC.getFaces());
+			guiC.upgrade(players[currentturn].getLocation());
 			currentturn = (currentturn+1) %(players.length);
 			
 			

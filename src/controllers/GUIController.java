@@ -132,7 +132,7 @@ public class GUIController {
 			String[] playerNames = new String[numOfPlayers];
 			for (int i = 0; i<numOfPlayers; i++) {
 				while (true) {
-				playerNames[i] = gui.getUserString(Language.player() + (i+1)+ Language.name());
+				playerNames[i] = gui.getUserString(Language.player()+ " " + (i+1)+ " " + Language.name());
 				if (playerNames[i].equals(" ")|| playerNames[i].length() == 0) {
 					getOk(Language.realName());
 				}

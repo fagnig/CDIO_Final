@@ -4,7 +4,6 @@ public class Language {
 	public static String yes() {
 		return "Ja";
 	}
-	
 	public static String no() {
 		return "Nej";
 	}
@@ -46,6 +45,9 @@ public class Language {
 	}
 	public static String pink() {
 		return "Pink";
+	}
+	public static String roll() {
+		return "Rul med terningerne!";
 	}
 	public static String getFormattedDescription(int[] dat){
 		String tempStr = "Leje: " + Integer.toString(dat[0]) +
