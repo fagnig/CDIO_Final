@@ -38,23 +38,22 @@ public class Board {
         fields[21] = new BuildableField("Trianglen", Color.red, Color.black, 3,rent, 4400, 1000);
         fields[22] = new ChanceField("Prøv Lykken", Color.black, Color.green);
         fields[23] = new BuildableField("Østerbrogade", Color.red, Color.black, 3,rent, 4400, 1000);
-        fields[24] = new BuildableField("Valby Langgad123e", Color.YELLOW, Color.black, 3,rent, 1200, 1000);
-        fields[25] = new BuildableField("Valby Lan3ggade", Color.YELLOW, Color.black, 3,rent, 1200, 1000);
-        fields[26] = new BuildableField("Valby Lang21gade", Color.YELLOW, Color.black, 3,rent, 1200, 1000);
-        fields[27] = new BuildableField("Valby Lang432423gade", Color.YELLOW, Color.black, 3,rent, 1200, 1000);
-        fields[28] = new BuildableField("Valby Lang12e", Color.YELLOW, Color.black, 3,rent, 1200, 1000);
-        fields[29] = new BuildableField("Valby La222nggade", Color.YELLOW, Color.black, 3,rent, 1200, 1000);
-        fields[30] = new BuildableField("Valby Lan123ggade", Color.YELLOW, Color.black, 3,rent, 1200, 1000);
-        fields[31] = new BuildableField("Valby Lan543ggade", Color.YELLOW, Color.black, 3,rent, 1200, 1000);
-        fields[32] = new BuildableField("Valby Langgade", Color.YELLOW, Color.black, 3,rent, 1200, 1000);
-        fields[33] = new BuildableField("Valby La312nggade", Color.YELLOW, Color.black, 3,rent, 1200, 1000);
-        fields[34] = new BuildableField("Valby Lan11ggade", Color.YELLOW, Color.black, 3,rent, 1200, 1000);
-        fields[35] = new BuildableField("Valby Lan234ggade", Color.YELLOW, Color.black, 3,rent, 1200, 1000);
-        fields[36] = new BuildableField("Valby Lan22ggade", Color.YELLOW, Color.black, 3,rent, 1200, 1000);
-        fields[37] = new BuildableField("Valby Langg33ade", Color.YELLOW, Color.black, 3,rent, 1200, 1000);
-        fields[38] = new BuildableField("Valby Lang33g1111ade", Color.YELLOW, Color.black, 3,rent, 1200, 1000);
-        fields[39] = new BuildableField("Valby Lan11ggade", Color.YELLOW, Color.black, 3,rent, 1200, 1000);
-       
+        fields[24] = new BuildableField("Grønningen", Color.RED, Color.black, 3,rent, 4800, 1000);
+        fields[25] = new BuildableField("Gedser-Rostock", Color.BLUE, Color.black, 3,rent, 4000, 1000);
+        fields[26] = new BuildableField("Bredgade", Color.WHITE, Color.black, 3,rent, 5200, 1000);
+        fields[27] = new BuildableField("Kgs Nytorv", Color.WHITE, Color.black, 3,rent, 5200, 1000);
+        fields[28] = new BreweryField("Coca-Cola", Color.RED, Color.black, 3,rent, 3000);
+        fields[29] = new BuildableField("Østergade", Color.WHITE, Color.black, 3,rent, 5600, 1000);
+        fields[30] = new PrisonField("De fængsles", Color.BLACK, Color.white);
+        fields[31] = new BuildableField("Amagertorv", Color.YELLOW, Color.black, 3,rent, 6000, 1000);
+        fields[32] = new BuildableField("Vimmelskaftet", Color.YELLOW, Color.black, 3,rent, 6000, 1000);
+        fields[33] = new ChanceField("Prøv lykken", Color.BLACK, Color.green);
+        fields[34] = new BuildableField("Nygade", Color.YELLOW, Color.black, 3,rent, 6000, 1000);
+        fields[35] = new BuildableField("Rødby-Puttgarden", Color.BLUE, Color.black, 3,rent, 4000, 1000);
+        fields[36] = new ChanceField("Prøv lykken", Color.BLACK, Color.green);
+        fields[37] = new BuildableField("Frederiksberggade", Color.PINK, Color.black, 3,rent, 7000, 1000);
+        fields[38] = new GovTaxField("Statsskat", Color.BLUE, Color.black);
+        fields[39] = new BuildableField("Rådhuspladsen", Color.PINK, Color.black, 3,rent, 8000, 1000);       
 
     }
 
