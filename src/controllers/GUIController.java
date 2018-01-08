@@ -83,7 +83,8 @@ public class GUIController {
 			default: fieldsGUI[i] = new GUI_Start();
 			}
 			fieldsGUI[i].setTitle(fields[i].getName());
-			fieldsGUI[i].setDescription(fields[i].getName());
+			fieldsGUI[i].setSubText(fields[i].getSubText());
+			fieldsGUI[i].setDescription(fields[i].getDescription());
 			fieldsGUI[i].setBackGroundColor(fields[i].getColor()[0]);
 			fieldsGUI[i].setForeGroundColor(fields[i].getColor()[1]);
 			

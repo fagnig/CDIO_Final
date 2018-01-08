@@ -13,6 +13,14 @@ public class BuildableField extends OwnableField {
         buildingPrice = newBuildingPrice;
         buildable = true;
         type = 4;
+        subText = "" + price ;
+        description = "Leje: " + rent[0] +
+				"\n 1 Hus: " + rent[1] +
+				"\n 2 Huse: " + rent[2] +
+				"\n 3 Huse: " + rent[3] +
+				"\n 4 Huse: " + rent[4] +
+				"\n Hotel: " + rent[5]+
+				"\n pris på hus og hotel " + buildingPrice;
     }
 
     @Override

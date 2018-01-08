@@ -14,6 +14,8 @@ public abstract class Field {
         name = newName;
         color[0] = primary;
         color[1] = secondary;
+        description = "";
+        subText="";
     }
 
     public abstract void landOnField(Player landingPlayer);

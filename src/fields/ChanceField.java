@@ -10,6 +10,8 @@ public class ChanceField extends NeutralField {
 		super(newName, primary, secondary);
 		// TODO Auto-generated constructor stub
 		type = 1;
+		subText = "prøv lykken";
+		description = subText;
 	}
 
 	@Override

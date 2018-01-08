@@ -13,7 +13,7 @@ public class Board {
     	init();
     }
     public void init(){
-    	int[] rent = {200,500,1000,2000,4000};
+    	int[] rent = {200,500,1000,2000,4000,5000};
         fields[0] = new StartField("Start", Color.RED,Color.BLACK);
         fields[1] = new BuildableField("Rødovrevej", Color.blue, Color.black, 1,rent, 1200, 1000);
         fields[2] = new ChanceField("Chance",Color.black, Color.green);
