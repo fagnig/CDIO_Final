@@ -40,6 +40,10 @@ public class Player {
     public void setFree(Boolean b) {
     	free = b;
     }
+  
+    public Wallet getWallet() {
+    	return wallet;
+    }
     
     public void setBankrupt(Boolean b) {
     	bankrupt = b;
