@@ -67,8 +67,14 @@ public class GUIController {
 			fieldsGUI[i].setDescription(fields[i].getDescription());
 			fieldsGUI[i].setBackGroundColor(fields[i].getColor()[0]);
 			fieldsGUI[i].setForeGroundColor(fields[i].getColor()[1]);
-			if(i==10)
+			if(i==10) {
 				fieldsGUI[i].setSubText("På besøg");
+				fieldsGUI[i].setDescription("De sidder i fængsel. slå 2 ens, betal kr 1000 eller anvend dit løsladeskort hvis haves. Hvis der slås 2 ens rykker de det antal felter frem.");
+			}
+			if(i==20) {
+				fieldsGUI[i].setSubText("Parkering");
+				fieldsGUI[i].setDescription("GØR NOGET VED DINE DRØMME!");
+			}
 			
 		}
 		
