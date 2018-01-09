@@ -44,7 +44,7 @@ public class Board {
         fields[22] = new ChanceField("Chance", Color.black, Color.green);
         fields[23] = new BuildableField("Østerbrogade", Color.red, Color.black, 3,rent, 4400, 3000);
         fields[24] = new BuildableField("Grønningen", Color.RED, Color.black, 3,rent, 4800, 3000);
-        fields[25] = new BuildableField("Gedser-Rostock", Color.BLUE, Color.black, 3,rent, 4000, 1000);
+        fields[25] = new ShippingField("Gedser-Rostock", Color.BLUE, Color.black, 3,rent, 4000);
         fields[26] = new BuildableField("Bredgade", Color.WHITE, Color.black, 3,rent, 5200, 3000);
         fields[27] = new BuildableField("Kgs Nytorv", Color.WHITE, Color.black, 3,rent, 5200, 3000);
         fields[28] = new BreweryField("Carlsberg", Color.RED, Color.black, 3,rent, 3000);
@@ -54,7 +54,7 @@ public class Board {
         fields[32] = new BuildableField("Vimmelskaftet", Color.YELLOW, Color.black, 3,rent, 6000, 4000);
         fields[33] = new ChanceField("Chance", Color.BLACK, Color.green);
         fields[34] = new BuildableField("Nygade", Color.YELLOW, Color.black, 3,rent, 6000, 4000);
-        fields[35] = new BuildableField("Rødby-Puttgarden", Color.BLUE, Color.black, 3,rent, 4000, 1000);
+        fields[35] = new ShippingField("Rødby-Puttgarden", Color.BLUE, Color.black, 3,rent, 4000);
         fields[36] = new ChanceField("Chance", Color.BLACK, Color.green);
         fields[37] = new BuildableField("Frederiksberggade", Color.PINK, Color.black, 3,rent, 7000, 4000);
         fields[38] = new GovTaxField("Statsskat", Color.BLUE, Color.black);
