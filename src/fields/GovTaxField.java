@@ -19,6 +19,10 @@ public class GovTaxField extends TaxField {
     public int getType() {
     	return type;
     }
+    
+    public String getDescription() {
+    	return "Ekstraordinær statsskat: Betal kr. 2000"+description;
+    }
 
 
 }

@@ -14,7 +14,7 @@ public class ModelController {
     private Dice dice = new Dice();
 
     private ModelController(){
-    	board = new Board();
+    	board = Board.getInstance();
     }
 
     public static ModelController getInstance()

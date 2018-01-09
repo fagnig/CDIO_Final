@@ -20,4 +20,7 @@ public class PrisonField extends Field{
 			// TODO Auto-generated method stub
 			
 		}
+		public String getSubText() {
+			return "De fængsles"+subText;
+		}
 }
