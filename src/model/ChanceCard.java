@@ -6,7 +6,7 @@ public class ChanceCard {
 	private int iD;
 	
 	public ChanceCard() {
-		iD = counter % 44;
+		iD = counter % 23;
 		counter++;
 	}
 	
