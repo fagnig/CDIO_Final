@@ -10,7 +10,8 @@ public abstract class OwnableField extends Field {
     protected int price,group;
     protected int[] rent  = new int[6];
     protected Player owner;
-    protected Boolean buildable = false;
+    protected boolean buildable = false;
+    protected boolean mortgaged = false;
     protected int amountOwned = 1;
 
     public OwnableField (String newName, Color primary, Color secondary, int newGroup, int[] newRent, int newPrice){
@@ -30,6 +31,9 @@ public abstract class OwnableField extends Field {
     	return owner;
     }
 
+    public boolean isMortgaged(){
+        return mortgaged;
+    }
     public int getPrice(){
     	return price;
     }

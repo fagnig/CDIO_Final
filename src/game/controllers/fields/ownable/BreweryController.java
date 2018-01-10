@@ -9,17 +9,21 @@ public class BreweryController extends OwnableController {
 
     public void landOnField(Player curPlayer, Field curField){
         BreweryField castedField = ((BreweryField) curField);
-        if (castedField.getOwner() == null){
-            if(guiC.getYesNo(Language.wantToBuy(castedField))){
-                castedField.setOwner(curPlayer);
-                curPlayer.addField(castedField);
-                curPlayer.payMoney(castedField.getPrice());
+        if(!castedField.isMortgaged()) {
+            if (castedField.getOwner() == null) {
+                if (guiC.getYesNo(Language.wantToBuy(castedField))) {
+                    castedField.setOwner(curPlayer);
+                    curPlayer.addField(castedField);
+                    curPlayer.payMoney(castedField.getPrice());
+                }
+            } else {
+                int rent = castedField.getRent()[0] * 100 * castedField.getAmountOwned();
+                guiC.getOk(curPlayer.getName() + Language.payRent() + castedField.getOwner().getName() + " " + rent);
+                curPlayer.payMoney(rent);
+                castedField.getOwner().receiveMoney(rent);
             }
         } else {
-            int rent = castedField.getRent()[0]*100*castedField.getAmountOwned();
-            guiC.getOk(curPlayer.getName()  + Language.payRent() + castedField.getOwner().getName()+ " "+ rent);
-            curPlayer.payMoney(rent);
-            castedField.getOwner().receiveMoney(rent);
+            guiC.getOk(Language.fieldMortgaged());
         }
     }
 }

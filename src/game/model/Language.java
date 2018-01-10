@@ -216,4 +216,8 @@ public class Language {
     public static String diceThrowFormat(int faceValue) {
         return "Du slog " + faceValue;
     }
+
+    public static String fieldMortgaged() {
+	    return "Feltet du er landet på er pantsat, så intet sker.";
+    }
 }

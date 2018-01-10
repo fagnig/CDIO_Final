@@ -9,18 +9,22 @@ public class ShippingController extends OwnableController{
 
     public void landOnField(Player curPlayer, Field curField) {
         ShippingField castedField = ((ShippingField) curField);
-        if (castedField.getOwner() == null){
-            if(guiC.getYesNo(Language.wantToBuy(castedField))){
-                castedField.setOwner(curPlayer);
-                curPlayer.addField(castedField);
-                curPlayer.payMoney(castedField.getPrice());
+        if(!castedField.isMortgaged()) {
+            if (castedField.getOwner() == null) {
+                if (guiC.getYesNo(Language.wantToBuy(castedField))) {
+                    castedField.setOwner(curPlayer);
+                    curPlayer.addField(castedField);
+                    curPlayer.payMoney(castedField.getPrice());
+                }
+            } else {
+
+                int rent = castedField.getRent()[castedField.getAmountOwned() - 1];
+                guiC.getOk(curPlayer.getName() + Language.payRent() + castedField.getOwner().getName() + " " + rent);
+                curPlayer.payMoney(rent);
+                castedField.getOwner().receiveMoney(rent);
             }
         } else {
-
-            int rent = castedField.getRent()[castedField.getAmountOwned()-1];
-            guiC.getOk(curPlayer.getName()  + Language.payRent() + castedField.getOwner().getName()+ " "+ rent);
-            curPlayer.payMoney(rent);
-            castedField.getOwner().receiveMoney(rent);
+            guiC.getOk(Language.fieldMortgaged());
         }
     }
 }
