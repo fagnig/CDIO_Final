@@ -31,10 +31,9 @@ public class GUIController {
 				fieldsGUI[i] = new GUI_Chance();
 				
 			break;
-			case 2: 
+			case 2:
 			case 3: 
 				fieldsGUI[i] = new GUI_Tax();
-			
 			break;
 			case 4: 
 				fieldsGUI[i] = new GUI_Street();

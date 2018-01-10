@@ -2,7 +2,7 @@ package game.model.fields.notownable;
 
 import java.awt.Color;
 
-public class RefugeField extends NeutralField {
+public class RefugeField extends NotOwnable {
 
 	public RefugeField(String newName, Color primary, Color secondary) {
 		super(newName, primary, secondary);

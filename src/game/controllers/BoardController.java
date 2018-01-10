@@ -3,13 +3,10 @@ package game.controllers;
 import java.awt.Color;
 
 import game.model.fields.*;
+import game.model.fields.notownable.*;
+import game.model.fields.ownable.*;
 import game.model.Language;
 import game.model.Player;
-import game.model.fields.notownable.*;
-import game.model.fields.ownable.BreweryField;
-import game.model.fields.ownable.BuildableField;
-import game.model.fields.ownable.OwnableField;
-import game.model.fields.ownable.ShippingField;
 
 
 public class BoardController {

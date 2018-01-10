@@ -4,7 +4,7 @@ import game.model.fields.Field;
 
 import java.awt.*;
 
-public class PrisonField extends Field {
+public class PrisonField extends NotOwnable {
 
 	    public PrisonField(String newName, Color primary, Color secondary){
 	        super(newName, primary, secondary);
