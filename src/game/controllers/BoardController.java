@@ -92,7 +92,7 @@ public class BoardController {
             for(int j = 1; j < 10; j++){
                 if(areAllOwned(allPlayers[i],j)){
                     for(int g=0; g<fields.length; g++){
-                        if(fields[i].getType()==4||fields[i].getType()==5) {
+                        if(fields[g].getType()==4||fields[g].getType()==5) {
                             OwnableField curField = ((OwnableField) fields[g]);
                             if(curField.getGroup() == j){
                                 curField.setAmountOwned(2);
@@ -102,7 +102,7 @@ public class BoardController {
                 }
             }
             for(int h=0; h<fields.length; h++){
-                if(fields[i].getType()==6) {
+                if(fields[h].getType()==6) {
                     OwnableField curField = ((OwnableField) fields[h]);
                     curField.setAmountOwned(shippingOwned(allPlayers[i]));
                 }

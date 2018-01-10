@@ -49,7 +49,7 @@ public class Wallet {
             for(int i = 0; i<ownedFields.length;i++){
                 tempFields[i] = ownedFields[i];
             }
-            tempFields[tempFields.length] =  newField;
+            tempFields[tempFields.length-1] =  newField;
             ownedFields = tempFields;
         }
     }

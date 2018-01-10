@@ -44,7 +44,7 @@ public class MasterController {
 		while (true) {
 			guiC.getOk(Language.roll());
 
-            pc.getPlayer(currentTurn).move(5);
+            pc.getPlayer(currentTurn).move(1);
 			//pc.getPlayer(currentTurn).move(cup.roll());
 
 			board.setAllVals(pc.getPlayers());
@@ -63,7 +63,7 @@ public class MasterController {
 		// if start do nothing
 		
 		// if ChanceField
-		if(currentField.getType()==1){
+		if(currentField.getType()==100){
 			guiC.getOk(ccc.resolveChance(landingPlayer, pc.getPlayers(), board.getFields()));
 		}
 		// if IncomeTaxField
