@@ -1,10 +1,15 @@
-package controllers;
+package game.controllers;
 
 import java.awt.Color;
 
-import fields.*;
-import model.Language;
-import model.Player;
+import game.model.fields.*;
+import game.model.Language;
+import game.model.Player;
+import game.model.fields.notownable.*;
+import game.model.fields.ownable.BreweryField;
+import game.model.fields.ownable.BuildableField;
+import game.model.fields.ownable.OwnableField;
+import game.model.fields.ownable.ShippingField;
 
 
 public class BoardController {
@@ -48,7 +53,7 @@ public class BoardController {
         fields[9] = new BuildableField(fieldNames[9], Color.orange, Color.black, 2,best2, 2400, 1000);
         fields[10] = new RefugeField(fieldNames[10], Color.black, Color.white);
         fields[11] = new BuildableField(fieldNames[11], Color.green, Color.black, 3,rent3, 2800, 2000);
-        fields[12] = new BreweryField(fieldNames[12], Color.red, Color.black, 0,rent, 3000);
+        fields[12] = new BreweryField(fieldNames[12], Color.red, Color.black, 9,rent, 3000);
         fields[13] = new BuildableField(fieldNames[13], Color.green, Color.black, 3,rent3, 2800, 2000);
         fields[14] = new BuildableField(fieldNames[14], Color.green, Color.black, 3,best3, 3200, 2000);
         fields[15] = new ShippingField(fieldNames[15], Color.RED, Color.black, 0,shippingrent, 4000);
@@ -64,7 +69,7 @@ public class BoardController {
         fields[25] = new ShippingField(fieldNames[25], Color.BLUE, Color.black, 0,shippingrent, 4000);
         fields[26] = new BuildableField(fieldNames[26], Color.WHITE, Color.black, 6,rent6, 5200, 3000);
         fields[27] = new BuildableField(fieldNames[27], Color.WHITE, Color.black, 6,rent6, 5200, 3000);
-        fields[28] = new BreweryField(fieldNames[28], Color.RED, Color.black, 0,rent, 3000);
+        fields[28] = new BreweryField(fieldNames[28], Color.RED, Color.black, 9,rent, 3000);
         fields[29] = new BuildableField(fieldNames[29], Color.WHITE, Color.black, 6,best6, 5600, 3000);
         fields[30] = new PrisonField(fieldNames[30], Color.black, Color.white);
         fields[31] = new BuildableField(fieldNames[31], Color.YELLOW, Color.black, 7,rent7, 6000, 4000);
@@ -100,6 +105,33 @@ public class BoardController {
             }
         }
         return true;
+    }
+
+    public boolean canBuild(int loc){
+        int max = 0, min = 0;
+        int groupID = ((BuildableField)fields[loc]).getGroup();
+
+        for(int i=0; i<40; i++){
+            if(fields[i].getType()==4){
+                BuildableField curField = ((BuildableField) fields[i]);
+                if (curField.getGroup() == groupID) {
+                    if(curField.getBuildStatus() > 0) {
+                        min = curField.getBuildStatus();
+                        if(min > max) {
+                            max = min;
+                        }
+                    }
+                }
+            }
+        }
+        if(((BuildableField)fields[loc]).getBuildStatus() == min){
+            return true;
+        } else if(min==max){
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     public int shippingOwned(Player curPlayer){

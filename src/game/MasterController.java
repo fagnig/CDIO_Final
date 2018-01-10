@@ -1,7 +1,12 @@
-package controllers;
+package game;
 
-import model.*;
-import fields.*;
+import game.controllers.*;
+import game.model.*;
+import game.model.fields.*;
+import game.model.fields.ownable.BreweryField;
+import game.model.fields.ownable.BuildableField;
+import game.model.fields.ownable.ShippingField;
+import game.view.GUIController;
 
 public class MasterController {
 	// important numbers for the game
@@ -9,14 +14,14 @@ public class MasterController {
 	public static final int GAME_PLAYERS_MAX = 6;
 	public static final int GAME_PLAYERS_MIN = 2;
 	
-	// instantiation of controllers
-	DiceController cup = new DiceController();
-	GUIController guiC = new GUIController();
-	BoardController board = new BoardController();
-	PlayerController pc = new PlayerController();
-	ChanceCardController ccc = new ChanceCardController();
-	Player[] players;
-	int currentturn = 0;
+	// instantiation of game.controllers
+	private DiceController cup = new DiceController();
+	private GUIController guiC = new GUIController();
+	private BoardController board = new BoardController();
+	private PlayerController pc = new PlayerController();
+	private ChanceCardController ccc = new ChanceCardController();
+	private Player[] players;
+	private int currentTurn = 0;
 	
 	
 	
@@ -27,24 +32,19 @@ public class MasterController {
 		
 	}
 	
-	public void go() {
+	private void go() {
 		//gameLoop
 
 		while (true) {
 			guiC.getOk(Language.roll());
-			players[currentturn].move(5);
+			players[currentTurn].move(5);
 			guiC.updateGUI(players,cup.getFaces());
-			landOnField(players[currentturn]);
+			landOnField(players[currentTurn]);
             guiC.updateGUI(players,cup.getFaces());
-			currentturn = (currentturn+1) %(players.length);
-			
-			
-			
-			
-			
+			currentTurn = (currentTurn + 1) % (players.length);
 		}
 	}
-	public void landOnField(Player landingPlayer){
+	private void landOnField(Player landingPlayer){
 		Field currentField = board.getField(landingPlayer.getLocation());
 		// if start do nothing
 		
@@ -65,7 +65,6 @@ public class MasterController {
 		
 		// if govTaxField
 		if(currentField.getType()==3){
-			
 			landingPlayer.payMoney(4000);
 		}
 		

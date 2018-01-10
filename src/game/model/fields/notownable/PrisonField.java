@@ -1,10 +1,10 @@
-package fields;
+package game.model.fields.notownable;
+
+import game.model.fields.Field;
 
 import java.awt.*;
 
-import model.Player;
-
-public class PrisonField extends Field{
+public class PrisonField extends Field {
 
 	    public PrisonField(String newName, Color primary, Color secondary){
 	        super(newName, primary, secondary);

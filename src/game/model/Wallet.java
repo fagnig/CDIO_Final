@@ -1,4 +1,4 @@
-package model;
+package game.model;
 
 public class Wallet {
     private int[] fields = new int[40];

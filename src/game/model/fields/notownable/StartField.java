@@ -1,9 +1,7 @@
-package fields;
+package game.model.fields.notownable;
 
 import java.awt.Color;
 
-import model.Player;
-import java.awt.*;
 public class StartField extends NeutralField {
 
 	public StartField(String newName, Color primary, Color secondary) {

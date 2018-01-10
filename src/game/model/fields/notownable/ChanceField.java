@@ -1,8 +1,6 @@
-package fields;
+package game.model.fields.notownable;
 
 import java.awt.Color;
-
-import model.Player;
 
 public class ChanceField extends NeutralField {
 

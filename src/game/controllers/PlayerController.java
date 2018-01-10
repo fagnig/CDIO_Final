@@ -1,6 +1,7 @@
-package controllers;
+package game.controllers;
 
-import model.Player;
+import game.MasterController;
+import game.model.Player;
 
 public class PlayerController {
 	
@@ -13,7 +14,7 @@ public class PlayerController {
 	public Player[] makePlayers(String[] navne) {
 		players = new Player[navne.length];
 		for (int i = 0; i < navne.length ; i++) {
-			players[i] = new Player(navne[i],MasterController.PLAYER_STARTBALANCE);
+			players[i] = new Player(navne[i], MasterController.PLAYER_STARTBALANCE);
 		}
 		
 		return players;

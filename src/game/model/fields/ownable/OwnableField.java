@@ -1,8 +1,9 @@
-package fields;
+package game.model.fields.ownable;
 
 import java.awt.*;
 
-import model.Player;
+import game.model.Player;
+import game.model.fields.Field;
 
 public abstract class OwnableField extends Field {
 

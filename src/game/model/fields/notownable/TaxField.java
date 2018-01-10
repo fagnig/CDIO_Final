@@ -1,4 +1,6 @@
-package fields;
+package game.model.fields.notownable;
+
+import game.model.fields.Field;
 
 import java.awt.*;
 

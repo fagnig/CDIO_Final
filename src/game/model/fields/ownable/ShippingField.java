@@ -1,8 +1,6 @@
-package fields;
+package game.model.fields.ownable;
 
 import java.awt.*;
-
-import model.Player;
 
 public class ShippingField extends OwnableField {
 	

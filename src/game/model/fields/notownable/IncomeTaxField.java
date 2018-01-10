@@ -1,8 +1,6 @@
-package fields;
+package game.model.fields.notownable;
 
 import java.awt.*;
-
-import model.Player;
 
 public class IncomeTaxField extends TaxField {
 

@@ -1,8 +1,8 @@
-package fields;
+package game.model.fields.ownable;
 
 import java.awt.*;
 
-import model.*;
+import game.model.*;
 
 public class BreweryField extends OwnableField {
 

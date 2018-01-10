@@ -1,8 +1,6 @@
-package fields;
+package game.model.fields;
 
 import java.awt.*;
-
-import model.Player;
 
 public abstract class Field {
 

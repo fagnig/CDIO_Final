@@ -1,9 +1,9 @@
-package fields;
+package game.model.fields.ownable;
 
 import java.awt.*;
 
-import model.Language;
-import model.Player;
+import game.model.Language;
+import game.model.Player;
 
 public class BuildableField extends OwnableField {
 

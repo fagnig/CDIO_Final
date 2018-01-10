@@ -1,6 +1,4 @@
-package model;
-
-import java.awt.Color;
+package game.model;
 
 
 public class Player {

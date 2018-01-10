@@ -1,7 +1,6 @@
-package model;
+package game.model;
 
-import fields.BuildableField;
-import fields.OwnableField;
+import game.model.fields.ownable.OwnableField;
 
 public class Language {
 	public static String yes() {

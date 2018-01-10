@@ -1,10 +1,10 @@
-package controllers;
+package game.controllers;
 
-import model.*;
+import game.model.*;
 
 import java.util.Random;
 
-import fields.*;
+import game.model.fields.*;
 
 public class ChanceCardController {
 	private Random random = new Random();

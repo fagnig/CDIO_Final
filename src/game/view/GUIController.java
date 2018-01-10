@@ -1,11 +1,11 @@
-package controllers;
+package game.view;
 
 import java.awt.Color;
 
+import game.MasterController;
 import gui_fields.*;
 import gui_main.*;
-import model.*;
-import fields.*;
+import game.model.*;
 
 public class GUIController {
 	// array der holder GUI felter
@@ -18,7 +18,7 @@ public class GUIController {
 
 	}
 	
-	public void initFields(fields.Field[] fields)
+	public void initFields(game.model.fields.Field[] fields)
 	{
 
 		fieldsGUI = new GUI_Field[40];
@@ -147,7 +147,7 @@ public class GUIController {
 					a.setPrimaryColor(Color.pink);
 				a.setSecondaryColor(Color.gray);
 				
-				players[i] = new GUI_Player(playerNames[i],MasterController.PLAYER_STARTBALANCE,a);
+				players[i] = new GUI_Player(playerNames[i], MasterController.PLAYER_STARTBALANCE,a);
 				gui.addPlayer(players[i]);
 			}
 			

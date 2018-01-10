@@ -1,5 +1,5 @@
-package controllers;
-import model.Dice;
+package game.controllers;
+import game.model.Dice;
 
 public class DiceController {
 	
