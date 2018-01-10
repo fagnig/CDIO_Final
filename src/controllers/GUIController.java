@@ -18,7 +18,7 @@ public class GUIController {
 
 	}
 	
-	public void initFields(Field[] fields)
+	public void initFields(fields.Field[] fields)
 	{
 
 		fieldsGUI = new GUI_Field[40];
