@@ -12,7 +12,7 @@ public class BuildableField extends OwnableField {
     public BuildableField (String newName, Color primary, Color secondary,  int newGroup, int[] newRent, int price, int newBuildingPrice){
         super(newName, primary, secondary, newGroup,newRent, price);
         buildingPrice = newBuildingPrice;
-        buildable = true;
+        buildable = false;
         type = 4;
         buildStatus = 0;
         subText = Integer.toString(price) ;
@@ -30,4 +30,12 @@ public class BuildableField extends OwnableField {
 	public int getBuildStatus(){
 		return buildStatus;
 	}
+
+	public void setBuildable(boolean b){
+        buildable = b;
+    }
+
+    public boolean getBuildable(){
+        return buildable;
+    }
 }

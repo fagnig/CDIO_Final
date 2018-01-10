@@ -15,7 +15,7 @@ public class GUIController {
 	private GUI_Field[] fieldsGUI;
 	private GUI gui;
 	private GUI_Player[] players;
-	
+
 	private GUIController(){}
 
 	private static GUIController guiC = new GUIController();
@@ -27,7 +27,6 @@ public class GUIController {
 
 	public void initFields(game.model.fields.Field[] fields)
 	{
-
 		fieldsGUI = new GUI_Field[40];
 		fieldsGUI[0] = new GUI_Start();
 		int type = 0;
@@ -166,7 +165,7 @@ public class GUIController {
 	
 	public void setBuildStatus(int location, int level) {
 		GUI_Street a = (GUI_Street) fieldsGUI[location];
-		level = Math.min(5,Math.max(0,level));
+
 		if (level < 5){
 		    a.setHouses(level);
             a.setHotel(false);
@@ -187,7 +186,11 @@ public class GUIController {
                     if(fieldsGUI[j] instanceof GUI_Street){
                         setBuildStatus(j,((BuildableField) fields[j]).getBuildStatus());
                         if(((BuildableField) fields[j]).getOwner() != null && ((BuildableField) fields[j]).getOwner().equals(player[i])) {
-                            ((GUI_Street) fieldsGUI[j]).setBorder(players[i].getPrimaryColor());
+                            if(!((BuildableField) fields[j]).isMortgaged()) {
+                                ((GUI_Street) fieldsGUI[j]).setBorder(players[i].getPrimaryColor());
+                            } else {
+                                ((GUI_Street) fieldsGUI[j]).setBorder(players[i].getPrimaryColor(), Color.BLACK);
+                            }
                         }
                     }
                 }
@@ -201,4 +204,56 @@ public class GUIController {
 		return (gui.getUserLeftButtonPressed(message, Language.scaling(), Language.flat()));
 	}
 
+	public OwnableField chooseFieldMortgage(String message, OwnableField[] fields){
+        int index = 0;
+
+	    for(int i = 0; i < fields.length;i++){
+	        if(!fields[i].isMortgaged()){
+	            index++;
+            }
+        }
+
+        OwnableField[] tempFields = new OwnableField[index];
+        String[] tempNames = new String[index];
+        int counter = 0;
+        for(int i = 0; i < fields.length;i++){
+            if(!fields[i].isMortgaged()){
+                tempFields[counter] = fields[i];
+                tempNames[counter] = fields[i].getName() + " - " + fields[i].getPrice() + Language.getCurrency();
+                counter++;
+            }
+        }
+
+
+	    String result = gui.getUserSelection(message, tempNames);
+
+	    for(int i = 0; i<tempNames.length; i++){
+	        if(tempNames[i].equals(result)){
+	            return tempFields[i];
+            }
+        }
+
+        //failsafe
+        return new BuildableField("",Color.BLACK,Color.BLACK,0,new int[] {},0,0);
+    }
+
+    public BuildableField chooseFieldBuild(String message, BuildableField[] ownedFields){
+
+        String[] tempNames = new String[ownedFields.length];
+
+        for(int i = 0; i<ownedFields.length;i++){
+            tempNames[i] = ownedFields[i].getName();
+        }
+
+        String result = gui.getUserSelection(message, tempNames);
+
+        for(int i = 0; i<tempNames.length; i++){
+            if(tempNames[i].equals(result)){
+                return ownedFields[i];
+            }
+        }
+
+
+	    return new BuildableField("",Color.BLACK,Color.BLACK,0,new int[] {},0,0);
+    }
 }

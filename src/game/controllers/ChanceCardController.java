@@ -171,7 +171,7 @@ public class ChanceCardController {
 			
 		case 23:
 			//Spiller får et fængselskort
-			drawingPlayer.getWallet().addJailCard(1);
+			drawingPlayer.addJailCard(1);
             return returnValues[number-1];
 
 		}

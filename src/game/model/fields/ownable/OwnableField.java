@@ -54,4 +54,8 @@ public abstract class OwnableField extends Field {
     public void setAmountOwned(int amount){
         amountOwned = amount;
     }
+
+    public void setMortgaged(boolean b) {
+        mortgaged = b;
+    }
 }

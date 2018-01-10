@@ -12,10 +12,14 @@ public class BuildableController extends OwnableController{
 
         if(!castedField.isMortgaged()) {
             if (castedField.getOwner() == null) {
-                if (guiC.getYesNo(Language.wantToBuy(castedField))) {
-                    castedField.setOwner(curPlayer);
-                    curPlayer.addField(castedField);
-                    curPlayer.payMoney(castedField.getPrice());
+                if (curPlayer.getBalance() > castedField.getPrice()) {
+                    if (guiC.getYesNo(Language.wantToBuy(castedField))) {
+                        castedField.setOwner(curPlayer);
+                        curPlayer.addField(castedField);
+                        curPlayer.payMoney(castedField.getPrice());
+                    }
+                } else {
+                    guiC.getOk(Language.notEnoughMoney());
                 }
             } else {
                 int rent;

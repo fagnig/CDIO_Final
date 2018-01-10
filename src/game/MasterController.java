@@ -7,11 +7,13 @@ import game.controllers.fields.notownable.TaxController;
 import game.model.*;
 import game.model.fields.*;
 import game.controllers.fields.ownable.*;
+import game.model.fields.ownable.BuildableField;
+import game.model.fields.ownable.OwnableField;
 import game.view.GUIController;
 
 public class MasterController {
 	// important numbers for the game
-	public static final int PLAYER_STARTBALANCE = 30000;
+	public static final int PLAYER_STARTBALANCE = 300000;
 	public static final int GAME_PLAYERS_MAX = 6;
 	public static final int GAME_PLAYERS_MIN = 2;
 	
@@ -38,6 +40,7 @@ public class MasterController {
 		guiC.initFields(board.getFields());
 		pc.makePlayers(guiC.makePlayers());
         guiC.updateGUI(pc.getPlayers(), cup.getFaces(), board.getFields());
+
 	}
 	
 	private void go() {
@@ -46,11 +49,57 @@ public class MasterController {
 
 		while (true) {
             Player curPlayer = pc.getPlayer(currentTurn);
-			guiC.getOk(Language.roll(curPlayer));
             int stashedRoll = 0;
-
+            int index = 0;
+            boolean wantToBuild = false;
+            BuildableField[] tempFields;
 
 			if(!curPlayer.isBankrupt()){
+                guiC.getOk(Language.roll(curPlayer));
+
+                /*
+                //byggecond aka noget værre lort
+                for(int j = 0; j < curPlayer.getOwnedFields().length;j++) {
+                    for (int i = 0; i < board.getFields().length; i++) {
+                        if (curPlayer.getOwnedFields()[j]==board.getFields()[i]) {
+                            if (curPlayer.getOwnedFields()[j] instanceof BuildableField){
+                                if (board.canBuild(i)) {
+                                    index++;
+                                }
+                            }
+                        }
+                    }
+                }
+                if(index>0) {
+                    tempFields = new BuildableField[index];
+                    int counter = 0;
+                    for (int j = 0; j < curPlayer.getOwnedFields().length; j++) {
+                        for (int i = 0; i < board.getFields().length; i++) {
+                            if (curPlayer.getOwnedFields()[j] == board.getField(i)) {
+                                if (board.canBuild(i)) {
+                                    tempFields[counter++] = (BuildableField) board.getField(i);
+                                }
+                            }
+                        }
+                    }
+                    if(guiC.getYesNo(Language.wantToBuild())){
+                        wantToBuild = true;
+                    }
+                    while(wantToBuild){
+                        BuildableField result = guiC.chooseFieldBuild(Language.chooseForBuild(),tempFields);
+                        if(result.getBuildingPrice()<curPlayer.getBalance()){
+                            result.setBuildStatus(result.getBuildStatus()+1);
+                            curPlayer.payMoney(result.getBuildingPrice());
+                        } else {
+                            guiC.getOk(Language.notEnoughMoney());
+                        }
+                    }
+                }
+                //Slut på lort
+                */
+
+
+
 			    while(!curPlayer.isFree()){
                     guiC.getOk(Language.currentlyJailed());
                     if (guiC.getYesNo(Language.payBail())) {
@@ -105,12 +154,28 @@ public class MasterController {
 
                     landOnField(curPlayer);
 
+                    //Bankruptcy check
+                    for(int i = 0; i<pc.getPlayers().length; i++){
+                        if(pc.getPlayers()[i].getBalance()<0){
+                            if(!(Math.abs(pc.getPlayers()[i].getBalance())>pc.getPlayers()[i].getTotalValue())){
+                                while(pc.getPlayers()[i].getBalance()<0) {
+                                    OwnableField result = guiC.chooseFieldMortgage(Language.chooseForMortgage(pc.getPlayers()[i].getBalance()), pc.getPlayers()[i].getOwnedFields());
+                                    pc.getPlayers()[i].receiveMoney(result.getPrice());
+                                    result.setMortgaged(true);
+                                }
+                            } else {
+                                guiC.getOk(Language.bankrupt());
+                                pc.getPlayers()[i].setBankrupt(true);
+                            }
+                        }
+                    }
+
+
                     guiC.updateGUI(pc.getPlayers(), cup.getFaces(), board.getFields());
 
                 }
-			} else {
-			    guiC.getOk(Language.bankrupt());
-            }
+			}
+
             if(!cup.getDouble()) {
                 currentTurn = (currentTurn + 1) % (pc.getPlayers().length);
                 multiRoll = 0;

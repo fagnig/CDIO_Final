@@ -182,7 +182,7 @@ public class Language {
     }
 
     public static String bankrupt() {
-	    return "De er desværre bankerot";
+	    return "De er desværre gået bankerot";
     }
 
     public static String currentlyJailed() {
@@ -223,5 +223,25 @@ public class Language {
 
     public static String tooLucky() {
 	    return "Du har slået dobbelt 3 gange i træk og ryger derfor i fængsel";
+    }
+
+    public static String chooseForMortgage(int left) {
+	    return "Hvilken grund ønsker de at pantsætte? Der mangler: " + left + " kr.";
+    }
+
+    public static String getCurrency() {
+	    return "kr.";
+    }
+
+    public static String notEnoughMoney() {
+	    return "Du har ikke nok penge";
+    }
+
+    public static String wantToBuild() {
+	    return "Ønsker de at bygge huse/hoteller?";
+    }
+
+    public static String chooseForBuild() {
+	    return "Hvilket felt ønskes opgraderet?";
     }
 }

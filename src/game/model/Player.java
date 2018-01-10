@@ -37,10 +37,6 @@ public class Player {
     public void setFree(boolean b) {
     	free = b;
     }
-  
-    public Wallet getWallet() {
-    	return wallet;
-    }
     
     public void setBankrupt(boolean b) {
     	bankrupt = b;
@@ -48,9 +44,6 @@ public class Player {
     public String getName() {
     	return name;
     }
-//    public String getColor() {
-//    	return color.toString();
-//    }
     
     public void receiveMoney(int amount) {
     // kaldet på Wallet (metodekald)
@@ -71,7 +64,7 @@ public class Player {
     }
 
     public void removeField(OwnableField newField){
-        wallet.addField(newField);
+        wallet.removeField(newField);
     }
 	public int getLocation() {
 		return location;
@@ -101,5 +94,9 @@ public class Player {
 
     public void addJailCard(int amount){
         wallet.addJailCard(amount);
+    }
+
+    public OwnableField[] getOwnedFields(){
+        return wallet.getOwnedFields();
     }
 }

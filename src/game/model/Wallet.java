@@ -8,7 +8,10 @@ public class Wallet {
     private int balance;
 
     public int getTotalValue(){
-        int tempVal = balance;
+        int tempVal = 0;
+        if(balance > 0) {
+            tempVal = balance;
+        }
         for(int i = 0; i<ownedFields.length;i++){
             tempVal += ownedFields[i].getPrice();
         }
@@ -70,5 +73,9 @@ public class Wallet {
                 tempFields[index++]=ownedFields[i];
             }
         }
+    }
+
+    public OwnableField[] getOwnedFields() {
+        return ownedFields;
     }
 }
