@@ -19,10 +19,6 @@ public class BuildableField extends OwnableField {
         description = Language.getFormattedDescription(rent,buildingPrice);
     }
 
-    @Override
-    public void landOnField(Player landingPlayer) {
-        // to do
-    }
     public int getBuildingPrice() {
     	return buildingPrice;
     }
