@@ -177,8 +177,10 @@ public class GUIController {
 			gui.setDice(faces[0], faces[1]);
 			
 		}
+
+	public boolean getTaxChoice(String message)
+	{
+		return (gui.getUserLeftButtonPressed(message, Language.scaling(), Language.flat()));
 	}
 
-
-	
-
+}

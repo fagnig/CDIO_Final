@@ -63,7 +63,7 @@ public class Language {
 		return tempStr;
 	}
 	public static String[] fieldNames(){
-	    String [] names = new String[40];
+	    String[] names = new String[40];
 
         names[0] = "Start";
         names[1] = "Rødovrevej";
@@ -109,5 +109,46 @@ public class Language {
     }
     public static String wantToBuy(OwnableField field){
 	    return "Vil du købe " + field.getName() + " for " + field.getPriceString() + ".";
+    }
+    public static String[] chanceStrings(){
+        String[] strings = new String[23];
+
+        strings[0] = "Modtag 3000 kr. af banken";
+        strings[1] = "Modtag 500 kr. fra hver spiller";
+        strings[2] = "Ryk til start";
+        strings[3] = "Ryk 3 felter tilbage";
+        strings[4] = "Modtag 1000 kr. af banken";
+        strings[5] = "Modtag 200 kr. af banken";
+        strings[6] = "Betal 1000 kr. af banken";
+        strings[7] = "Ryk 3 felter frem";
+        strings[8] = "Betal 3000 kr.";
+        strings[9] = "Betal 300 kr.";
+        strings[10] = "Betal 2000 kr.";
+        strings[11] = "Modtag 200 kr. fra hver spiller";
+        strings[12] = "Ryk i fængsel";
+        strings[13] = "Modtag 500 kr. af banken";
+        strings[14] = "Ryk til den nærmeste færge, modtag 4000 hvis start passeres";
+        strings[15] = "Ryk til Mols-linjen, modtag 4000 hvis start passeres";
+        strings[16] = "Ryk frem til Frederiksberg allé modtag 4000 hvis start passeres";
+        strings[17] = "Ryk frem til Strandvejen, modtag 4000 hvis start passeres";
+        strings[18] = "Ryk frem til Rådhuspladsen";
+        strings[19] = "Ryk frem til Vimmelskaftet, modtag 4000 hvis start passeres";
+        strings[20] = "Ryk frem til Grønningen, modtag 4000 hvis start passeres";
+        strings[21] = "Betal 200 kr.";
+        strings[22] = "Modtag fængselskort";
+
+        return strings;
+    }
+    public static String error(){
+	    return "Der er gået noget galt";
+    }
+    public static String scaling() {
+	    return "10 Procent";
+    }
+    public static String flat() {
+        return "4000 kr.";
+    }
+    public static String payRent(){
+	    return " betaler leje til ";
     }
 }
