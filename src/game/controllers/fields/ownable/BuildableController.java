@@ -16,8 +16,13 @@ public class BuildableController extends OwnableController{
                 curPlayer.payMoney(castedField.getPrice());
             }
         } else {
+            int rent;
+            if(castedField.getAmountOwned() > 1){
+                rent = castedField.getRent()[0]*castedField.getAmountOwned();
+            } else {
+                rent = castedField.getRent()[castedField.getBuildStatus()];
+            }
 
-            int rent = castedField.getRent()[castedField.getBuildStatus()]*castedField.getAmountOwned();
             guiC.getOk(curPlayer.getName()  + Language.payRent() + castedField.getOwner().getName()+ " "+ rent);
             curPlayer.payMoney(rent);
             castedField.getOwner().receiveMoney(rent);
