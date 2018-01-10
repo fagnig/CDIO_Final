@@ -24,4 +24,14 @@ public abstract class OwnableField extends Field {
     public int[] getRent(){
     	return rent;
     }
+    public Player getOwner(){
+    	return owner;
+    }
+    
+    public int getPrice(){
+    	return price;
+    }
+    public void setOwner(Player player){
+    	owner = player;
+    }
 }

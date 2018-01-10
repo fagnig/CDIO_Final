@@ -88,7 +88,28 @@ public class MasterController {
 			}
 		}
 		
-		//if asdas
+		//if brewery
+		if (currentField.getType() == 5){
+			BreweryField castedField = ((BreweryField) currentField);
+			if (castedField.getOwner() == null){
+				if(guiC.getYesNo(Language.wantToBuy(castedField))){
+					castedField.setOwner(landingPlayer);
+//					landingPlayer.addField(landingPlayer.getLocation(),castedField.getPrice()).
+					landingPlayer.payMoney(castedField.getPrice());
+				}
+			} else { 
+				int rent = cup.getFaceValue()*100;
+				guiC.getOk(Language.yes());
+//				guiC.showChanceCard(landingPlayer.getName()  + Language.payRent() + castedField.getOwner().getName()+ " "+ castedField.getRent()[castedField.getBuildStatus()]);
+				landingPlayer.payMoney(rent);
+				castedField.getOwner().receiveMoney(rent);
+			}
+		
+		}
+		
+		// if shipping
+		
+	
 	}
 
 	

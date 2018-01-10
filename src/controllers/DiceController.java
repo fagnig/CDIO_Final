@@ -14,6 +14,10 @@ public class DiceController {
 		int value = d1.roll()+d2.roll();
 		return value;
 	}
+	
+	public int getFaceValue(){
+		return d1.getFaceValue()+d2.getFaceValue();
+	}
 
 	public boolean getDouble() {
 		if (d1.getFaceValue() == d2.getFaceValue())
