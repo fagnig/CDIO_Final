@@ -3,6 +3,7 @@ package controllers;
 import java.awt.Color;
 
 import fields.*;
+import model.Language;
 
 
 public class BoardController {
@@ -31,14 +32,16 @@ public class BoardController {
     	int[] best7 = {600,3000,9000,20000,24000,28000};
     	int[] rent8 = {700,3500,10000,22000,26000,30000};
     	int[] best8 = {1000,4000,12000,28000,34000,40000};
-    	
-        fields[0] = new StartField("Start", Color.RED,Color.BLACK);
-        fields[1] = new BuildableField("Rødovrevej", Color.cyan, Color.black, 1,rent1, 1200, 1000) ;
-        fields[2] = new ChanceField("Chance",Color.black, Color.green);
-        fields[3] = new BuildableField("Hvidovrevej", Color.cyan, Color.black, 1,rent1, 1200, 1000);
-        fields[4] = new IncomeTaxField("Indkomstskat", Color.WHITE, Color.BLACK);
-        fields[5] = new ShippingField("Redderiget Lindinger A/S", Color.blue, Color.black, 2,shippingrent, 4000);
-        fields[6] = new BuildableField("RoskildeVej", Color.orange, Color.black, 1,rent2, 2000, 1000);
+
+    	String[] fieldNames = Language.fieldNames();
+
+        fields[0] = new StartField(fieldNames[0], Color.RED,Color.BLACK);
+        fields[1] = new BuildableField(fieldNames[1], Color.cyan, Color.black, 1,rent1, 1200, 1000) ;
+        fields[2] = new ChanceField(fieldNames[2],Color.black, Color.green);
+        fields[3] = new BuildableField(fieldNames[3], Color.cyan, Color.black, 1,rent1, 1200, 1000);
+        fields[4] = new IncomeTaxField(fieldNames[4], Color.WHITE, Color.BLACK);
+        fields[5] = new ShippingField(fieldNames[5], Color.blue, Color.black, 2,shippingrent, 4000);
+        fields[6] = new BuildableField(fieldNames[6], Color.orange, Color.black, 1,rent2, 2000, 1000);
         fields[7] = new ChanceField("Chance",Color.black, Color.green);
         fields[8] = new BuildableField("Valby Langgade", Color.orange, Color.black, 3, rent2, 2000, 1000);
         fields[9] = new BuildableField("Allégade", Color.orange, Color.black, 3,best2, 2400, 1000);
@@ -71,7 +74,7 @@ public class BoardController {
         fields[36] = new ChanceField("Chance", Color.BLACK, Color.green);
         fields[37] = new BuildableField("Frederiksberggade", Color.PINK, Color.black, 3,rent8, 7000, 4000);
         fields[38] = new GovTaxField("Statsskat", Color.white, Color.black);
-        fields[39] = new BuildableField("Rådhuspladsen", Color.PINK, Color.black, 3,best8, 8000, 4000); 
+        fields[39] = new BuildableField(fieldNames[39], Color.PINK, Color.black, 3,best8, 8000, 4000);
     }
 
     public Field[] getFields() {
