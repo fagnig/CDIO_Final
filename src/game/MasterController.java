@@ -60,7 +60,7 @@ public class MasterController {
                     }
                     if (curPlayer.getJailCard()>0) {
                         if(guiC.getYesNo(Language.useJailCard())){
-                            curPlayer.removeJailCard(curPlayer.getJailCard()-1);
+                            curPlayer.removeJailCard(1);
                             curPlayer.setFree(true);
                             break;
                         }
