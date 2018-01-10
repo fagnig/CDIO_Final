@@ -14,7 +14,7 @@ public class BuildableField extends OwnableField {
         buildingPrice = newBuildingPrice;
         buildable = true;
         type = 4;
-        subText = "" + price ;
+        subText = Integer.toString(price) ;
         description = Language.getFormattedDescription(rent,buildingPrice);
     }
 
