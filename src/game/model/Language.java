@@ -141,16 +141,43 @@ public class Language {
     public static String error(){
 	    return "Der er gået noget galt";
     }
-    public static String scaling() {
-	    return "10 Procent";
-    }
-    public static String flat() {
-        return "4000 kr.";
-    }
     public static String payRent(){
 	    return " betaler leje til ";
     }
     public static String taxType(){
     	return "Vil du betale 10% eller 4000kr";
+    }
+    public static String scaling() {
+        return "10 Procent";
+    }
+    public static String flat() {
+        return "4000 kr.";
+    }
+    public static String payTax(){
+	    return "Du skal betale 4000kr til banken";
+    }
+
+    public static String jailDesc() {
+        return "De sidder i fængsel. slå 2 ens, betal kr 1000 eller anvend dit løsladeskort hvis haves. Hvis der slås 2 ens rykker de det antal felter frem.";
+    }
+
+    public static String visit() {
+	    return "På besøg";
+    }
+
+    public static String parking() {
+	    return "Parkering";
+    }
+
+    public static String parkingDesc() {
+	    return "GØR NOGET VED DINE DRØMME!";
+    }
+
+    public static String jailed() {
+        return "De ryger i fængsel, ryk frem til fængsel. De modtager ikke kr 4000 ved passering af start";
+    }
+
+    public static String jailSub() {
+	    return "De fængsles";
     }
 }

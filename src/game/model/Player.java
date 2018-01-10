@@ -1,6 +1,8 @@
 package game.model;
 
 
+import game.model.fields.ownable.OwnableField;
+
 public class Player {
 
     private Wallet wallet;
@@ -28,7 +30,6 @@ public class Player {
     public boolean isFree() {
     	return free;
     }
-    
     public boolean isBankrupt() {
     	return bankrupt;
     }
@@ -57,19 +58,27 @@ public class Player {
         }
         wallet.addMoney(amount);
     }
-    
     public void payMoney(int amount) {
         // kaldet på Wallet (metodekald)
             if(amount < 0){
                 amount = 0;
             }
         	wallet.removeMoney(amount);
-        }
+    }
+    public void addField(OwnableField newField){
+        wallet.addField(newField);
+    }
 
+    public void removeField(OwnableField newField){
+        wallet.addField(newField);
+    }
 	public int getLocation() {
 		return location;
 	}
 	public int getBalance() {
 		return wallet.getBalance();
 	}
+	public int getTotalValue(){
+        return wallet.getTotalValue();
+    }
 }

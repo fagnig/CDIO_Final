@@ -1,5 +1,7 @@
 package game.model.fields.notownable;
 
+import game.model.Language;
+
 import java.awt.*;
 
 public class PrisonField extends NotOwnable {
@@ -8,7 +10,7 @@ public class PrisonField extends NotOwnable {
 	        super(newName, primary, secondary);
 	        type = 8;
 	        
-	        description = "De ryger i fængsel, ryk frem til fængsel. De modtager ikke kr 4000 ved passering af start";
-	        subText = "De fængsles";
+	        description = Language.jailed();
+	        subText = Language.jailSub();
 	    }
 }

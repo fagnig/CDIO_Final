@@ -1,6 +1,9 @@
 package game;
 
 import game.controllers.*;
+import game.controllers.ChanceCardController;
+import game.controllers.fields.notownable.PrisonController;
+import game.controllers.fields.notownable.TaxController;
 import game.model.*;
 import game.model.fields.*;
 import game.controllers.fields.ownable.*;
@@ -19,10 +22,12 @@ public class MasterController {
 	private PlayerController pc = new PlayerController();
 	private ChanceCardController ccc = new ChanceCardController();
 
-	//Field controllers
+	//Fieldcontrollers
     private BreweryController fbC = new BreweryController();
     private ShippingController fsC = new ShippingController();
     private BuildableController fBC = new BuildableController();
+    private PrisonController fpC = new PrisonController();
+    private TaxController ftC = new TaxController();
 
 
 	private int currentTurn = 0;
@@ -36,18 +41,16 @@ public class MasterController {
 	
 	private void go() {
 		//gameLoop
-        int m=0;
 		while (true) {
 			guiC.getOk(Language.roll());
 
-            pc.getPlayer(currentTurn).move(1);
+            pc.getPlayer(currentTurn).move(5);
 			//pc.getPlayer(currentTurn).move(cup.roll());
 
 			board.setAllVals(pc.getPlayers());
 
 			guiC.updateGUI(pc.getPlayers(),cup.getFaces(),board.getFields());
-            m++;
-			guiC.setBuildStatus(1,m);
+
 			landOnField(pc.getPlayer(currentTurn));
 
             guiC.updateGUI(pc.getPlayers(),cup.getFaces(),board.getFields());
@@ -60,41 +63,29 @@ public class MasterController {
 		// if start do nothing
 		
 		// if ChanceField
-		if(currentField.getType()==100){
+		if(currentField.getType()==1){
 			guiC.getOk(ccc.resolveChance(landingPlayer, pc.getPlayers(), board.getFields()));
 		}
 		// if IncomeTaxField
 		if(currentField.getType()==2){
-			if(guiC.getTaxChoice(Language.taxType())){
-				landingPlayer.payMoney(landingPlayer.getBalance()/10);
-			}
-			else{
-				landingPlayer.payMoney(4000);
-			}
+			ftC.landOnField(landingPlayer,currentField);
 		}
-		
-		
-		// if govTaxField
-		if(currentField.getType()==3){
-			landingPlayer.payMoney(4000);
-		}
-		
-		
 		// if buildable
 		if (currentField.getType()==4){
             fBC.landOnField(landingPlayer,currentField);
 		}
-
 		//if brewery
 		if (currentField.getType() == 5){
 		    fbC.landOnField(landingPlayer,currentField);
 		}
-		
 		// if shipping
         if (currentField.getType() == 6){
             fsC.landOnField(landingPlayer,currentField);
         }
-	
+        // if shipping
+        if (currentField.getType() == 8){
+            fpC.landOnField(landingPlayer,currentField);
+        }
 	}
 
 	

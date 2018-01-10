@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import game.MasterController;
 import game.model.fields.Field;
+import game.model.fields.ownable.BuildableField;
 import game.model.fields.ownable.OwnableField;
 import gui_fields.*;
 import gui_main.*;
@@ -69,12 +70,12 @@ public class GUIController {
 			fieldsGUI[i].setBackGroundColor(fields[i].getColor()[0]);
 			fieldsGUI[i].setForeGroundColor(fields[i].getColor()[1]);
 			if(i==10) {
-				fieldsGUI[i].setSubText("På besøg");
-				fieldsGUI[i].setDescription("De sidder i fængsel. slå 2 ens, betal kr 1000 eller anvend dit løsladeskort hvis haves. Hvis der slås 2 ens rykker de det antal felter frem.");
+				fieldsGUI[i].setSubText(Language.visit());
+				fieldsGUI[i].setDescription(Language.jailDesc());
 			}
 			if(i==20) {
-				fieldsGUI[i].setSubText("Parkering");
-				fieldsGUI[i].setDescription("GØR NOGET VED DINE DRØMME!");
+				fieldsGUI[i].setSubText(Language.parking());
+				fieldsGUI[i].setDescription(Language.parkingDesc());
 			}
 			
 		}
@@ -184,7 +185,8 @@ public class GUIController {
 				players[i].setBalance(player[i].getBalance());
                 for (int j = 0; j < fields.length; j++){
                     if(fieldsGUI[j] instanceof GUI_Street){
-                        if(((OwnableField) fields[j]).getOwner() != null && ((OwnableField) fields[j]).getOwner().equals(player[i])) {
+                        setBuildStatus(j,((BuildableField) fields[j]).getBuildStatus());
+                        if(((BuildableField) fields[j]).getOwner() != null && ((BuildableField) fields[j]).getOwner().equals(player[i])) {
                             ((GUI_Street) fieldsGUI[j]).setBorder(players[i].getPrimaryColor());
                         }
                     }

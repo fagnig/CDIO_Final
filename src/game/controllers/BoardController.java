@@ -42,13 +42,13 @@ public class BoardController {
         fields[1] = new BuildableField(fieldNames[1], Color.cyan, Color.black, 1,rent1, 1200, 1000) ;
         fields[2] = new ChanceField(fieldNames[2],Color.black, Color.green);
         fields[3] = new BuildableField(fieldNames[3], Color.cyan, Color.black, 1,rent1, 1200, 1000);
-        fields[4] = new IncomeTaxField(fieldNames[4], Color.WHITE, Color.BLACK);
+        fields[4] = new TaxField(fieldNames[4], Color.WHITE, Color.BLACK);
         fields[5] = new ShippingField(fieldNames[5], Color.blue, Color.black, 0,shippingrent, 4000);
         fields[6] = new BuildableField(fieldNames[6], Color.orange, Color.black, 2,rent2, 2000, 1000);
         fields[7] = new ChanceField(fieldNames[7],Color.black, Color.green);
         fields[8] = new BuildableField(fieldNames[8], Color.orange, Color.black, 2, rent2, 2000, 1000);
         fields[9] = new BuildableField(fieldNames[9], Color.orange, Color.black, 2,best2, 2400, 1000);
-        fields[10] = new RefugeField(fieldNames[10], Color.black, Color.white);
+        fields[10] = new PrisonField(fieldNames[10], Color.black, Color.white);
         fields[11] = new BuildableField(fieldNames[11], Color.green, Color.black, 3,rent3, 2800, 2000);
         fields[12] = new BreweryField(fieldNames[12], Color.red, Color.black, 9,rent, 3000);
         fields[13] = new BuildableField(fieldNames[13], Color.green, Color.black, 3,rent3, 2800, 2000);
@@ -76,7 +76,7 @@ public class BoardController {
         fields[35] = new ShippingField(fieldNames[35], Color.BLUE, Color.black, 0,shippingrent, 4000);
         fields[36] = new ChanceField(fieldNames[36], Color.BLACK, Color.green);
         fields[37] = new BuildableField(fieldNames[37], Color.PINK, Color.black, 8,rent8, 7000, 4000);
-        fields[38] = new GovTaxField(fieldNames[38], Color.white, Color.black);
+        fields[38] = new TaxField(fieldNames[38], Color.white, Color.black);
         fields[39] = new BuildableField(fieldNames[39], Color.PINK, Color.black, 8,best8, 8000, 4000);
     }
 
