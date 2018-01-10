@@ -13,11 +13,15 @@ public class GUIController {
 	private GUI gui;
 	private GUI_Player[] players;
 	
-	public GUIController()
-	{
+	private GUIController(){}
 
-	}
-	
+	private static GUIController guiC = new GUIController();
+
+	public static GUIController getInstance(){
+	    return guiC;
+    }
+
+
 	public void initFields(game.model.fields.Field[] fields)
 	{
 

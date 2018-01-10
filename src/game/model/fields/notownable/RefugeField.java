@@ -9,8 +9,5 @@ public class RefugeField extends NotOwnable {
 		// TODO Auto-generated constructor stub
 		type = 7;
 	}
-	public int getType() {
-		return type;
-	}
 
 }

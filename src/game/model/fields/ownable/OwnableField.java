@@ -11,6 +11,7 @@ public abstract class OwnableField extends Field {
     protected int[] rent  = new int[6];
     protected Player owner;
     protected Boolean buildable = false;
+    protected int amountOwned = 1;
 
     public OwnableField (String newName, Color primary, Color secondary, int newGroup, int[] newRent, int newPrice){
         super(newName, primary, secondary);
@@ -37,5 +38,16 @@ public abstract class OwnableField extends Field {
     }
     public int getGroup(){
     	return group;
+    }
+
+    public void setPrice(int amount){
+        rent[0] = amount;
+    }
+
+    public int getAmountOwned(){
+        return amountOwned;
+    }
+    public void setAmountOwned(int amount){
+        amountOwned = amount;
     }
 }

@@ -36,8 +36,4 @@ public abstract class Field {
         return color;
     }
 
-    public String getPriceString(){
-        return "";
-    }
-
 }

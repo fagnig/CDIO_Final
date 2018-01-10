@@ -87,8 +87,31 @@ public class BoardController {
     	return fields[loc];
     }
 
+    public void setAllVals(Player[] allPlayers){
+        for(int i=0; i<allPlayers.length; i++){
+            for(int j = 1; j < 10; j++){
+                if(areAllOwned(allPlayers[i],j)){
+                    for(int g=0; g<fields.length; g++){
+                        if(fields[i].getType()==4||fields[i].getType()==5) {
+                            OwnableField curField = ((OwnableField) fields[g]);
+                            if(curField.getGroup() == j){
+                                curField.setAmountOwned(2);
+                            }
+                        }
+                    }
+                }
+            }
+            for(int h=0; h<fields.length; h++){
+                if(fields[i].getType()==6) {
+                    OwnableField curField = ((OwnableField) fields[h]);
+                    curField.setAmountOwned(shippingOwned(allPlayers[i]));
+                }
+            }
+        }
+    }
+
     public boolean areAllOwned(Player curPlayer, int groupID){
-        for(int i=0; i<40; i++){
+        for(int i=0; i<fields.length; i++){
             if(fields[i].getType()==4||fields[i].getType()==5) {
                 OwnableField curField = ((OwnableField) fields[i]);
                 if (curField.getGroup() == groupID) {
@@ -140,6 +163,6 @@ public class BoardController {
                 }
             }
         }
-        return tempVal-1;
+        return tempVal;
     }
 }

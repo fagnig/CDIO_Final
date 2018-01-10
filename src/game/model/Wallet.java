@@ -1,17 +1,26 @@
 package game.model;
 
+import game.model.fields.ownable.OwnableField;
+
 public class Wallet {
-    private int[] fields = new int[40];
+    private OwnableField[] ownedFields = new OwnableField[0];
     private int jailCard= 0;
     private int balance;
 
     public int getTotalValue(){
-        //fill in
-        return 1;
+        int tempVal = balance;
+        for(int i = 0; i<ownedFields.length;i++){
+            tempVal += ownedFields[i].getPrice();
+        }
+        return tempVal;
     }
 
     public void addMoney(int amount){
         balance = balance + amount;
+    }
+
+    public void removeMoney(int amount){
+        balance = balance - amount;
     }
 
     public Wallet(int newBalance){
@@ -29,5 +38,37 @@ public class Wallet {
     }
     public int getBalance() {
     	return balance;
+    }
+
+    public void addField(OwnableField newField){
+        OwnableField[] tempFields = new OwnableField[ownedFields.length + 1];
+        if(ownedFields.length == 0) {
+            tempFields[0] = newField;
+            ownedFields = tempFields;
+        }else{
+            for(int i = 0; i<ownedFields.length;i++){
+                tempFields[i] = ownedFields[i];
+            }
+            tempFields[tempFields.length] =  newField;
+            ownedFields = tempFields;
+        }
+    }
+
+    public void removeField(OwnableField newField){
+        boolean[] deleteField = new boolean[ownedFields.length];
+        for(int i = 0; i<ownedFields.length;i++){
+            if(ownedFields[i].equals(newField)) {
+                deleteField[i]=true;
+            } else {
+                deleteField[i]=false;
+            }
+        }
+        OwnableField[] tempFields = new OwnableField[ownedFields.length - 1];
+        int index=0;
+        for(int i=0;i<ownedFields.length;i++){
+            if(!deleteField[i]){
+                tempFields[index++]=ownedFields[i];
+            }
+        }
     }
 }

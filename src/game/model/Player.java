@@ -7,7 +7,7 @@ public class Player {
     private String name;
     private Boolean free = true;
     private Boolean bankrupt = false;
-    private int location = 0; 
+    private int location = 0;
  
     public Player(String newName, int Startbalance) {
     	name = newName;
@@ -25,14 +25,14 @@ public class Player {
     	location = newLocation%40;
     }
     
-    public Boolean isFree() {
+    public boolean isFree() {
     	return free;
     }
     
-    public Boolean isBankrupt() {
+    public boolean isBankrupt() {
     	return bankrupt;
     }
-    public void setFree(Boolean b) {
+    public void setFree(boolean b) {
     	free = b;
     }
   
@@ -40,7 +40,7 @@ public class Player {
     	return wallet;
     }
     
-    public void setBankrupt(Boolean b) {
+    public void setBankrupt(boolean b) {
     	bankrupt = b;
     }
     public String getName() {
@@ -52,12 +52,18 @@ public class Player {
     
     public void receiveMoney(int amount) {
     // kaldet på Wallet (metodekald)
-    	wallet.addMoney(amount);
+        if(amount < 0){
+            amount = 0;
+        }
+        wallet.addMoney(amount);
     }
     
     public void payMoney(int amount) {
         // kaldet på Wallet (metodekald)
-        	wallet.addMoney(-amount);
+            if(amount < 0){
+                amount = 0;
+            }
+        	wallet.removeMoney(amount);
         }
 
 	public int getLocation() {

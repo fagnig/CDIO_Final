@@ -12,8 +12,4 @@ public class ChanceField extends NotOwnable {
 		description = subText;
 	}
 
-    public int getType() {
-    	return type;
-    }
-
 }

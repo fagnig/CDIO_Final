@@ -9,11 +9,4 @@ public class IncomeTaxField extends TaxField {
         type = 2;
     }
 
-
-    public int getType() {
-    	return type;
-    }
-    public String getDescription() {
-    	return "Betal indkomstskat: 10% eller kr 4000"+description;
-    }
 }

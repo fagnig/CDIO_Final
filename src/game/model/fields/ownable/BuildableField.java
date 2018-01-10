@@ -26,25 +26,7 @@ public class BuildableField extends OwnableField {
     public void setBuildStatus(int status){
         buildStatus += status ;
     }
-    
-    public int getType() {
-    	return type;
-    }
 
-    @Override
-    public String getPriceString() {
-        return super.getPriceString();
-    }
-    public void setOwner(Player newOwner){
-    	owner = newOwner;
-    }
-
-	public Player getOwner() {
-		return owner;
-	}
-	public int getPrice(){
-		return price;
-	}
 	public int getBuildStatus(){
 		return buildStatus;
 	}

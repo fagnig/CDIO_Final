@@ -11,13 +11,11 @@ public class PlayerController {
 		
 	}
 	
-	public Player[] makePlayers(String[] navne) {
+	public void makePlayers(String[] navne) {
 		players = new Player[navne.length];
 		for (int i = 0; i < navne.length ; i++) {
 			players[i] = new Player(navne[i], MasterController.PLAYER_STARTBALANCE);
 		}
-		
-		return players;
 
 	}
 	public Player[] getPlayers() {

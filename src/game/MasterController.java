@@ -16,18 +16,17 @@ public class MasterController {
 	
 	// instantiation of game.controllers
 	private DiceController cup = new DiceController();
-	private GUIController guiC = new GUIController();
+	private GUIController guiC = GUIController.getInstance();
 	private BoardController board = new BoardController();
 	private PlayerController pc = new PlayerController();
 	private ChanceCardController ccc = new ChanceCardController();
-	private Player[] players;
 	private int currentTurn = 0;
 	
 	
 	
 	private void init() {
 		guiC.initFields(board.getFields());
-		players = pc.makePlayers(guiC.makePlayers());
+		pc.makePlayers(guiC.makePlayers());
 		
 		
 	}
@@ -37,11 +36,11 @@ public class MasterController {
 
 		while (true) {
 			guiC.getOk(Language.roll());
-			players[currentTurn].move(5);
-			guiC.updateGUI(players,cup.getFaces());
-			landOnField(players[currentTurn]);
-            guiC.updateGUI(players,cup.getFaces());
-			currentTurn = (currentTurn + 1) % (players.length);
+			pc.getPlayer(currentTurn).move(cup.roll());
+			guiC.updateGUI(pc.getPlayers(),cup.getFaces());
+			landOnField(pc.getPlayer(currentTurn));
+            guiC.updateGUI(pc.getPlayers(),cup.getFaces());
+			currentTurn = (currentTurn + 1) % (pc.getPlayers().length);
 		}
 	}
 	private void landOnField(Player landingPlayer){
@@ -50,7 +49,7 @@ public class MasterController {
 		
 		// if ChanceField
 		if(currentField.getType()==100){
-			guiC.getOk(ccc.resolveChance(landingPlayer, players, board.getFields()));
+			guiC.getOk(ccc.resolveChance(landingPlayer, pc.getPlayers(), board.getFields()));
 		}
 		// if IncomeTaxField
 		if(currentField.getType()==2){
@@ -71,44 +70,12 @@ public class MasterController {
 		
 		// if buildable
 		if (currentField.getType()==4){
-			BuildableField castedField = ((BuildableField) currentField);
-			if (castedField.getOwner() == null){
-				if(guiC.getYesNo(Language.wantToBuy(castedField))){
-					castedField.setOwner(landingPlayer);
-					landingPlayer.payMoney(castedField.getPrice());
-				}
-			} else {
-				int mult = 1;
-				if (board.areAllOwned(castedField.getOwner(),castedField.getGroup())){
-					mult = 2;
-				}
-				int rent = castedField.getRent()[castedField.getBuildStatus()]*mult;
-				guiC.getOk(landingPlayer.getName()  + Language.payRent() + castedField.getOwner().getName()+ " "+ rent);
-				landingPlayer.payMoney(rent);
-				castedField.getOwner().receiveMoney(rent);
-				
-			}
+
 		}
 		
 		//if brewery
 		if (currentField.getType() == 5){
-			BreweryField castedField = ((BreweryField) currentField);
-			if (castedField.getOwner() == null){
-				if(guiC.getYesNo(Language.wantToBuy(castedField))){
-					castedField.setOwner(landingPlayer);
-					landingPlayer.payMoney(castedField.getPrice());
-				}
-			} else {
-				int mult = 1;
-				if (board.areAllOwned(landingPlayer,(castedField.getGroup()))){
-					mult = 2;
-				}
 
-				int rent = cup.getFaceValue()*100*mult;
-                guiC.getOk(landingPlayer.getName()  + Language.payRent() + castedField.getOwner().getName()+ " "+ rent);
-				landingPlayer.payMoney(rent);
-				castedField.getOwner().receiveMoney(rent);
-			}
 		
 		}
 		

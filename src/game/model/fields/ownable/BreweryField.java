@@ -11,17 +11,5 @@ public class BreweryField extends OwnableField {
         buildable = false;
         type = 5;
     }
-
-    @Override
-    public String getPriceString() {
-        return super.getPriceString();
-    }
-    public int getType() {
-    	return type;
-    }
-
-	public Player getOwner() {
-		return owner;
-	}
     
 }

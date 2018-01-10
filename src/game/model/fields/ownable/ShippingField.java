@@ -8,13 +8,5 @@ public class ShippingField extends OwnableField {
         super(newName, primary, secondary, newPrice, newRent, newPrice);
         type = 6;
     }
-
-    @Override
-    public String getPriceString() {
-        return super.getPriceString();
-    }
-    public int getType() {
-    	return type;
-    }
 }
 
