@@ -1,4 +1,4 @@
-package game.controllers.field;
+package game.controllers.fields;
 
 import game.model.Player;
 import game.model.fields.Field;

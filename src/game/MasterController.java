@@ -3,9 +3,7 @@ package game;
 import game.controllers.*;
 import game.model.*;
 import game.model.fields.*;
-import game.model.fields.ownable.BreweryField;
-import game.model.fields.ownable.BuildableField;
-import game.model.fields.ownable.ShippingField;
+import game.controllers.fields.ownable.*;
 import game.view.GUIController;
 
 public class MasterController {
@@ -20,6 +18,13 @@ public class MasterController {
 	private BoardController board = new BoardController();
 	private PlayerController pc = new PlayerController();
 	private ChanceCardController ccc = new ChanceCardController();
+
+	//Field controllers
+    private BreweryController fbC = new BreweryController();
+    private ShippingController fsC = new ShippingController();
+    private BuildableController fBC = new BuildableController();
+
+
 	private int currentTurn = 0;
 	
 	
@@ -27,8 +32,6 @@ public class MasterController {
 	private void init() {
 		guiC.initFields(board.getFields());
 		pc.makePlayers(guiC.makePlayers());
-		
-		
 	}
 	
 	private void go() {
@@ -48,7 +51,7 @@ public class MasterController {
 		// if start do nothing
 		
 		// if ChanceField
-		if(currentField.getType()==100){
+		if(currentField.getType()==1){
 			guiC.getOk(ccc.resolveChance(landingPlayer, pc.getPlayers(), board.getFields()));
 		}
 		// if IncomeTaxField
@@ -70,31 +73,17 @@ public class MasterController {
 		
 		// if buildable
 		if (currentField.getType()==4){
-
+            fBC.landOnField(landingPlayer,currentField);
 		}
-		
+
 		//if brewery
 		if (currentField.getType() == 5){
-
-		
+		    fbC.landOnField(landingPlayer,currentField);
 		}
 		
 		// if shipping
         if (currentField.getType() == 6){
-            ShippingField castedField = ((ShippingField) currentField);
-            if (castedField.getOwner() == null){
-                if(guiC.getYesNo(Language.wantToBuy(castedField))){
-                    castedField.setOwner(landingPlayer);
-                    landingPlayer.payMoney(castedField.getPrice());
-                }
-            } else {
-
-                int rent = castedField.getRent()[board.shippingOwned(castedField.getOwner())];
-                guiC.getOk(landingPlayer.getName()  + Language.payRent() + castedField.getOwner().getName()+ " "+ rent);
-                landingPlayer.payMoney(rent);
-                castedField.getOwner().receiveMoney(rent);
-            }
-
+            fsC.landOnField(landingPlayer,currentField);
         }
 	
 	}

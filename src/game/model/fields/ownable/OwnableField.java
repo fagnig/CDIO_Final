@@ -7,7 +7,7 @@ import game.model.fields.Field;
 
 public abstract class OwnableField extends Field {
 
-    protected int price,group, type;
+    protected int price,group;
     protected int[] rent  = new int[6];
     protected Player owner;
     protected Boolean buildable = false;
@@ -29,7 +29,7 @@ public abstract class OwnableField extends Field {
     public Player getOwner(){
     	return owner;
     }
-    
+
     public int getPrice(){
     	return price;
     }

@@ -30,8 +30,4 @@ public class BuildableField extends OwnableField {
 	public int getBuildStatus(){
 		return buildStatus;
 	}
-
-
-
-    
 }
