@@ -49,13 +49,14 @@ public class Language {
 	public static String roll() {
 		return "Rul med terningerne!";
 	}
-	public static String getFormattedDescription(int[] dat){
+	public static String getFormattedDescription(int[] dat, int buildPrice){
 		String tempStr = "Leje: " + Integer.toString(dat[0]) +
-				"\n 1 Hus: " + Integer.toString(dat[1]) +
-				"\n 2 Huse: " + Integer.toString(dat[2]) +
-				"\n 3 Huse: " + Integer.toString(dat[3]) +
-				"\n 4 Huse: " + Integer.toString(dat[4]) +
-				"\n Hotel: " + Integer.toString(dat[5]);
+				"1 Hus: " + Integer.toString(dat[1]) +
+				"2 Huse: " + Integer.toString(dat[2]) +
+				"3 Huse: " + Integer.toString(dat[3]) +
+				"4 Huse: " + Integer.toString(dat[4]) +
+				"Hotel: " + Integer.toString(dat[5]) +
+				"Pris på hus og hotel: " + Integer.toString(buildPrice);
 		return tempStr;
 	}
 }
