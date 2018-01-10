@@ -11,11 +11,6 @@ public class GovTaxField extends TaxField {
         type = 3;
     }
 
-    public void landOnField(Player landingPlayer){
-
-        //to do later
-        //landingPlayer.add(-1000);
-    }
     public int getType() {
     	return type;
     }

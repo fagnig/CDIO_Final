@@ -7,27 +7,24 @@ import model.Player;
 
 public class BuildableField extends OwnableField {
 
-    private int buildingPrice;
+    private int buildingPrice, buildStatus;
 
     public BuildableField (String newName, Color primary, Color secondary,  int newGroup, int[] newRent, int price, int newBuildingPrice){
         super(newName, primary, secondary, newGroup,newRent, price);
         buildingPrice = newBuildingPrice;
         buildable = true;
         type = 4;
+        buildStatus = 0; 
         subText = Integer.toString(price) ;
         description = Language.getFormattedDescription(rent,buildingPrice);
     }
 
-    @Override
-    public void landOnField(Player landingPlayer) {
-        // to do
-    }
     public int getBuildingPrice() {
     	return buildingPrice;
     }
 
-    public void Build(){
-        // to do
+    public void setBuildStatus(int status){
+        buildStatus += status ;
     }
     
     public int getType() {
@@ -38,4 +35,21 @@ public class BuildableField extends OwnableField {
     public String getPriceString() {
         return super.getPriceString();
     }
+    public void setOwner(Player newOwner){
+    	owner = newOwner;
+    }
+
+	public Player getOwner() {
+		return owner;
+	}
+	public int getPrice(){
+		return price;
+	}
+	public int getBuildStatus(){
+		return buildStatus;
+	}
+
+
+
+    
 }

@@ -18,9 +18,23 @@ public abstract class OwnableField extends Field {
         price = newPrice;
     }
 
-    public abstract void landOnField(Player landingPlayer);
-
     public String getPriceString(){
-        return "" + price;
+        return Integer.toString(price);
+    }
+    public int[] getRent(){
+    	return rent;
+    }
+    public Player getOwner(){
+    	return owner;
+    }
+    
+    public int getPrice(){
+    	return price;
+    }
+    public void setOwner(Player player){
+    	owner = player;
+    }
+    public int getGroup(){
+    	return group;
     }
 }

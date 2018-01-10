@@ -80,4 +80,7 @@ public class BoardController {
     public Field[] getFields() {
         return fields;
     }
+    public Field getField(int loc){
+    	return fields[loc];
+    }
 }

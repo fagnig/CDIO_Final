@@ -12,11 +12,6 @@ public class StartField extends NeutralField {
 		type = 0;
 	}
 
-	@Override
-	public void landOnField(Player landingPlayer) {
-		// TODO Auto-generated method stub
-		
-	}
     public int getType() {
     	return type;
     }

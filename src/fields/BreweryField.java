@@ -13,16 +13,15 @@ public class BreweryField extends OwnableField {
     }
 
     @Override
-    public void landOnField(Player landingPlayer) {
-
-    }
-
-    @Override
     public String getPriceString() {
         return super.getPriceString();
     }
     public int getType() {
     	return type;
     }
+
+	public Player getOwner() {
+		return owner;
+	}
     
 }

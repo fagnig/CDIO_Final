@@ -14,9 +14,5 @@ public class RefugeField extends NeutralField {
 	public int getType() {
 		return type;
 	}
-	@Override
-	public void landOnField(Player landingPlayer) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

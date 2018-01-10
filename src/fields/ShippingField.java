@@ -12,11 +12,6 @@ public class ShippingField extends OwnableField {
     }
 
     @Override
-    public void landOnField(Player landingPlayer) {
-        // to do
-    }
-
-    @Override
     public String getPriceString() {
         return super.getPriceString();
     }
