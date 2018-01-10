@@ -18,8 +18,6 @@ public abstract class OwnableField extends Field {
         price = newPrice;
     }
 
-    public abstract void landOnField(Player landingPlayer);
-
     public String getPriceString(){
         return Integer.toString(price);
     }

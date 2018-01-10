@@ -18,9 +18,6 @@ public abstract class Field {
         subText="";
     }
 
-    public abstract void landOnField(Player landingPlayer);
-    
-
     public int getType() {
         return type;
     }

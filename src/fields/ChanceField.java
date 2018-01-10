@@ -14,11 +14,6 @@ public class ChanceField extends NeutralField {
 		description = subText;
 	}
 
-	@Override
-	public void landOnField(Player landingPlayer) {
-		// TODO Auto-generated method stub
-		
-	}
     public int getType() {
     	return type;
     }

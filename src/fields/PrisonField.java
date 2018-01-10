@@ -17,11 +17,7 @@ public class PrisonField extends Field{
 	    	return type;
 	    }
 
-		@Override
-		public void landOnField(Player landingPlayer) {
-			// TODO Auto-generated method stub
-			
-		}
+
 		public String getSubText() {
 			return "De fængsles"+subText;
 		}

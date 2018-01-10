@@ -11,10 +11,7 @@ public class IncomeTaxField extends TaxField {
         type = 2;
     }
 
-    public void landOnField(Player landingPlayer){
-     //to do
 
-    }
     public int getType() {
     	return type;
     }
