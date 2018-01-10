@@ -21,6 +21,6 @@ public abstract class OwnableField extends Field {
     public abstract void landOnField(Player landingPlayer);
 
     public String getPriceString(){
-        return "" + price;
+        return Integer.toString(price);
     }
 }

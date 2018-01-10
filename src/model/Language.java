@@ -1,5 +1,8 @@
 package model;
 
+import fields.BuildableField;
+import fields.OwnableField;
+
 public class Language {
 	public static String yes() {
 		return "Ja";
@@ -103,5 +106,8 @@ public class Language {
         names[38] = "Statsskat";
         names[39] = "Rådhuspladsen";
 	    return names;
+    }
+    public static String wantToBuy(OwnableField field){
+	    return "Vil du købe " + field.getName() + " for " + field.getPriceString() + ".";
     }
 }
