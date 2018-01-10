@@ -151,4 +151,7 @@ public class Language {
     public static String payRent(){
 	    return " betaler leje til ";
     }
+    public static String taxType(){
+    	return "Vil du betale 10% eller 4000kr";
+    }
 }

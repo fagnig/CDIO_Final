@@ -23,4 +23,7 @@ public abstract class OwnableField extends Field {
     public String getPriceString(){
         return Integer.toString(price);
     }
+    public int[] getRent(){
+    	return rent;
+    }
 }
