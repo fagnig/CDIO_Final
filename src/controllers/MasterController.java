@@ -29,12 +29,13 @@ public class MasterController {
 	
 	public void go() {
 		//gameLoop
+
 		while (true) {
 			guiC.getOk(Language.roll());
-			players[currentturn].move(11);
-			
+			players[currentturn].move(5);
 			guiC.updateGUI(players,cup.getFaces());
 			landOnField(players[currentturn]);
+            guiC.updateGUI(players,cup.getFaces());
 			currentturn = (currentturn+1) %(players.length);
 			
 			
@@ -48,7 +49,7 @@ public class MasterController {
 		// if start do nothing
 		
 		// if ChanceField
-		if(currentField.getType()==1){
+		if(currentField.getType()==100){
 			guiC.getOk(ccc.resolveChance(landingPlayer, players, board.getFields()));
 		}
 		// if IncomeTaxField
@@ -75,13 +76,15 @@ public class MasterController {
 			if (castedField.getOwner() == null){
 				if(guiC.getYesNo(Language.wantToBuy(castedField))){
 					castedField.setOwner(landingPlayer);
-//					landingPlayer.addField(landingPlayer.getLocation(),castedField.getPrice()).
 					landingPlayer.payMoney(castedField.getPrice());
 				}
-			} else { 
-				int rent = castedField.getRent()[castedField.getBuildStatus()];
-				guiC.getOk(Language.yes());
-				guiC.showChanceCard(landingPlayer.getName()  + Language.payRent() + castedField.getOwner().getName()+ " "+ castedField.getRent()[castedField.getBuildStatus()]);
+			} else {
+				int mult = 1;
+				if (board.areAllOwned(castedField.getOwner(),castedField.getGroup())){
+					mult = 2;
+				}
+				int rent = castedField.getRent()[castedField.getBuildStatus()]*mult;
+				guiC.getOk(landingPlayer.getName()  + Language.payRent() + castedField.getOwner().getName()+ " "+ rent);
 				landingPlayer.payMoney(rent);
 				castedField.getOwner().receiveMoney(rent);
 				
@@ -94,13 +97,16 @@ public class MasterController {
 			if (castedField.getOwner() == null){
 				if(guiC.getYesNo(Language.wantToBuy(castedField))){
 					castedField.setOwner(landingPlayer);
-//					landingPlayer.addField(landingPlayer.getLocation(),castedField.getPrice()).
 					landingPlayer.payMoney(castedField.getPrice());
 				}
-			} else { 
-				int rent = cup.getFaceValue()*100;
-				guiC.getOk(Language.yes());
-//				guiC.showChanceCard(landingPlayer.getName()  + Language.payRent() + castedField.getOwner().getName()+ " "+ castedField.getRent()[castedField.getBuildStatus()]);
+			} else {
+				int mult = 1;
+				if (board.areAllOwned(landingPlayer,(castedField.getGroup()))){
+					mult = 2;
+				}
+
+				int rent = cup.getFaceValue()*100*mult;
+                guiC.getOk(landingPlayer.getName()  + Language.payRent() + castedField.getOwner().getName()+ " "+ rent);
 				landingPlayer.payMoney(rent);
 				castedField.getOwner().receiveMoney(rent);
 			}
@@ -108,7 +114,22 @@ public class MasterController {
 		}
 		
 		// if shipping
-		
+        if (currentField.getType() == 6){
+            ShippingField castedField = ((ShippingField) currentField);
+            if (castedField.getOwner() == null){
+                if(guiC.getYesNo(Language.wantToBuy(castedField))){
+                    castedField.setOwner(landingPlayer);
+                    landingPlayer.payMoney(castedField.getPrice());
+                }
+            } else {
+
+                int rent = castedField.getRent()[board.shippingOwned(castedField.getOwner())];
+                guiC.getOk(landingPlayer.getName()  + Language.payRent() + castedField.getOwner().getName()+ " "+ rent);
+                landingPlayer.payMoney(rent);
+                castedField.getOwner().receiveMoney(rent);
+            }
+
+        }
 	
 	}
 
