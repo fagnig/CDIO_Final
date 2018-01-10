@@ -19,5 +19,9 @@ public class BreweryField extends OwnableField {
     public int getType() {
     	return type;
     }
+
+	public Player getOwner() {
+		return owner;
+	}
     
 }

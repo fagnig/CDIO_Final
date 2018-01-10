@@ -34,4 +34,7 @@ public abstract class OwnableField extends Field {
     public void setOwner(Player player){
     	owner = player;
     }
+    public int getGroup(){
+    	return group;
+    }
 }
