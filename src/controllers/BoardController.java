@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import fields.*;
 import model.Language;
+import model.Player;
 
 
 public class BoardController {
@@ -82,5 +83,19 @@ public class BoardController {
     }
     public Field getField(int loc){
     	return fields[loc];
+    }
+
+    public boolean areAllOwned(Player curPlayer, int groupID){
+        for(int i=0; i>40; i++){
+            if(fields[i].getType()==4||fields[i].getType()==5||fields[i].getType()==6) {
+                OwnableField curField = ((OwnableField) fields[i]);
+                if (curField.getGroup() == groupID) {
+                    if (curField.getOwner() != curPlayer) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 }
