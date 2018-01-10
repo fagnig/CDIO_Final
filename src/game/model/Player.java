@@ -7,9 +7,10 @@ public class Player {
 
     private Wallet wallet;
     private String name;
-    private Boolean free = true;
+    private Boolean free = false;
     private Boolean bankrupt = false;
     private int location = 0;
+    private int jailRollAmount = 0;
  
     public Player(String newName, int Startbalance) {
     	name = newName;
@@ -80,5 +81,25 @@ public class Player {
 	}
 	public int getTotalValue(){
         return wallet.getTotalValue();
+    }
+
+    public int getJailCard() {
+        return wallet.getJailCard();
+    }
+
+    public int getJailRollAmount(){
+        return jailRollAmount;
+    }
+
+    public void setJailRollAmount(int amount){
+        jailRollAmount = amount;
+    }
+
+    public void removeJailCard(int amount) {
+        wallet.removeJailCard(amount);
+    }
+
+    public void addJailCard(int amount){
+        wallet.addJailCard(amount);
     }
 }

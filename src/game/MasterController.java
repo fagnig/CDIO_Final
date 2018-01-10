@@ -37,24 +37,75 @@ public class MasterController {
 	private void init() {
 		guiC.initFields(board.getFields());
 		pc.makePlayers(guiC.makePlayers());
+        guiC.updateGUI(pc.getPlayers(), cup.getFaces(), board.getFields());
 	}
 	
 	private void go() {
 		//gameLoop
+
+
 		while (true) {
-			guiC.getOk(Language.roll());
+            Player curPlayer = pc.getPlayer(currentTurn);
+			guiC.getOk(Language.roll(curPlayer));
+            int stashedRoll = 0;
 
-            pc.getPlayer(currentTurn).move(1);
-			//pc.getPlayer(currentTurn).move(cup.roll());
 
-			board.setAllVals(pc.getPlayers());
+			if(!curPlayer.isBankrupt()){
+			    while(!curPlayer.isFree()){
+                    guiC.getOk(Language.currentlyJailed());
+                    if (guiC.getYesNo(Language.payBail())) {
+                        curPlayer.payMoney(1000);
+                        curPlayer.setFree(true);
+                        break;
+                    }
+                    if (curPlayer.getJailCard()>0) {
+                        if(guiC.getYesNo(Language.useJailCard())){
+                            curPlayer.removeJailCard(curPlayer.getJailCard()-1);
+                            curPlayer.setFree(true);
+                            break;
+                        }
+                    }
+                    guiC.getOk(Language.rollForJail());
+                    cup.roll();
+                    guiC.updateDice(cup.getFaces());
+                    guiC.getOk("Du slog " + cup.getFaceValue());
+                    if(cup.getDouble()){
+                        stashedRoll = cup.getFaceValue();
+                        guiC.getOk(Language.jailEscapeSuccess());
+                        curPlayer.setFree(true);
+                        break;
+                    } else {
+                        guiC.getOk(Language.jailEscapeFail());
+                        curPlayer.setJailRollAmount(curPlayer.getJailRollAmount()+1);
+                        if(curPlayer.getJailRollAmount()==3){
+                            stashedRoll = cup.getFaceValue();
+                            guiC.getOk(Language.jailTooLong());
+                            curPlayer.payMoney(1000);
+                            curPlayer.setFree(true);
+                        }
+                        break;
+                    }
+                }
+                if(curPlayer.isFree()) {
 
-			guiC.updateGUI(pc.getPlayers(),cup.getFaces(),board.getFields());
+			        if (stashedRoll > 0) {
+                        pc.getPlayer(currentTurn).move(stashedRoll);
+                    } else {
+                        pc.getPlayer(currentTurn).move(cup.roll());
+                    }
 
-			landOnField(pc.getPlayer(currentTurn));
+                    board.setAllVals(pc.getPlayers());
 
-            guiC.updateGUI(pc.getPlayers(),cup.getFaces(),board.getFields());
+                    guiC.updateGUI(pc.getPlayers(), cup.getFaces(), board.getFields());
 
+                    landOnField(curPlayer);
+
+                    guiC.updateGUI(pc.getPlayers(), cup.getFaces(), board.getFields());
+
+                }
+			} else {
+			    guiC.getOk(Language.bankrupt());
+            }
 			currentTurn = (currentTurn + 1) % (pc.getPlayers().length);
 		}
 	}

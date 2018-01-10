@@ -48,8 +48,8 @@ public class Language {
 	public static String pink() {
 		return "Pink";
 	}
-	public static String roll() {
-		return "Rul med terningerne!";
+	public static String roll(Player player) {
+		return "Det er "+player.getName()+"'s tur!";
 	}
 	public static String getFormattedDescription(int[] dat, int buildPrice){
 		String tempStr = "Leje: " + Integer.toString(dat[0]) +
@@ -179,5 +179,37 @@ public class Language {
 
     public static String jailSub() {
 	    return "De fængsles";
+    }
+
+    public static String bankrupt() {
+	    return "De er desværre bankerot";
+    }
+
+    public static String currentlyJailed() {
+	    return "De sidder i fængsel, slå to ens eller brug et kom-gratis-ud-af-fængsel kort";
+    }
+
+    public static String useJailCard() {
+        return "Vil de bruge deres kom-gratis-ud-af-fængsel kort?";
+    }
+
+    public static String payBail() {
+	    return "Vil de betale kautionen for at komme ud omgående?";
+    }
+
+    public static String rollForJail() {
+	    return "Slå om at komme ud af fængsel";
+    }
+
+    public static String jailEscapeSuccess() {
+        return "Du kom ud af fængsel";
+    }
+
+    public static String jailEscapeFail() {
+	    return "Du kom ikke ud af fængslet i denne omgang";
+    }
+
+    public static String jailTooLong() {
+	    return "De har siddet for længe i fængsel, de må betale kautionen";
     }
 }
