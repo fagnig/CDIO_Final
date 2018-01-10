@@ -3,6 +3,8 @@ package game.view;
 import java.awt.Color;
 
 import game.MasterController;
+import game.model.fields.Field;
+import game.model.fields.ownable.OwnableField;
 import gui_fields.*;
 import gui_main.*;
 import game.model.*;
@@ -28,7 +30,7 @@ public class GUIController {
 		fieldsGUI = new GUI_Field[40];
 		fieldsGUI[0] = new GUI_Start();
 		int type = 0;
-		for (int i = 1; i<40 ; i++) {
+		for (int i = 0; i<40 ; i++) {
 			type = fields[i].getType();
 			switch (type) {
 			case 1:
@@ -161,24 +163,35 @@ public class GUIController {
 		}
 	}
 	
-	public void upgrade(int location) {
+	public void setBuildStatus(int location, int level) {
 		GUI_Street a = (GUI_Street) fieldsGUI[location];
-		int level = 1;
-		if (level < 4)
-			a.setHouses(level);	
-		else a.setHotel(true);
+		level = Math.min(5,Math.max(0,level));
+		if (level < 5){
+		    a.setHouses(level);
+            a.setHotel(false);
+		} else {
+		    a.setHouses(0);
+		    a.setHotel(true);
+        }
 	}
 	
-	public void updateGUI(Player[] player, int[] faces) {
+	public void updateGUI(Player[] player, int[] faces, Field[] fields) {
 			for (int i = 0; i < fieldsGUI.length; i++) {
 				fieldsGUI[i].removeAllCars();
 			}
 			for (int i = 0; i < player.length; i++) {
 				fieldsGUI[player[i].getLocation()].setCar(players[i], true);
 				players[i].setBalance(player[i].getBalance());
+                for (int j = 0; j < fields.length; j++){
+                    if(fieldsGUI[j] instanceof GUI_Street){
+                        if(((OwnableField) fields[j]).getOwner() != null && ((OwnableField) fields[j]).getOwner().equals(player[i])) {
+                            ((GUI_Street) fieldsGUI[j]).setBorder(players[i].getPrimaryColor());
+                        }
+                    }
+                }
 			}
 			gui.setDice(faces[0], faces[1]);
-			
+
 		}
 
 	public boolean getTaxChoice(String message)

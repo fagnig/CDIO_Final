@@ -36,13 +36,22 @@ public class MasterController {
 	
 	private void go() {
 		//gameLoop
-
+        int m=0;
 		while (true) {
 			guiC.getOk(Language.roll());
-			pc.getPlayer(currentTurn).move(cup.roll());
-			guiC.updateGUI(pc.getPlayers(),cup.getFaces());
+
+            pc.getPlayer(currentTurn).move(1);
+			//pc.getPlayer(currentTurn).move(cup.roll());
+
+			board.setAllVals(pc.getPlayers());
+
+			guiC.updateGUI(pc.getPlayers(),cup.getFaces(),board.getFields());
+            m++;
+			guiC.setBuildStatus(1,m);
 			landOnField(pc.getPlayer(currentTurn));
-            guiC.updateGUI(pc.getPlayers(),cup.getFaces());
+
+            guiC.updateGUI(pc.getPlayers(),cup.getFaces(),board.getFields());
+
 			currentTurn = (currentTurn + 1) % (pc.getPlayers().length);
 		}
 	}
@@ -51,7 +60,7 @@ public class MasterController {
 		// if start do nothing
 		
 		// if ChanceField
-		if(currentField.getType()==1){
+		if(currentField.getType()==100){
 			guiC.getOk(ccc.resolveChance(landingPlayer, pc.getPlayers(), board.getFields()));
 		}
 		// if IncomeTaxField
