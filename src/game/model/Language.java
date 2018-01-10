@@ -212,4 +212,8 @@ public class Language {
     public static String jailTooLong() {
 	    return "De har siddet for længe i fængsel, de må betale kautionen";
     }
+
+    public static String diceThrowFormat(int faceValue) {
+        return "Du slog " + faceValue;
+    }
 }

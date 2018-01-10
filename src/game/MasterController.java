@@ -68,7 +68,7 @@ public class MasterController {
                     guiC.getOk(Language.rollForJail());
                     cup.roll();
                     guiC.updateDice(cup.getFaces());
-                    guiC.getOk("Du slog " + cup.getFaceValue());
+                    guiC.getOk(Language.diceThrowFormat(cup.getFaceValue()));
                     if(cup.getDouble()){
                         stashedRoll = cup.getFaceValue();
                         guiC.getOk(Language.jailEscapeSuccess());
