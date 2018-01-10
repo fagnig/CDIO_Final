@@ -8,24 +8,20 @@ import model.*;
 import fields.*;
 
 public class GUIController {
-	private static GUIController guiController = new GUIController();
 	// array der holder GUI felter
 	private GUI_Field[] fieldsGUI;
-	private GUIController(){}
 	private GUI gui;
 	private GUI_Player[] players;
 	
-	public static GUIController getInstance()
+	public GUIController()
 	{
-		return guiController;	
+
 	}
 	
-	public void initFields()
+	public void initFields(Field[] fields)
 	{
 
 		fieldsGUI = new GUI_Field[40];
-		ModelController mC = ModelController.getInstance();
-		Field[] fields = mC.getFields();
 		fieldsGUI[0] = new GUI_Start();
 		int type = 0;
 		for (int i = 1; i<40 ; i++) {
@@ -124,7 +120,7 @@ public class GUIController {
 	public String[] makePlayers() {
 		while (true) {
 		int numOfPlayers = gui.getUserInteger(Language.numberOfPlayers(), MasterController.GAME_PLAYERS_MIN, MasterController.GAME_PLAYERS_MAX);
-		if (numOfPlayers >= MasterController.GAME_PLAYERS_MIN && numOfPlayers < MasterController.GAME_PLAYERS_MAX ) {
+		if (numOfPlayers >= MasterController.GAME_PLAYERS_MIN && numOfPlayers <= MasterController.GAME_PLAYERS_MAX ) {
 			players = new GUI_Player[numOfPlayers];
 			String[] playerNames = new String[numOfPlayers];
 			for (int i = 0; i<numOfPlayers; i++) {
@@ -162,10 +158,11 @@ public class GUIController {
 		}
 	}
 	
-	public void upgrade(int antal) {
-		GUI_Street a = (GUI_Street) fieldsGUI[11];
-		if (antal <4)
-		a.setHouses(antal);	
+	public void upgrade(int location) {
+		GUI_Street a = (GUI_Street) fieldsGUI[location];
+		int level = 1;
+		if (level < 4)
+			a.setHouses(level);	
 		else a.setHotel(true);
 	}
 	

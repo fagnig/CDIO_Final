@@ -4,19 +4,30 @@ import model.*;
 import fields.*;
 
 public class MasterController {
-
+	// important numbers for the game
 	public static final int PLAYER_STARTBALANCE = 30000;
 	public static final int GAME_PLAYERS_MAX = 6;
 	public static final int GAME_PLAYERS_MIN = 2;
 	
-
-	public static void main(String[] args)  {
-		int currentturn = 0;
-		DiceController cup = new DiceController();
-		GUIController guiC = GUIController.getInstance();
-		ModelController modC = ModelController.getInstance();
-		guiC.initFields();
-		Player[] players = modC.makePlayers(guiC.makePlayers());
+	// instantiation of controllers
+	DiceController cup = new DiceController();
+	GUIController guiC = new GUIController();
+	BoardController board = new BoardController();
+	PlayerController pc = new PlayerController();
+	Player[] players;
+	int currentturn = 0;
+	
+	
+	
+	private void init() {
+		guiC.initFields(board.getFields());
+		players = pc.makePlayers(guiC.makePlayers());
+		
+		
+	}
+	
+	public void go() {
+		//gameLoop
 		while (true) {
 			guiC.getOk(Language.roll());
 			players[currentturn].move(cup.roll());
@@ -30,11 +41,17 @@ public class MasterController {
 			
 			
 		}
-		
-		
-		
-		//			guiC.upgrade(players[currentturn].getLocation());
-		
 	}
+		
 
+	
+	
+	
+	
+	
+	public static void main(String[] args)  {
+		MasterController mc = new MasterController();
+		mc.init();
+		mc.go();
+	}
 }

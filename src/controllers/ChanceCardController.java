@@ -1,19 +1,18 @@
 package controllers;
 
 import model.*;
+
+import java.util.Random;
+
 import fields.*;
 
 public class ChanceCardController {
-	private ChanceCardController chanceCardController = new ChanceCardController();
-	private Field[] fields = Board.getInstance().getFields(); //henvisning til fields i Board klassen
-	private Player[] players = ModelController.getInstance().getPlayers(); //henvisning til spillerne i ModelController klassen
+	private Random random = new Random();
 	
-	private ChanceCardController() {
+	public ChanceCardController() {
 		
 	}
-	public ChanceCardController getChanceController() {
-		return chanceCardController;
-	}
+
 	
 	public ChanceCard[] getNewCards() {
 		ChanceCard[] cards = new ChanceCard[44];
@@ -22,8 +21,9 @@ public class ChanceCardController {
 		return cards;
 	}
 	
-	public void resolveChance(ChanceCard chanceCard, Player drawingPlayer){
-		switch (chanceCard.getID()){
+	public void resolveChance(Player drawingPlayer, Player[] players, Field[] fields ){
+		int number = random.nextInt(23)+1;
+		switch (number){
 		case 1:
 			//Modtag 3000 kr. af banken
 			drawingPlayer.receiveMoney(3000);

@@ -1,21 +1,17 @@
-package model;
+package controllers;
 
 import java.awt.Color;
 
 import fields.*;
 
 
-public class Board {
-	private static Board board = new Board();
+public class BoardController {
     private Field[] fields  = new Field[40];
     
-    private Board(){
+    public BoardController(){
     	init();
     }
     
-    public static Board getInstance() {
-    	return board;
-    }
     
     public void init(){
     	int[] rent = {1,2,3,4,5};
