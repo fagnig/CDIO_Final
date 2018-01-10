@@ -7,7 +7,7 @@ public class Player {
 
     private Wallet wallet;
     private String name;
-    private Boolean free = false;
+    private Boolean free = true;
     private Boolean bankrupt = false;
     private int location = 0;
     private int jailRollAmount = 0;

@@ -20,9 +20,11 @@ public class DiceController {
 	}
 
 	public boolean getDouble() {
-		if (d1.getFaceValue() == d2.getFaceValue())
+		if (d1.getFaceValue() == d2.getFaceValue()){
 			return true;
-		return false;
+		} else {
+			return false;
+		}
 	}
 	public int[] getFaces() {
 		int[] faces = { d1.getFaceValue(), d2.getFaceValue()};

@@ -220,4 +220,8 @@ public class Language {
     public static String fieldMortgaged() {
 	    return "Feltet du er landet på er pantsat, så intet sker.";
     }
+
+    public static String tooLucky() {
+	    return "Du har slået dobbelt 3 gange i træk og ryger derfor i fængsel";
+    }
 }

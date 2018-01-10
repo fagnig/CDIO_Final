@@ -31,7 +31,7 @@ public class MasterController {
 
 
 	private int currentTurn = 0;
-	
+	private int multiRoll = 0;
 	
 	
 	private void init() {
@@ -92,6 +92,11 @@ public class MasterController {
                         pc.getPlayer(currentTurn).move(stashedRoll);
                     } else {
                         pc.getPlayer(currentTurn).move(cup.roll());
+                        if(cup.getDouble()&&multiRoll==2){
+                            guiC.getOk(Language.tooLucky());
+                            curPlayer.forceMove(10);
+                            curPlayer.setFree(false);
+                        }
                     }
 
                     board.setAllVals(pc.getPlayers());
@@ -106,7 +111,17 @@ public class MasterController {
 			} else {
 			    guiC.getOk(Language.bankrupt());
             }
-			currentTurn = (currentTurn + 1) % (pc.getPlayers().length);
+            if(!cup.getDouble()) {
+                currentTurn = (currentTurn + 1) % (pc.getPlayers().length);
+                multiRoll = 0;
+            } else {
+			    if(multiRoll<2) {
+                    multiRoll += 1;
+                } else {
+			        multiRoll = 0;
+                    currentTurn = (currentTurn + 1) % (pc.getPlayers().length);
+                }
+            }
 		}
 	}
 	private void landOnField(Player landingPlayer){
