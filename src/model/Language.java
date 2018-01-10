@@ -49,13 +49,59 @@ public class Language {
 	public static String roll() {
 		return "Rul med terningerne!";
 	}
-	public static String getFormattedDescription(int[] dat){
+	public static String getFormattedDescription(int[] dat, int buildPrice){
 		String tempStr = "Leje: " + Integer.toString(dat[0]) +
-				"\n 1 Hus: " + Integer.toString(dat[1]) +
-				"\n 2 Huse: " + Integer.toString(dat[2]) +
-				"\n 3 Huse: " + Integer.toString(dat[3]) +
-				"\n 4 Huse: " + Integer.toString(dat[4]) +
-				"\n Hotel: " + Integer.toString(dat[5]);
+				" | 1 Hus: " + Integer.toString(dat[1]) +
+				" | 2 Huse: " + Integer.toString(dat[2]) +
+				" | 3 Huse: " + Integer.toString(dat[3]) +
+				" | 4 Huse: " + Integer.toString(dat[4]) +
+				" | Hotel: " + Integer.toString(dat[5]) +
+				" | Pris på hus og hotel: " + Integer.toString(buildPrice);
 		return tempStr;
 	}
+	public static String[] fieldNames(){
+	    String [] names = new String[40];
+
+        names[0] = "Start";
+        names[1] = "Rødovrevej";
+        names[2] = "Chance";
+        names[3] = "Hvidovrevej";
+        names[4] = "Indkomstskat";
+        names[5] = "Redderiget Lindinger A/S";
+        names[6] = "Roskildevej";
+        names[7] = "Chance";
+        names[8] = "Valby Langgade";
+        names[9] = "Allégade";
+        names[10] = "På besøg";
+        names[11] = "Frederiksberg Allé";
+        names[12] = "Tuborg";
+        names[13] = "Bülowsvej";
+        names[14] = "Gl. Kongevej";
+        names[15] = "Mols - Linien";
+        names[16] = "Bernstorffsvej";
+        names[17] = "Chance";
+        names[18] = "Hellerupvej";
+        names[19] = "Strandvejen";
+        names[20] = "Parkering";
+        names[21] = "Trianglen";
+        names[22] = "Chance";
+        names[23] = "Østerbrogade";
+        names[24] = "Grønningen";
+        names[25] = "Gedser-Rostock";
+        names[26] = "Bredgade";
+        names[27] = "Kgs Nytorv";
+        names[28] = "Carlsberg";
+        names[29] = "Østergade";
+        names[30] = "De fængsles";
+        names[31] = "Amagertorv";
+        names[32] = "Vimmelskaftet";
+        names[33] = "Chance";
+        names[34] = "Nygade";
+        names[35] = "Rødby-Puttgarden";
+        names[36] = "Chance";
+        names[37] = "Frederiksberggade";
+        names[38] = "Statsskat";
+        names[39] = "Rådhuspladsen";
+	    return names;
+    }
 }

@@ -2,22 +2,19 @@ package model;
 
 import java.awt.Color;
 
-import controllers.MasterController;
 
 public class Player {
 
     private Wallet wallet;
     private String name;
-//    private Color color;
     private Boolean free = true;
     private Boolean bankrupt = false;
     private int location = 0; 
  
-    public Player(String newName) {
+    public Player(String newName, int Startbalance) {
     	name = newName;
-//    	color = newColor;
     	// oprettet et objekt af wallet typen. Forventer at få en start balance
-    	wallet = new Wallet(MasterController.PLAYER_STARTBALANCE);
+    	wallet = new Wallet(Startbalance);
     }
     
     // Rykker spilleren fra forrige position til ny position.
