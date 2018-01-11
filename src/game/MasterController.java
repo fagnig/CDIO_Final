@@ -47,8 +47,11 @@ public class MasterController {
 	
 	private void go() {
 		//gameLoop
+        boolean gameRunning = false;
 
-		while (true) {
+        int winningPlayerIndex = 0;
+
+		while (gameRunning) {
             Player curPlayer = pc.getPlayer(currentTurn);
             int stashedRoll = 0;
             int index = 0;
@@ -171,9 +174,22 @@ public class MasterController {
                         }
                     }
 
+                    //Should the game end?
+                    int count = 0;
+                    for(int i = 0; i<pc.getPlayers().length; i++){
+                        if(!pc.getPlayers()[i].isBankrupt()){
+                            count++;
+                            winningPlayerIndex = i;
+                        }
+                    }
+                    if(count>1){
+                        gameRunning = false;
+                    }
+
                     guiC.updateGUI(pc.getPlayers(), cup.getFaces(), board.getFields());
 
                 }
+
 			}
 
             if(!cup.getDouble()) {
@@ -188,6 +204,9 @@ public class MasterController {
                 }
             }
 		}
+        //Game end
+        guiC.getOk(Language.gameEnd(pc.getPlayer(winningPlayerIndex)));
+		System.exit(0);
 	}
 	private void landOnField(Player landingPlayer){
 		Field currentField = board.getField(landingPlayer.getLocation());

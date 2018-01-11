@@ -244,4 +244,8 @@ public class Language {
     public static String chooseForBuild() {
 	    return "Hvilket felt ønskes opgraderet?";
     }
+
+    public static String gameEnd(Player curPlayer) {
+	    return "Spillet er slut! " + curPlayer.getName() + " vinder!";
+    }
 }

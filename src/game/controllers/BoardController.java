@@ -157,7 +157,7 @@ public class BoardController {
     }
 
     public int shippingOwned(Player curPlayer){
-        int tempVal = 0;
+        int tempVal = 1;
         for(int i=0; i<=3; i++){
             if (((OwnableField)fields[5 + i*10]).getOwner() != null){
                 if (((OwnableField) fields[5 + i * 10]).getOwner().equals(curPlayer)) {
