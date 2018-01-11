@@ -44,7 +44,7 @@ public abstract class OwnableField extends Field {
     	return group;
     }
 
-    public void setPrice(int amount){
+    public void setRent(int amount){
         rent[0] = amount;
     }
 

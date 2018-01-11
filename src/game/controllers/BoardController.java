@@ -104,7 +104,9 @@ public class BoardController {
             for(int h=0; h<fields.length; h++){
                 if(fields[h].getType()==6) {
                     OwnableField curField = ((OwnableField) fields[h]);
-                    curField.setAmountOwned(shippingOwned(allPlayers[i]));
+                    if(curField.getOwner().equals(allPlayers[i])) {
+                        curField.setAmountOwned(shippingOwned(allPlayers[i]));
+                    }
                 }
             }
         }

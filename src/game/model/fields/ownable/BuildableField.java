@@ -3,7 +3,6 @@ package game.model.fields.ownable;
 import java.awt.*;
 
 import game.model.Language;
-import game.model.Player;
 
 public class BuildableField extends OwnableField {
 
