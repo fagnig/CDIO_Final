@@ -7,8 +7,13 @@ import game.controllers.fields.notownable.TaxController;
 import game.model.*;
 import game.model.fields.*;
 import game.controllers.fields.ownable.*;
+import game.model.fields.notownable.ChanceField;
+import game.model.fields.notownable.PrisonField;
+import game.model.fields.notownable.TaxField;
+import game.model.fields.ownable.BreweryField;
 import game.model.fields.ownable.BuildableField;
 import game.model.fields.ownable.OwnableField;
+import game.model.fields.ownable.ShippingField;
 import game.view.GUIController;
 
 public class MasterController {
@@ -213,28 +218,20 @@ public class MasterController {
 		// if start do nothing
 		
 		// if ChanceField
-		if(currentField.getType()==100){
+		if(currentField instanceof ChanceField){
 			guiC.getOk(ccc.resolveChance(landingPlayer, pc.getPlayers(), board.getFields()));
-		}
-		// if IncomeTaxField
-		if(currentField.getType()==2){
+		}else if(currentField instanceof TaxField){
 			ftC.landOnField(landingPlayer,currentField);
-		}
-		// if buildable
-		if (currentField.getType()==4){
+		}else if (currentField instanceof BuildableField){
             fBC.landOnField(landingPlayer,currentField);
-		}
-		//if brewery
-		if (currentField.getType() == 5){
+		}else if (currentField instanceof BreweryField){
 		    fbC.landOnField(landingPlayer,currentField);
-		}
-		// if shipping
-        if (currentField.getType() == 6){
+		}else if (currentField instanceof ShippingField){
             fsC.landOnField(landingPlayer,currentField);
-        }
-        // if shipping
-        if (currentField.getType() == 8){
+        }else if (currentField instanceof PrisonField){
             fpC.landOnField(landingPlayer,currentField);
+        } else {
+		    guiC.getOk(Language.safeField());
         }
 	}
 

@@ -248,4 +248,8 @@ public class Language {
     public static String gameEnd(Player curPlayer) {
 	    return "Spillet er slut! " + curPlayer.getName() + " vinder!";
     }
+
+    public static String safeField() {
+	    return "Du er landet på et sikkert felt";
+    }
 }
