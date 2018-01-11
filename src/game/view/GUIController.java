@@ -136,7 +136,7 @@ public class GUIController {
 				}
 				else break;
 				}
-				String b = gui.getUserSelection(Language.pickColor(), new String [] {Language.red(), Language.blue(),Language.gray(),Language.yellow(),Language.cyan(),Language.pink()});
+				String b = chooseColor(Language.pickColor(), new String [] {Language.red(), Language.blue(),Language.gray(),Language.yellow(),Language.cyan(),Language.pink()});
 				GUI_Car a = new GUI_Car();
 				if (b.equals(Language.red()))
 					a.setPrimaryColor(Color.red);
