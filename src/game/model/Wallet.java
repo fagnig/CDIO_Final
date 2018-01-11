@@ -78,4 +78,8 @@ public class Wallet {
     public OwnableField[] getOwnedFields() {
         return ownedFields;
     }
+
+    public void setMoney(int amount) {
+        balance = amount;
+    }
 }

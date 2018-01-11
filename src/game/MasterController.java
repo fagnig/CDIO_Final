@@ -174,7 +174,8 @@ public class MasterController {
                                 }
                             } else {
                                 guiC.getOk(Language.bankrupt());
-                                pc.getPlayers()[i].setBankrupt(true);
+                                pc.getPlayer(i).setBankrupt(true);
+                                pc.getPlayer(i).setBalance(0);
                             }
                         }
                     }

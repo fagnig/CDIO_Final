@@ -99,4 +99,8 @@ public class Player {
     public OwnableField[] getOwnedFields(){
         return wallet.getOwnedFields();
     }
+
+    public void setBalance(int amount) {
+        wallet.setMoney(amount);
+    }
 }
