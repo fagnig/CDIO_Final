@@ -13,7 +13,7 @@ import game.view.GUIController;
 
 public class MasterController {
 	// important numbers for the game
-	public static final int PLAYER_STARTBALANCE = 300000;
+	public static final int PLAYER_STARTBALANCE = 30000;
 	public static final int GAME_PLAYERS_MAX = 6;
 	public static final int GAME_PLAYERS_MIN = 2;
 	
@@ -43,12 +43,10 @@ public class MasterController {
 		pc.makePlayers(names);
 		Player[] players = pc.getPlayers();
         guiC.updateGUI(pc.getPlayers(), cup.getFaces(), board.getFields());
-
 	}
 	
 	private void go() {
 		//gameLoop
-
 
 		while (true) {
             Player curPlayer = pc.getPlayer(currentTurn);
@@ -163,7 +161,7 @@ public class MasterController {
                             if(!(Math.abs(pc.getPlayers()[i].getBalance())>pc.getPlayers()[i].getTotalValue())){
                                 while(pc.getPlayers()[i].getBalance()<0) {
                                     OwnableField result = guiC.chooseFieldMortgage(Language.chooseForMortgage(pc.getPlayers()[i].getBalance()), pc.getPlayers()[i].getOwnedFields());
-                                    pc.getPlayers()[i].receiveMoney(result.getPrice());
+                                    pc.getPlayers()[i].receiveMoney(result.getPrice()/2);
                                     result.setMortgaged(true);
                                 }
                             } else {
@@ -172,7 +170,6 @@ public class MasterController {
                             }
                         }
                     }
-
 
                     guiC.updateGUI(pc.getPlayers(), cup.getFaces(), board.getFields());
 

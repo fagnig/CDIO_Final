@@ -18,7 +18,7 @@ public class ShippingController extends OwnableController{
                 }
             } else {
 
-                int rent = castedField.getRent()[castedField.getAmountOwned() - 1];
+                int rent = castedField.getRent()[castedField.getAmountOwned()];
                 guiC.getOk(curPlayer.getName() + Language.payRent() + castedField.getOwner().getName() + " " + rent);
                 curPlayer.payMoney(rent);
                 castedField.getOwner().receiveMoney(rent);

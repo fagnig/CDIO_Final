@@ -218,7 +218,7 @@ public class GUIController {
         for(int i = 0; i < fields.length;i++){
             if(!fields[i].isMortgaged()){
                 tempFields[counter] = fields[i];
-                tempNames[counter] = fields[i].getName() + " - " + fields[i].getPrice() + Language.getCurrency();
+                tempNames[counter] = fields[i].getName() + " - " + (fields[i].getPrice()/2) + Language.getCurrency();
                 counter++;
             }
         }

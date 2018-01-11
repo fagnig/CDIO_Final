@@ -12,7 +12,7 @@ public abstract class OwnableField extends Field {
     protected Player owner;
     protected boolean buildable = false;
     protected boolean mortgaged = false;
-    protected int amountOwned = 1;
+    protected int amountOwned;
 
     public OwnableField (String newName, Color primary, Color secondary, int newGroup, int[] newRent, int newPrice){
         super(newName, primary, secondary);

@@ -226,7 +226,7 @@ public class Language {
     }
 
     public static String chooseForMortgage(int left) {
-	    return "Hvilken grund ønsker de at pantsætte? Der mangler: " + left + " kr.";
+	    return "Hvilken grund ønsker de at pantsætte? Der mangler: " + Math.abs(left) + " kr.";
     }
 
     public static String getCurrency() {
