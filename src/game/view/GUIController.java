@@ -168,9 +168,7 @@ public class GUIController {
 
 		if (level < 5){
 		    a.setHouses(level);
-            a.setHotel(false);
 		} else {
-		    a.setHouses(0);
 		    a.setHotel(true);
         }
 	}
