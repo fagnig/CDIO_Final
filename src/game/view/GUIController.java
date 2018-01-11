@@ -124,19 +124,19 @@ public class GUIController {
 	
 	public String[] makePlayers() {
 		while (true) {
-		int numOfPlayers = gui.getUserInteger(Language.numberOfPlayers(), MasterController.GAME_PLAYERS_MIN, MasterController.GAME_PLAYERS_MAX);
+		int numOfPlayers = getInteger(Language.numberOfPlayers(), new int [] {MasterController.GAME_PLAYERS_MIN, MasterController.GAME_PLAYERS_MAX});
 		if (numOfPlayers >= MasterController.GAME_PLAYERS_MIN && numOfPlayers <= MasterController.GAME_PLAYERS_MAX ) {
 			players = new GUI_Player[numOfPlayers];
 			String[] playerNames = new String[numOfPlayers];
 			for (int i = 0; i<numOfPlayers; i++) {
 				while (true) {
-				playerNames[i] = gui.getUserString(Language.player()+ " " + (i+1)+ " " + Language.name());
+				playerNames[i] = getString(Language.player()+ " " + (i+1)+ " " + Language.name());
 				if (playerNames[i].equals(" ")|| playerNames[i].length() == 0) {
 					getOk(Language.realName());
 				}
 				else break;
 				}
-				String b = gui.getUserSelection(Language.pickColor(),Language.red(), Language.blue(),Language.gray(),Language.yellow(),Language.cyan(),Language.pink());
+				String b = chooseColor(Language.pickColor(), new String [] {Language.red(), Language.blue(),Language.gray(),Language.yellow(),Language.cyan(),Language.pink()});
 				GUI_Car a = new GUI_Car();
 				if (b.equals(Language.red()))
 					a.setPrimaryColor(Color.red);
@@ -159,7 +159,9 @@ public class GUIController {
 				
 			return playerNames;
 		}
-		else gui.getUserButtonPressed(Language.invalidPlayers(),Language.okay());
+		else {
+            gui.getUserButtonPressed(Language.invalidPlayers(), Language.okay());
+        }
 		}
 	}
 	
@@ -168,9 +170,7 @@ public class GUIController {
 
 		if (level < 5){
 		    a.setHouses(level);
-            a.setHotel(false);
 		} else {
-		    a.setHouses(0);
 		    a.setHotel(true);
         }
 	}
@@ -199,8 +199,7 @@ public class GUIController {
 
 		}
 
-	public boolean getTaxChoice(String message)
-	{
+	public boolean getTaxChoice(String message) {
 		return (gui.getUserLeftButtonPressed(message, Language.scaling(), Language.flat()));
 	}
 
@@ -255,5 +254,10 @@ public class GUIController {
 
 
 	    return new BuildableField("",Color.BLACK,Color.BLACK,0,new int[] {},0,0);
+    }
+
+    public String chooseColor(String message, String[] colors){
+
+	    return gui.getUserSelection(message, colors);
     }
 }
