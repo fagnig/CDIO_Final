@@ -37,8 +37,11 @@ public class MasterController {
 	
 	
 	private void init() {
-		guiC.initFields(board.getFields());
-		pc.makePlayers(guiC.makePlayers());
+		Field[] fields = board.getFields();
+		guiC.initFields(fields);
+		String[] names = guiC.makePlayers();
+		pc.makePlayers(names);
+		Player[] players = pc.getPlayers();
         guiC.updateGUI(pc.getPlayers(), cup.getFaces(), board.getFields());
 
 	}
