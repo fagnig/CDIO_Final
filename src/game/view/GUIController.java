@@ -114,7 +114,7 @@ public class GUIController {
 		return gui.getUserButtonPressed(message,Language.okay());
 	}
 	
-	public String[] makePlayers() {
+	public String[] makeGUIPlayers() {
 		while (true) {
 		int numOfPlayers = getInteger(Language.numberOfPlayers(), new int [] {MasterController.GAME_PLAYERS_MIN, MasterController.GAME_PLAYERS_MAX});
 		if (numOfPlayers >= MasterController.GAME_PLAYERS_MIN && numOfPlayers <= MasterController.GAME_PLAYERS_MAX ) {

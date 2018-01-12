@@ -44,12 +44,18 @@ public class MasterController {
 	private void init() {
 		Field[] fields = board.getFields();
 		guiC.initFields(fields);
-		String[] names = guiC.makePlayers();
+		String[] names = guiC.makeGUIPlayers();
 		pc.makePlayers(names);
 
         guiC.updateGUI(pc.getPlayers(), cup.getFaces(), board.getFields());
 	}
-	
+
+    /**
+     * The main gameloop
+     * Ensures the player knows what is happening, moving the players and that fields are resolved properly.
+     * Players are removed from the game when they are unable to stay above 0 balance.
+     * Stops the game when one player remains.
+     */
 	private void go() {
 		//gameLoop
         boolean gameRunning = true;
@@ -60,15 +66,17 @@ public class MasterController {
             Player curPlayer = pc.getPlayer(currentTurn);
             int stashedRoll = 0;
 
+            /* Buildoption [WIP]
             int index = 0;
             boolean wantToBuild = false;
             BuildableField[] tempFields;
+            */
 
 			if(!curPlayer.isBankrupt()){
                 guiC.getOk(Language.roll(curPlayer));
 
                 /*
-                //byggecond aka noget værre lort
+                //byggecond aka noget værre juks
                 for(int j = 0; j < curPlayer.getOwnedFields().length;j++) {
                     for (int i = 0; i < board.getFields().length; i++) {
                         if (curPlayer.getOwnedFields()[j]==board.getFields()[i]) {
@@ -105,7 +113,7 @@ public class MasterController {
                         }
                     }
                 }
-                //Slut på lort
+                //Slut på juks
                 */
 
 
@@ -115,7 +123,7 @@ public class MasterController {
                 }
                 if(curPlayer.isFree()) {
 
-			        //Start money test
+			        //Startfield money test
 			        int oldLoc = curPlayer.getLocation();
 
 			        if (stashedRoll > 0) {
@@ -145,7 +153,7 @@ public class MasterController {
                     guiC.updateGUI(pc.getPlayers(), cup.getFaces(), board.getFields());
 
                     //Recieve money for passing start
-                    oldLoc = checkPassStart(curPlayer, oldLoc);
+                    checkPassStart(curPlayer, oldLoc);
 
                     guiC.updateGUI(pc.getPlayers(), cup.getFaces(), board.getFields());
 
@@ -204,8 +212,14 @@ public class MasterController {
 		System.exit(0);
 	}
 
+    /**
+     * Checks if the player has passed start
+     * @param curPlayer the player we are checking for
+     * @param oldLoc his old location we are comparing to
+     * @return the new location
+     */
     private int checkPassStart(Player curPlayer, int oldLoc) {
-        if(curPlayer.isFree() == true){
+        if(curPlayer.isFree()){
             if(oldLoc > curPlayer.getLocation()){
                 curPlayer.receiveMoney(4000);
 
@@ -260,7 +274,10 @@ public class MasterController {
         }
     }
 
-
+    /**
+     * Determines what fieldcontroller gets called depending on what type of field was landed on.
+     * @param landingPlayer the player that we must resolve for
+     */
     private void landOnField(Player landingPlayer){
 		Field currentField = board.getField(landingPlayer.getLocation());
 
@@ -285,11 +302,6 @@ public class MasterController {
         }
 	}
 
-	
-	
-	
-	
-	
 	public static void main(String[] args)  {
 		MasterController mc = new MasterController();
 		mc.init();
