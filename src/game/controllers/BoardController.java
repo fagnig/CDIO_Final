@@ -15,9 +15,12 @@ public class BoardController {
     public BoardController(){
     	init();
     }
-    
-    
-    public void init(){
+
+    /**
+     * Initialises every field.
+     * All values for the fields are listed here.
+     */
+    private void init(){
     	int[] rent = {1,2,3,4,5};
     	int[] shippingrent = {500,1000,2000,4000};
     	int[] rent1 = {50,250,750,2250,4000,6000};
@@ -83,41 +86,58 @@ public class BoardController {
     public Field[] getFields() {
         return fields;
     }
+
+    /**
+     * Gets a specific field in the array
+     * @param loc the index of the field
+     * @return the field at the given index
+     */
     public Field getField(int loc){
     	return fields[loc];
     }
 
+
+    /**
+     * Sets how many of a field are owned
+     * @param allPlayers Every player in the game
+     */
     public void setAllVals(Player[] allPlayers){
-        for(int i=0; i<allPlayers.length; i++){
-            for(int j = 1; j < 10; j++){
-                if(areAllOwned(allPlayers[i],j)){
-                    for(int g=0; g<fields.length; g++){
-                        if(fields[g] instanceof BuildableField||fields[g] instanceof BreweryField) {
-                            OwnableField curField = ((OwnableField) fields[g]);
-                            if(curField.getGroup() == j){
+        for (Player allPlayer : allPlayers) {
+            for (int j = 1; j < 10; j++) {
+                if (areAllOwned(allPlayer, j)) {
+                    for (Field field : fields) {
+                        if (field instanceof BuildableField || field instanceof BreweryField) {
+                            OwnableField curField = ((OwnableField) field);
+                            if (curField.getGroup() == j) {
                                 curField.setAmountOwned(2);
                             }
                         }
                     }
                 }
             }
-            for(int h=0; h<fields.length; h++){
-                if(fields[h] instanceof ShippingField) {
-                    OwnableField curField = ((OwnableField) fields[h]);
-                    if(curField.getOwner() != null && curField.getOwner().equals(allPlayers[i])) {
-                        curField.setAmountOwned(shippingOwned(allPlayers[i]));
+            for (Field field : fields) {
+                if (field instanceof ShippingField) {
+                    OwnableField curField = ((OwnableField) field);
+                    if (curField.getOwner() != null && curField.getOwner().equals(allPlayer)) {
+                        curField.setAmountOwned(shippingOwned(allPlayer));
                     }
                 }
             }
         }
     }
 
-    public boolean areAllOwned(Player curPlayer, int groupID){
-        for(int i=0; i<fields.length; i++){
-            if(fields[i] instanceof BuildableField||fields[i] instanceof BreweryField) {
-                OwnableField curField = ((OwnableField) fields[i]);
+    /**
+     * Checks if all fields of a certain group are owned by one player.
+     * @param curPlayer the player we are checking for.
+     * @param groupID the colour code of the fields we are checking for.
+     * @return if all fields in the group are owned by the specified player.
+     */
+    private boolean areAllOwned(Player curPlayer, int groupID){
+        for (Field field : fields) {
+            if (field instanceof BuildableField || field instanceof BreweryField) {
+                OwnableField curField = ((OwnableField) field);
                 if (curField.getGroup() == groupID) {
-                    if(curField.getOwner() == null){
+                    if (curField.getOwner() == null) {
                         return false;
                     }
                     if (!curField.getOwner().equals(curPlayer)) {
@@ -129,6 +149,7 @@ public class BoardController {
         return true;
     }
 
+    /* //UNUSED
     public boolean canBuild(int loc){
         int max = 0, min = 0;
         int groupID = ((BuildableField)fields[loc]).getGroup();
@@ -155,8 +176,15 @@ public class BoardController {
         }
 
     }
+    */
 
-    public int shippingOwned(Player curPlayer){
+
+    /**
+     * Checks how many shippingfields are owned by the specified player.
+     * @param curPlayer the player we are checking for.
+     * @return amount of shippingfields owned by the specified player.
+     */
+    private int shippingOwned(Player curPlayer){
         int tempVal = 1;
         for(int i=0; i<=3; i++){
             if (((OwnableField)fields[5 + i*10]).getOwner() != null){
