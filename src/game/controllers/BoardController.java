@@ -75,9 +75,9 @@ public class BoardController {
         fields[34] = new BuildableField(fieldNames[34], Color.YELLOW, Color.black, 7,best7, 6000, 4000);
         fields[35] = new ShippingField(fieldNames[35], Color.BLUE, Color.black, 0,shippingrent, 4000);
         fields[36] = new ChanceField(fieldNames[36], Color.BLACK, Color.green);
-        fields[37] = new BuildableField(fieldNames[37], Color.PINK, Color.black, 8,rent8, 7000, 4000);
+        fields[37] = new BuildableField(fieldNames[37], Color.decode("#551A8B"), Color.black, 8,rent8, 7000, 4000);
         fields[38] = new TaxField(fieldNames[38], Color.white, Color.black);
-        fields[39] = new BuildableField(fieldNames[39], Color.PINK, Color.black, 8,best8, 8000, 4000);
+        fields[39] = new BuildableField(fieldNames[39], Color.decode("#551A8B"), Color.black, 8,best8, 8000, 4000);
     }
 
     public Field[] getFields() {
@@ -92,7 +92,7 @@ public class BoardController {
             for(int j = 1; j < 10; j++){
                 if(areAllOwned(allPlayers[i],j)){
                     for(int g=0; g<fields.length; g++){
-                        if(fields[g].getType()==4||fields[g].getType()==5) {
+                        if(fields[g] instanceof BuildableField||fields[g] instanceof BreweryField) {
                             OwnableField curField = ((OwnableField) fields[g]);
                             if(curField.getGroup() == j){
                                 curField.setAmountOwned(2);
@@ -102,9 +102,9 @@ public class BoardController {
                 }
             }
             for(int h=0; h<fields.length; h++){
-                if(fields[h].getType()==6) {
+                if(fields[h] instanceof ShippingField) {
                     OwnableField curField = ((OwnableField) fields[h]);
-                    if(curField.getOwner().equals(allPlayers[i])) {
+                    if(curField.getOwner() != null && curField.getOwner().equals(allPlayers[i])) {
                         curField.setAmountOwned(shippingOwned(allPlayers[i]));
                     }
                 }
@@ -114,7 +114,7 @@ public class BoardController {
 
     public boolean areAllOwned(Player curPlayer, int groupID){
         for(int i=0; i<fields.length; i++){
-            if(fields[i].getType()==4||fields[i].getType()==5) {
+            if(fields[i] instanceof BuildableField||fields[i] instanceof BreweryField) {
                 OwnableField curField = ((OwnableField) fields[i]);
                 if (curField.getGroup() == groupID) {
                     if(curField.getOwner() == null){
@@ -134,7 +134,7 @@ public class BoardController {
         int groupID = ((BuildableField)fields[loc]).getGroup();
 
         for(int i=0; i<40; i++){
-            if(fields[i].getType()==4){
+            if(fields[i] instanceof BuildableField){
                 BuildableField curField = ((BuildableField) fields[i]);
                 if (curField.getGroup() == groupID) {
                     if(curField.getBuildStatus() > 0) {

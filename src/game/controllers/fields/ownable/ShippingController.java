@@ -17,11 +17,12 @@ public class ShippingController extends OwnableController{
                     curPlayer.payMoney(castedField.getPrice());
                 }
             } else {
-
-                int rent = castedField.getRent()[castedField.getAmountOwned()];
-                guiC.getOk(curPlayer.getName() + Language.payRent() + castedField.getOwner().getName() + " " + rent);
-                curPlayer.payMoney(rent);
-                castedField.getOwner().receiveMoney(rent);
+                if(curPlayer != castedField.getOwner()) {
+                    int rent = castedField.getRent()[castedField.getAmountOwned()];
+                    guiC.getOk(curPlayer.getName() + Language.payRent() + castedField.getOwner().getName() + " " + rent);
+                    curPlayer.payMoney(rent);
+                    castedField.getOwner().receiveMoney(rent);
+                }
             }
         } else {
             guiC.getOk(Language.fieldMortgaged());

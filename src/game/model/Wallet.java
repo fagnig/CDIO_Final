@@ -13,7 +13,7 @@ public class Wallet {
             tempVal = balance;
         }
         for(int i = 0; i<ownedFields.length;i++){
-            tempVal += ownedFields[i].getPrice();
+            tempVal += ownedFields[i].getValue();
         }
         return tempVal;
     }

@@ -52,7 +52,7 @@ public class MasterController {
 	
 	private void go() {
 		//gameLoop
-        boolean gameRunning = false;
+        boolean gameRunning = true;
 
         int winningPlayerIndex = 0;
 
@@ -167,7 +167,7 @@ public class MasterController {
                             winningPlayerIndex = i;
                         }
                     }
-                    if(count>1){
+                    if(count==1){
                         gameRunning = false;
                     }
 
@@ -195,10 +195,13 @@ public class MasterController {
 	}
 
     /**
+     *Is called when the player is in jail.
+     *Contains the logic ensuring the player has all the options for release available.
+     *stashedRoll is initially zero, if the player manages to get out by rolling doubles, it will be set to the value of the roll.
      *
-     * @param curPlayer
-     * @param stashedRoll
-     * @return
+     * @param curPlayer The player we run the jail logic on.
+     * @param stashedRoll How far we must move the player if he gets out.
+     * @return stashedRoll, so we can move the player accordingly to his roll.
      */
     private int jailTurn(Player curPlayer, int stashedRoll) {
         guiC.getOk(Language.currentlyJailed());
@@ -241,7 +244,11 @@ public class MasterController {
 		Field currentField = board.getField(landingPlayer.getLocation());
 
 		if(currentField instanceof ChanceField){
+		    int tempLoc = landingPlayer.getLocation();
 			guiC.getOk(ccc.resolveChance(landingPlayer, pc.getPlayers(), board.getFields()));
+			if(tempLoc != landingPlayer.getLocation()){
+			    landOnField(landingPlayer);
+            }
 		}else if(currentField instanceof TaxField){
 			ftC.landOnField(landingPlayer,currentField);
 		}else if (currentField instanceof BuildableField){

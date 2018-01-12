@@ -8,9 +8,7 @@ public abstract class NotOwnableField extends Field {
 
 	public NotOwnableField(String newName, Color primary, Color secondary) {
 		super(newName, primary, secondary);
-		// TODO Auto-generated constructor stub
+
 	}
-
-
 
 }

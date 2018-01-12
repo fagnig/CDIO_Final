@@ -16,10 +16,6 @@ public abstract class Field {
         subText="";
     }
 
-    public int getType() {
-        return type;
-    }
-
     public String getName() {
         return name;
     }
