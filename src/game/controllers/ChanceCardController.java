@@ -13,14 +13,6 @@ public class ChanceCardController {
 	public ChanceCardController() {
 		
 	}
-
-	
-	public ChanceCard[] getNewCards() {
-		ChanceCard[] cards = new ChanceCard[44];
-		for (int i = 0 ; i < 44; i++)
-			cards[i] = new ChanceCard();
-		return cards;
-	}
 	
 	public String resolveChance(Player drawingPlayer, Player[] players, Field[] fields ){
 		int number = random.nextInt(23)+1;
@@ -33,10 +25,10 @@ public class ChanceCardController {
 			
 		case 2:
 			//Modtag 500 kr. fra hver spiller
-			for (int i = 0; i <players.length ; i++){
-				players[i].payMoney(500);
-				drawingPlayer.receiveMoney(500);
-			}
+            for (Player player : players) {
+                player.payMoney(500);
+                drawingPlayer.receiveMoney(500);
+            }
             return returnValues[number-1];
 			
 		case 3:	
@@ -95,10 +87,10 @@ public class ChanceCardController {
 			
 		case 12:
 			//Modtag 200 kr. fra hver spiller
-			for (int i = 0; i <players.length ; i++){
-				players[i].payMoney(200);
-				drawingPlayer.receiveMoney(200);
-			}
+            for (Player player : players) {
+                player.payMoney(200);
+                drawingPlayer.receiveMoney(200);
+            }
             return returnValues[number-1];
 
 			
