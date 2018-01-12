@@ -13,7 +13,7 @@ public class Wallet {
             tempVal = balance;
         }
         for(int i = 0; i<ownedFields.length;i++){
-            tempVal += ownedFields[i].getPrice();
+            tempVal += ownedFields[i].getValue();
         }
         return tempVal;
     }
@@ -71,11 +71,17 @@ public class Wallet {
         for(int i=0;i<ownedFields.length;i++){
             if(!deleteField[i]){
                 tempFields[index++]=ownedFields[i];
+            } else {
+                ownedFields[i].setOwner(null);
             }
         }
     }
 
     public OwnableField[] getOwnedFields() {
         return ownedFields;
+    }
+
+    public void setMoney(int amount) {
+        balance = amount;
     }
 }

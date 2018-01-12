@@ -4,18 +4,19 @@ import java.awt.Color;
 
 import game.MasterController;
 import game.model.fields.Field;
-import game.model.fields.ownable.BuildableField;
-import game.model.fields.ownable.OwnableField;
+import game.model.fields.notownable.*;
+import game.model.fields.ownable.*;
 import gui_fields.*;
 import gui_main.*;
 import game.model.*;
 
 public class GUIController {
-	// array der holder GUI felter
+	//array der holder GUIfelter
 	private GUI_Field[] fieldsGUI;
 	private GUI gui;
 	private GUI_Player[] players;
 
+	//Singleton
 	private GUIController(){}
 
 	private static GUIController guiC = new GUIController();
@@ -24,64 +25,54 @@ public class GUIController {
 	    return guiC;
     }
 
-
-	public void initFields(game.model.fields.Field[] fields)
+    /**
+     * Translates the backend-fields into GUI compatible fields
+     * It starts by instantiating the object and then sets the
+     * @param fields array with backendfields
+     */
+	public void initFields(Field[] fields)
 	{
 		fieldsGUI = new GUI_Field[40];
-		fieldsGUI[0] = new GUI_Start();
-		int type = 0;
-		for (int i = 0; i<40 ; i++) {
-			type = fields[i].getType();
-			switch (type) {
-			case 1:
-				fieldsGUI[i] = new GUI_Chance();
-				
-			break;
-			case 2:
-			case 3: 
-				fieldsGUI[i] = new GUI_Tax();
-			break;
-			case 4: 
-				fieldsGUI[i] = new GUI_Street();
-		
-			break;
-			case 5: 
-				fieldsGUI[i] = new GUI_Brewery();
-		
-			break;
-			case 6: 
-				fieldsGUI[i] = new GUI_Shipping();
-	
-			break;
-			case 7:
-				fieldsGUI[i] = new GUI_Refuge();
-				
-			break;
-			case 8: fieldsGUI[i] = new GUI_Jail();
-			
-			break;
-			
-			default: fieldsGUI[i] = new GUI_Start();
+
+
+		//Loops through every field
+		for (int i = 0; i < fields.length ; i++) {
+		    Field currentField = fields[i];
+
+            if(currentField instanceof StartField){
+                fieldsGUI[i] = new GUI_Start();
+            }else if(currentField instanceof ChanceField){
+                fieldsGUI[i] = new GUI_Chance();
+            }else if (currentField instanceof TaxField){
+                fieldsGUI[i] = new GUI_Tax();
+            }else if (currentField instanceof BuildableField){
+                fieldsGUI[i] = new GUI_Street();
+            }else if (currentField instanceof BreweryField){
+                fieldsGUI[i] = new GUI_Brewery();
+            }else if (currentField instanceof ShippingField){
+                fieldsGUI[i] = new GUI_Shipping();
+            } else if (currentField instanceof RefugeField){
+                fieldsGUI[i] = new GUI_Refuge();
+            } else if (currentField instanceof PrisonField){
+                fieldsGUI[i] = new GUI_Jail();
+            } else {
+                System.out.println("CRITICAL: FIELDTYPE TRANSLATOR ERROR!");
 			}
+
+			//Sets all data for the field
 			fieldsGUI[i].setTitle(fields[i].getName());
 			fieldsGUI[i].setSubText(fields[i].getSubText());
 			fieldsGUI[i].setDescription(fields[i].getDescription());
 			fieldsGUI[i].setBackGroundColor(fields[i].getColor()[0]);
 			fieldsGUI[i].setForeGroundColor(fields[i].getColor()[1]);
-			if(i==10) {
+			if(i==10) { //Special case for first prison field
 				fieldsGUI[i].setSubText(Language.visit());
 				fieldsGUI[i].setDescription(Language.jailDesc());
-			}
-			if(i==20) {
-				fieldsGUI[i].setSubText(Language.parking());
-				fieldsGUI[i].setDescription(Language.parkingDesc());
 			}
 			
 		}
 		
 		gui = new GUI(fieldsGUI);
-		
-		
 		
 	}
 	
@@ -94,12 +85,12 @@ public class GUIController {
 	{
 		gui.displayChanceCard(message);
 	}
-	
+
 	public void updateDice(int[] t) 
 	{
 		gui.setDice(t[0], t[1]);
 	}
-	
+
 	public boolean getYesNo(String message) 
 	{
 		return (gui.getUserLeftButtonPressed(message, Language.yes(), Language.no()));
@@ -109,6 +100,7 @@ public class GUIController {
 	{
 		return gui.getUserInteger(message, limits[0], limits[1]);
 	}
+
 	public int getInteger(String message) 
 	{
 		return gui.getUserInteger(message);
@@ -174,14 +166,22 @@ public class GUIController {
 		    a.setHotel(true);
         }
 	}
-	
+
+
+    /**
+     * Sets car position, updates balance and sets houses.
+     * Also sets a border on owned fields, dotted if its mortgaged.
+     * @param player array of all players
+     * @param faces array of the die faces
+     * @param fields array of all fields
+     */
 	public void updateGUI(Player[] player, int[] faces, Field[] fields) {
 			for (int i = 0; i < fieldsGUI.length; i++) {
 				fieldsGUI[i].removeAllCars();
 			}
 			for (int i = 0; i < player.length; i++) {
 				fieldsGUI[player[i].getLocation()].setCar(players[i], true);
-				players[i].setBalance(player[i].getBalance());
+				players[i].setBalance(Math.max(player[i].getBalance(), 0));
                 for (int j = 0; j < fields.length; j++){
                     if(fieldsGUI[j] instanceof GUI_Street){
                         setBuildStatus(j,((BuildableField) fields[j]).getBuildStatus());
@@ -203,6 +203,12 @@ public class GUIController {
 		return (gui.getUserLeftButtonPressed(message, Language.scaling(), Language.flat()));
 	}
 
+    /**
+     * Takes a players owned fields and sets up a list of every non-mortgaged field for the player to choose.
+     * @param message message to show the player
+     * @param fields array of ownable fields
+     * @return the chosen field
+     */
 	public OwnableField chooseFieldMortgage(String message, OwnableField[] fields){
         int index = 0;
 
@@ -218,7 +224,7 @@ public class GUIController {
         for(int i = 0; i < fields.length;i++){
             if(!fields[i].isMortgaged()){
                 tempFields[counter] = fields[i];
-                tempNames[counter] = fields[i].getName() + " - " + fields[i].getPrice() + Language.getCurrency();
+                tempNames[counter] = fields[i].getName() + " - " + (fields[i].getPrice()/2) + Language.getCurrency();
                 counter++;
             }
         }
@@ -232,7 +238,7 @@ public class GUIController {
             }
         }
 
-        //failsafe
+        //Failsafe
         return new BuildableField("",Color.BLACK,Color.BLACK,0,new int[] {},0,0);
     }
 
@@ -257,7 +263,6 @@ public class GUIController {
     }
 
     public String chooseColor(String message, String[] colors){
-
 	    return gui.getUserSelection(message, colors);
     }
 }

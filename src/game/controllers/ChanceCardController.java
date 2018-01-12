@@ -5,6 +5,7 @@ import game.model.*;
 import java.util.Random;
 
 import game.model.fields.*;
+import game.model.fields.ownable.ShippingField;
 
 public class ChanceCardController {
 	private Random random = new Random();
@@ -118,7 +119,7 @@ public class ChanceCardController {
 			//Ryk til den nærmeste færge, modtag 4000 hvis start passeres
 			while(true) {
 			drawingPlayer.forceMove(drawingPlayer.getLocation()+1);
-			if (fields[drawingPlayer.getLocation()].getType() == 6)
+			if (fields[drawingPlayer.getLocation()] instanceof ShippingField)
 				break;
 			}
             return returnValues[number-1];

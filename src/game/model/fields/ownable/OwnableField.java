@@ -8,11 +8,10 @@ import game.model.fields.Field;
 public abstract class OwnableField extends Field {
 
     protected int price,group;
-    protected int[] rent  = new int[6];
+    protected int[] rent;
     protected Player owner;
-    protected boolean buildable = false;
     protected boolean mortgaged = false;
-    protected int amountOwned = 1;
+    protected int amountOwned;
 
     public OwnableField (String newName, Color primary, Color secondary, int newGroup, int[] newRent, int newPrice){
         super(newName, primary, secondary);
@@ -44,10 +43,6 @@ public abstract class OwnableField extends Field {
     	return group;
     }
 
-    public void setPrice(int amount){
-        rent[0] = amount;
-    }
-
     public int getAmountOwned(){
         return amountOwned;
     }
@@ -57,5 +52,9 @@ public abstract class OwnableField extends Field {
 
     public void setMortgaged(boolean b) {
         mortgaged = b;
+    }
+
+    public int getValue() {
+        return price;
     }
 }

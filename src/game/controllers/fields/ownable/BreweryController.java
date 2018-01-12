@@ -11,16 +11,22 @@ public class BreweryController extends OwnableController {
         BreweryField castedField = ((BreweryField) curField);
         if(!castedField.isMortgaged()) {
             if (castedField.getOwner() == null) {
-                if (guiC.getYesNo(Language.wantToBuy(castedField))) {
-                    castedField.setOwner(curPlayer);
-                    curPlayer.addField(castedField);
-                    curPlayer.payMoney(castedField.getPrice());
+                if (curPlayer.getBalance() > castedField.getPrice()) {
+                    if (guiC.getYesNo(Language.wantToBuy(castedField))) {
+                        castedField.setOwner(curPlayer);
+                        curPlayer.addField(castedField);
+                        curPlayer.payMoney(castedField.getPrice());
+                    }
+                } else {
+                    guiC.getOk(Language.notEnoughMoney());
                 }
             } else {
-                int rent = castedField.getRent()[0] * 100 * castedField.getAmountOwned();
-                guiC.getOk(curPlayer.getName() + Language.payRent() + castedField.getOwner().getName() + " " + rent);
-                curPlayer.payMoney(rent);
-                castedField.getOwner().receiveMoney(rent);
+                if(curPlayer != castedField.getOwner()) {
+                    int rent = curPlayer.getLastRoll() * 100 * castedField.getAmountOwned();
+                    guiC.getOk(curPlayer.getName() + Language.payRent() + castedField.getOwner().getName() + " " + rent);
+                    curPlayer.payMoney(rent);
+                    castedField.getOwner().receiveMoney(rent);
+                }
             }
         } else {
             guiC.getOk(Language.fieldMortgaged());

@@ -226,7 +226,7 @@ public class Language {
     }
 
     public static String chooseForMortgage(int left) {
-	    return "Hvilken grund ønsker de at pantsætte? Der mangler: " + left + " kr.";
+	    return "Hvilken grund ønsker de at pantsætte? Der mangler: " + Math.abs(left) + " kr.";
     }
 
     public static String getCurrency() {
@@ -243,5 +243,13 @@ public class Language {
 
     public static String chooseForBuild() {
 	    return "Hvilket felt ønskes opgraderet?";
+    }
+
+    public static String gameEnd(Player curPlayer) {
+	    return "Spillet er slut! " + curPlayer.getName() + " vinder!";
+    }
+
+    public static String safeField() {
+	    return "Du er landet på et sikkert felt";
     }
 }

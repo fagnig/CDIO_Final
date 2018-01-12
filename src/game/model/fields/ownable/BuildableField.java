@@ -3,7 +3,6 @@ package game.model.fields.ownable;
 import java.awt.*;
 
 import game.model.Language;
-import game.model.Player;
 
 public class BuildableField extends OwnableField {
 
@@ -12,8 +11,6 @@ public class BuildableField extends OwnableField {
     public BuildableField (String newName, Color primary, Color secondary,  int newGroup, int[] newRent, int price, int newBuildingPrice){
         super(newName, primary, secondary, newGroup,newRent, price);
         buildingPrice = newBuildingPrice;
-        buildable = false;
-        type = 4;
         buildStatus = 0;
         subText = Integer.toString(price) ;
         description = Language.getFormattedDescription(rent,buildingPrice);
@@ -31,11 +28,8 @@ public class BuildableField extends OwnableField {
 		return buildStatus;
 	}
 
-	public void setBuildable(boolean b){
-        buildable = b;
-    }
-
-    public boolean getBuildable(){
-        return buildable;
+    @Override
+    public int getValue(){
+        return price + buildingPrice*buildStatus;
     }
 }

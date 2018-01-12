@@ -22,20 +22,23 @@ public class BuildableController extends OwnableController{
                     guiC.getOk(Language.notEnoughMoney());
                 }
             } else {
-                int rent;
-                if (castedField.getAmountOwned() > 1) {
-                    rent = castedField.getRent()[0] * castedField.getAmountOwned();
-                } else {
-                    rent = castedField.getRent()[castedField.getBuildStatus()];
+                if(curPlayer != castedField.getOwner()) {
+                    int rent;
+                    if (castedField.getAmountOwned() > 1) {
+                        rent = castedField.getRent()[0] * castedField.getAmountOwned();
+                    } else {
+                        rent = castedField.getRent()[castedField.getBuildStatus()];
+                    }
+
+                    guiC.getOk(curPlayer.getName() + Language.payRent() + castedField.getOwner().getName() + " " + rent);
+                    curPlayer.payMoney(rent);
+                    castedField.getOwner().receiveMoney(rent);
                 }
-
-                guiC.getOk(curPlayer.getName() + Language.payRent() + castedField.getOwner().getName() + " " + rent);
-                curPlayer.payMoney(rent);
-                castedField.getOwner().receiveMoney(rent);
-
             }
         } else {
             guiC.getOk(Language.fieldMortgaged());
         }
     }
+
+
 }
