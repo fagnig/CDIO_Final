@@ -111,6 +111,9 @@ public class BoardController {
                             if (curField.getGroup() == j) {
                                 curField.setAmountOwned(2);
                             }
+                            if(field instanceof BuildableField){
+                                canBuild((BuildableField) field);
+                            }
                         }
                     }
                 }
@@ -123,6 +126,7 @@ public class BoardController {
                     }
                 }
             }
+
         }
     }
 
@@ -149,34 +153,30 @@ public class BoardController {
         return true;
     }
 
-    /* //UNUSED
-    public boolean canBuild(int loc){
+    private void canBuild(BuildableField field){
         int max = 0, min = 0;
-        int groupID = ((BuildableField)fields[loc]).getGroup();
+        int groupID = field.getGroup();
 
         for(int i=0; i<40; i++){
-            if(fields[i] instanceof BuildableField){
-                BuildableField curField = ((BuildableField) fields[i]);
-                if (curField.getGroup() == groupID) {
-                    if(curField.getBuildStatus() > 0) {
-                        min = curField.getBuildStatus();
-                        if(min > max) {
-                            max = min;
-                        }
+            if (field.getGroup() == groupID) {
+                if(field.getBuildStatus() > 0) {
+                    min = field.getBuildStatus();
+                    if(min > max) {
+                        max = min;
                     }
                 }
             }
         }
-        if(((BuildableField)fields[loc]).getBuildStatus() == min){
-            return true;
+        if(field.getBuildStatus() == min){
+            field.setBuildable(true);
         } else if(min==max){
-            return true;
+            field.setBuildable(true);
         } else {
-            return false;
+            field.setBuildable(false);
         }
 
     }
-    */
+
 
 
     /**
