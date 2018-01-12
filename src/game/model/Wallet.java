@@ -71,6 +71,8 @@ public class Wallet {
         for(int i=0;i<ownedFields.length;i++){
             if(!deleteField[i]){
                 tempFields[index++]=ownedFields[i];
+            } else {
+                ownedFields[i].setOwner(null);
             }
         }
     }

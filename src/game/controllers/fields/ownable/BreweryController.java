@@ -22,7 +22,7 @@ public class BreweryController extends OwnableController {
                 }
             } else {
                 if(curPlayer != castedField.getOwner()) {
-                    int rent = castedField.getRent()[0] * 100 * castedField.getAmountOwned();
+                    int rent = curPlayer.getLastRoll() * 100 * castedField.getAmountOwned();
                     guiC.getOk(curPlayer.getName() + Language.payRent() + castedField.getOwner().getName() + " " + rent);
                     curPlayer.payMoney(rent);
                     castedField.getOwner().receiveMoney(rent);

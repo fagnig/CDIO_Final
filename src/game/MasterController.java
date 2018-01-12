@@ -129,6 +129,8 @@ public class MasterController {
                         }
                     }
 
+                    curPlayer.setLastRoll(cup.getFaceValue());
+
                     board.setAllVals(pc.getPlayers());
 
                     guiC.updateGUI(pc.getPlayers(), cup.getFaces(), board.getFields());
@@ -160,6 +162,9 @@ public class MasterController {
                                 guiC.getOk(Language.bankrupt());
                                 pc.getPlayer(i).setBankrupt(true);
                                 pc.getPlayer(i).setBalance(0);
+                                for (int j = 0; j < pc.getPlayer(i).getOwnedFields().length; j++) {
+                                    pc.getPlayer(i).removeField(pc.getPlayer(i).getOwnedFields()[j]);
+                                }
                             }
                         }
                     }

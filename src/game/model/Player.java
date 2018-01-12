@@ -11,6 +11,7 @@ public class Player {
     private Boolean bankrupt = false;
     private int location = 0;
     private int jailRollAmount = 0;
+    private int lastRoll = 0;
  
     public Player(String newName, int Startbalance) {
     	name = newName;
@@ -102,5 +103,13 @@ public class Player {
 
     public void setBalance(int amount) {
         wallet.setMoney(amount);
+    }
+
+    public int getLastRoll() {
+        return lastRoll;
+    }
+
+    public void setLastRoll(int amount) {
+        lastRoll = amount;
     }
 }
