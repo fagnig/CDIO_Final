@@ -181,7 +181,7 @@ public class GUIController {
 			}
 			for (int i = 0; i < player.length; i++) {
 				fieldsGUI[player[i].getLocation()].setCar(players[i], true);
-				players[i].setBalance(player[i].getBalance());
+				players[i].setBalance(Math.max(player[i].getBalance(), 0));
                 for (int j = 0; j < fields.length; j++){
                     if(fieldsGUI[j] instanceof GUI_Street){
                         setBuildStatus(j,((BuildableField) fields[j]).getBuildStatus());
