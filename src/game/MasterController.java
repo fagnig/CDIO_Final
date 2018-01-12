@@ -133,14 +133,19 @@ public class MasterController {
 
                     guiC.updateGUI(pc.getPlayers(), cup.getFaces(), board.getFields());
 
+                    //Recieve money for passing start
+                    oldLoc = checkPassStart(curPlayer, oldLoc);
+
+                    guiC.updateGUI(pc.getPlayers(), cup.getFaces(), board.getFields());
+
                     landOnField(curPlayer);
 
+                    guiC.updateGUI(pc.getPlayers(), cup.getFaces(), board.getFields());
+
                     //Recieve money for passing start
-                    if(curPlayer.isFree() == true){
-                        if(oldLoc > curPlayer.getLocation()){
-                            curPlayer.receiveMoney(4000);
-                        }
-                    }
+                    oldLoc = checkPassStart(curPlayer, oldLoc);
+
+                    guiC.updateGUI(pc.getPlayers(), cup.getFaces(), board.getFields());
 
                     //Bankruptcy check
                     for(int i = 0; i<pc.getPlayers().length; i++){
@@ -193,6 +198,17 @@ public class MasterController {
         guiC.getOk(Language.gameEnd(pc.getPlayer(winningPlayerIndex)));
 		System.exit(0);
 	}
+
+    private int checkPassStart(Player curPlayer, int oldLoc) {
+        if(curPlayer.isFree() == true){
+            if(oldLoc > curPlayer.getLocation()){
+                curPlayer.receiveMoney(4000);
+
+            }
+        }
+        oldLoc = curPlayer.getLocation();
+        return oldLoc;
+    }
 
     /**
      *Is called when the player is in jail.
