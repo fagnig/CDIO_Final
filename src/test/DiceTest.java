@@ -29,7 +29,7 @@ public class DiceTest {
 	
 	//tests that the dice roll fair, limit set high because we are using two random objects and not one 
 	public void fairnessTest() {
-		for (int j = 0 ; j < 1000 ; j++) {
+		for (int numOfTests = 0 ; numOfTests < 100 ; numOfTests++) {
 			int[] results = {0,0,0,0,0,0,0,0,0,0,0,0,0};
 			for (int i = 0 ; i < numOfRolls ; i++ ) {
 				results[cup.roll()]++;
@@ -38,8 +38,7 @@ public class DiceTest {
 				assertEquals("outside of expected range",spread[i],results[i],spread[i]*0.3);
 
 			}
-
-
+//			System.out.println("test run nr: " + numOfTests );
 		}
 	}
 
@@ -53,7 +52,7 @@ public class DiceTest {
 				if (cup.getDouble())
 					doubles++;
 			}
-			assertEquals("outside of expected Range " + j,numOfRolls/6,doubles,(numOfRolls/6)*0.09);
+			assertEquals("outside of expected Range " + j,numOfRolls/6,doubles,(numOfRolls/6)*0.1);
 		}
 	}
 
