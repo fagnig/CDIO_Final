@@ -113,9 +113,9 @@ public class BoardController {
                             OwnableField curField = ((OwnableField) field);
                             if (curField.getGroup() == j) {
                                 curField.setAmountOwned(2);
-                            }
-                            if(field instanceof BuildableField){
-                                canBuild((BuildableField) field);
+                                if(field instanceof BuildableField) {
+                                    canBuild((BuildableField) field);
+                                }
                             }
                         }
                     }
