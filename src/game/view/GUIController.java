@@ -10,6 +10,10 @@ import gui_fields.*;
 import gui_main.*;
 import game.model.*;
 
+/**
+ * The middleman between our logic and our given GUI.
+ *
+ */
 public class GUIController {
 	//array der holder GUIfelter
 	private GUI_Field[] fieldsGUI;
@@ -258,7 +262,7 @@ public class GUIController {
         int counter = 0;
         for(int i = 0; i < ownedFields.length;i++) {
 			if (ownedFields[i] instanceof BuildableField){
-				if (!((BuildableField) ownedFields[i]).getBuildable()) {
+				if (((BuildableField) ownedFields[i]).getBuildable()) {
 					tempFields[counter] = ownedFields[i];
 					tempNames[counter] = ownedFields[i].getName();
 					counter++;

@@ -11,11 +11,15 @@ public class PlayerController {
 	public PlayerController() {
 		
 	}
-	
-	public void makePlayers(String[] navne) {
-		players = new Player[navne.length];
-		for (int i = 0; i < navne.length ; i++) {
-			players[i] = new Player(navne[i], MasterController.PLAYER_STARTBALANCE);
+
+	/**
+	 * Initialises
+	 * @param names
+	 */
+	public void makePlayers(String[] names) {
+		players = new Player[names.length];
+		for (int i = 0; i < names.length ; i++) {
+			players[i] = new Player(names[i], MasterController.PLAYER_STARTBALANCE);
 		}
 
 	}

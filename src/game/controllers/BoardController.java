@@ -8,7 +8,10 @@ import game.model.fields.ownable.*;
 import game.model.Language;
 import game.model.Player;
 
-
+/**
+ * Takes care of all functions related to the board.
+ * Builds all the fields and gives access to the fields.
+ */
 public class BoardController {
     private Field[] fields  = new Field[40];
     
@@ -98,7 +101,7 @@ public class BoardController {
 
 
     /**
-     * Sets how many of a field are owned
+     * Sets how many of a field are owned, and checks if a player can build.
      * @param allPlayers Every player in the game
      */
     public void setAllVals(Player[] allPlayers){
@@ -157,6 +160,7 @@ public class BoardController {
         int max = 0, min = 0;
         int groupID = field.getGroup();
 
+
         for(int i=0; i<40; i++){
             if (field.getGroup() == groupID) {
                 if(field.getBuildStatus() > 0) {
@@ -169,12 +173,12 @@ public class BoardController {
         }
         if(field.getBuildStatus() == min){
             field.setBuildable(true);
-        } else if(min==max){
-            field.setBuildable(true);
         } else {
             field.setBuildable(false);
         }
-
+        if (field.getBuildStatus() == 5){
+            field.setBuildable(false);
+        }
     }
 
 
