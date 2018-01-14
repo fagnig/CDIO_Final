@@ -167,7 +167,7 @@ public class BoardController {
         for(int i=0; i<40; i++){
             if(getField(i) instanceof BuildableField) {
                 if (((BuildableField) getField(i)).getGroup() == groupID) {
-                    min = field.getBuildStatus();
+                    min = ((BuildableField) getField(i)).getBuildStatus();
                     if (min > max) {
                         max = min;
                     }
