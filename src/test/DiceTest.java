@@ -35,7 +35,7 @@ public class DiceTest {
 				results[cup.roll()]++;
 			}
 			for (int i = 0 ; i < 13 ; i++ ) {
-				assertEquals("outside of expected range",spread[i],results[i],spread[i]*0.3);
+				assertEquals("outside of expected range",spread[i],results[i],spread[i]*0.2);
 
 			}
 //			System.out.println("test run nr: " + numOfTests );
