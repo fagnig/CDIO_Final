@@ -163,11 +163,9 @@ public class BoardController {
 
         for(int i=0; i<40; i++){
             if (field.getGroup() == groupID) {
-                if(field.getBuildStatus() > 0) {
-                    min = field.getBuildStatus();
-                    if(min > max) {
-                        max = min;
-                    }
+                min = field.getBuildStatus();
+                if(min > max) {
+                    max = min;
                 }
             }
         }
