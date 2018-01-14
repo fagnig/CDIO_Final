@@ -45,7 +45,7 @@ public class DiceTest {
 	@Test
 	//tests the ammount of times we roll double, limit set high again because we use two random objects and not one
 	public void doubleTest() {
-		for( int j = 0 ; j<100; j++) {
+		for( int j = 0 ; j<1000; j++) {
 			int doubles = 0;
 			for (int i = 0; i < numOfRolls; i++) {
 				cup.roll();
