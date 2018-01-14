@@ -1,6 +1,6 @@
 package test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -40,7 +40,7 @@ public class PlayerTest {
 
 	@Test
 //	tests the canPlayerBuild
-	public void canPlayerBuildTest() {
+	public void positiveCanPlayerBuildTest() {
 		Field[] fields = board.getFields();
 		pC.makePlayers(names);
 		Player curPlayer = pC.getPlayer(1);
@@ -58,11 +58,25 @@ public class PlayerTest {
 		
 //		this loop goes through all fields, and checks if the player can build on them if its a buildablefield 
 		for (int i = 0 ; i< 40; i++) {
-			curPlayer.forceMove(i);
 			if(fields[i] instanceof BuildableField) {
 				assertTrue("should be able to build",pC.canPlayerBuild(curPlayer));
 			}
 		}
 	}
+	
+	@Test
+//	test that if only one field is owned, 
+	public void negativeCanPlayerBuildTest(){
+		Field[] fields = board.getFields();
+		pC.makePlayers(names);
+		Player curPlayer = pC.getPlayer(1);
+		((OwnableField)fields[1]).setOwner(curPlayer);
+		curPlayer.addField(((OwnableField)fields[1]));
+		board.setAllVals(pC.getPlayers());
+		curPlayer.forceMove(3);
+		assertFalse("should not be able to build",pC.canPlayerBuild(curPlayer));
+	}
+	
+	
 
 }

@@ -46,14 +46,14 @@ public class DiceTest {
 	@Test
 	//tests the ammount of times we roll double, limit set high again because we use two random objects and not one
 	public void doubleTest() {
-		for( int j = 0 ; j<10000; j++) {
+		for( int j = 0 ; j<1000; j++) {
 			int doubles = 0;
 			for (int i = 0; i < numOfRolls; i++) {
 				cup.roll();
 				if (cup.getDouble())
 					doubles++;
 			}
-			assertEquals("outside of expected Range",numOfRolls/6,doubles,(numOfRolls/6)*0.2);
+			assertEquals("outside of expected Range " + j,numOfRolls/6,doubles,(numOfRolls/6)*0.09);
 		}
 	}
 
