@@ -246,20 +246,24 @@ public class GUIController {
         int index = 0;
 
         for(int i = 0; i < ownedFields.length;i++){
-            if(((BuildableField)ownedFields[i]).getBuildable()){
-                index++;
-            }
+        	if(ownedFields[i] instanceof BuildableField) {
+				if (((BuildableField) ownedFields[i]).getBuildable()) {
+					index++;
+				}
+			}
         }
 
         OwnableField[] tempFields = new OwnableField[index];
         String[] tempNames = new String[index];
         int counter = 0;
-        for(int i = 0; i < ownedFields.length;i++){
-            if(!((BuildableField)ownedFields[i]).getBuildable()){
-                tempFields[counter] = ownedFields[i];
-                tempNames[counter] = ownedFields[i].getName();
-                counter++;
-            }
+        for(int i = 0; i < ownedFields.length;i++) {
+			if (ownedFields[i] instanceof BuildableField){
+				if (!((BuildableField) ownedFields[i]).getBuildable()) {
+					tempFields[counter] = ownedFields[i];
+					tempNames[counter] = ownedFields[i].getName();
+					counter++;
+				}
+		}
         }
 
         String result = gui.getUserSelection(message, tempNames);
