@@ -11,7 +11,7 @@ import gui_main.*;
 import game.model.*;
 
 /**
- * The middleman between our logic and our given GUI.
+ * The middleman between our logic and the given GUI.
  *
  */
 public class GUIController {
