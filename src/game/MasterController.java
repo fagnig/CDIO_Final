@@ -89,11 +89,11 @@ public class MasterController {
                 }
 
                 //If in jail
-			    while(!curPlayer.isFree()){
+			    if(!curPlayer.isFree()){
                     stashedRoll = jailTurn(curPlayer, stashedRoll);
                 }
-                if(curPlayer.isFree()) {
 
+                if(curPlayer.isFree()) {
 			        //Startfield money test
 			        int oldLoc = curPlayer.getLocation();
 
