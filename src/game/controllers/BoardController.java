@@ -156,6 +156,10 @@ public class BoardController {
         return true;
     }
 
+    /**
+     * Checks if all fields of the same group are buildable
+     * @param field the field to test
+     */
     private void canBuild(BuildableField field){
         int max = 0, min = 0;
         int groupID = field.getGroup();
