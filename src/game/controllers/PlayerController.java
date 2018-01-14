@@ -2,6 +2,7 @@ package game.controllers;
 
 import game.MasterController;
 import game.model.Player;
+import game.model.fields.ownable.BuildableField;
 
 public class PlayerController {
 	
@@ -10,11 +11,15 @@ public class PlayerController {
 	public PlayerController() {
 		
 	}
-	
-	public void makePlayers(String[] navne) {
-		players = new Player[navne.length];
-		for (int i = 0; i < navne.length ; i++) {
-			players[i] = new Player(navne[i], MasterController.PLAYER_STARTBALANCE);
+
+	/**
+	 * Initialises
+	 * @param names
+	 */
+	public void makePlayers(String[] names) {
+		players = new Player[names.length];
+		for (int i = 0; i < names.length ; i++) {
+			players[i] = new Player(names[i], MasterController.PLAYER_STARTBALANCE);
 		}
 
 	}
@@ -24,5 +29,16 @@ public class PlayerController {
 	
 	public Player getPlayer(int number) {
 		return players[number];
+	}
+
+	public boolean canPlayerBuild(Player curPlayer) {
+		for(int i = 0; i<curPlayer.getOwnedFields().length;i++){
+			if(curPlayer.getOwnedFields()[i] instanceof BuildableField){
+				if(((BuildableField) curPlayer.getOwnedFields()[i]).getBuildable()){
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }

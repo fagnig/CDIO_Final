@@ -65,64 +65,35 @@ public class MasterController {
 		while (gameRunning) {
             Player curPlayer = pc.getPlayer(currentTurn);
             int stashedRoll = 0;
-
-            /* Buildoption [WIP]
-            int index = 0;
+            boolean canBuild;
             boolean wantToBuild = false;
-            BuildableField[] tempFields;
-            */
+
 
 			if(!curPlayer.isBankrupt()){
                 guiC.getOk(Language.roll(curPlayer));
 
-                /*
-                //byggecond aka noget værre juks
-                for(int j = 0; j < curPlayer.getOwnedFields().length;j++) {
-                    for (int i = 0; i < board.getFields().length; i++) {
-                        if (curPlayer.getOwnedFields()[j]==board.getFields()[i]) {
-                            if (curPlayer.getOwnedFields()[j] instanceof BuildableField){
-                                if (board.canBuild(i)) {
-                                    index++;
-                                }
-                            }
-                        }
-                    }
-                }
-                if(index>0) {
-                    tempFields = new BuildableField[index];
-                    int counter = 0;
-                    for (int j = 0; j < curPlayer.getOwnedFields().length; j++) {
-                        for (int i = 0; i < board.getFields().length; i++) {
-                            if (curPlayer.getOwnedFields()[j] == board.getField(i)) {
-                                if (board.canBuild(i)) {
-                                    tempFields[counter++] = (BuildableField) board.getField(i);
-                                }
-                            }
-                        }
-                    }
-                    if(guiC.getYesNo(Language.wantToBuild())){
+                canBuild = pc.canPlayerBuild(curPlayer);
+                if (canBuild) {
+                    if (guiC.getYesNo(Language.wantToBuild())) {
                         wantToBuild = true;
                     }
-                    while(wantToBuild){
-                        BuildableField result = guiC.chooseFieldBuild(Language.chooseForBuild(),tempFields);
-                        if(result.getBuildingPrice()<curPlayer.getBalance()){
-                            result.setBuildStatus(result.getBuildStatus()+1);
-                            curPlayer.payMoney(result.getBuildingPrice());
-                        } else {
-                            guiC.getOk(Language.notEnoughMoney());
-                        }
-                    }
                 }
-                //Slut på juks
-                */
 
+                while(wantToBuild && canBuild) {
+                    BuildableField buildField = (BuildableField) guiC.chooseFieldBuild(Language.chooseForBuild(), curPlayer.getOwnedFields());
+                    curPlayer.payMoney(buildField.getBuildingPrice());
+                    buildField.setBuildStatus(buildField.getBuildStatus() + 1);
+                    wantToBuild = guiC.getYesNo(Language.continueBuild());
+                    board.setAllVals(pc.getPlayers());
+                    canBuild = pc.canPlayerBuild(curPlayer);
+                }
 
                 //If in jail
-			    while(!curPlayer.isFree()){
+			    if(!curPlayer.isFree()){
                     stashedRoll = jailTurn(curPlayer, stashedRoll);
                 }
-                if(curPlayer.isFree()) {
 
+                if(curPlayer.isFree()) {
 			        //Startfield money test
 			        int oldLoc = curPlayer.getLocation();
 
@@ -211,6 +182,7 @@ public class MasterController {
         guiC.getOk(Language.gameEnd(pc.getPlayer(winningPlayerIndex)));
 		System.exit(0);
 	}
+
 
     /**
      * Checks if the player has passed start

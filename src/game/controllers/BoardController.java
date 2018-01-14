@@ -8,7 +8,10 @@ import game.model.fields.ownable.*;
 import game.model.Language;
 import game.model.Player;
 
-
+/**
+ * Takes care of all functions related to the board.
+ * Builds all the fields and gives access to the fields.
+ */
 public class BoardController {
     private Field[] fields  = new Field[40];
     
@@ -98,7 +101,7 @@ public class BoardController {
 
 
     /**
-     * Sets how many of a field are owned
+     * Sets how many of a field are owned, and checks if a player can build.
      * @param allPlayers Every player in the game
      */
     public void setAllVals(Player[] allPlayers){
@@ -110,6 +113,9 @@ public class BoardController {
                             OwnableField curField = ((OwnableField) field);
                             if (curField.getGroup() == j) {
                                 curField.setAmountOwned(2);
+                                if(field instanceof BuildableField) {
+                                    canBuild((BuildableField) field);
+                                }
                             }
                         }
                     }
@@ -149,34 +155,33 @@ public class BoardController {
         return true;
     }
 
-    /* //UNUSED
-    public boolean canBuild(int loc){
+    /**
+     * Checks if all fields of the same group are buildable
+     * @param field the field to test
+     */
+    private void canBuild(BuildableField field){
         int max = 0, min = 0;
-        int groupID = ((BuildableField)fields[loc]).getGroup();
+        int groupID = field.getGroup();
+
 
         for(int i=0; i<40; i++){
-            if(fields[i] instanceof BuildableField){
-                BuildableField curField = ((BuildableField) fields[i]);
-                if (curField.getGroup() == groupID) {
-                    if(curField.getBuildStatus() > 0) {
-                        min = curField.getBuildStatus();
-                        if(min > max) {
-                            max = min;
-                        }
-                    }
+            if (field.getGroup() == groupID) {
+                min = field.getBuildStatus();
+                if(min > max) {
+                    max = min;
                 }
             }
         }
-        if(((BuildableField)fields[loc]).getBuildStatus() == min){
-            return true;
-        } else if(min==max){
-            return true;
+        if(field.getBuildStatus() == min){
+            field.setBuildable(true);
         } else {
-            return false;
+            field.setBuildable(false);
         }
-
+        if (field.getBuildStatus() == 5){
+            field.setBuildable(false);
+        }
     }
-    */
+
 
 
     /**

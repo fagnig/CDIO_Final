@@ -10,6 +10,10 @@ import gui_fields.*;
 import gui_main.*;
 import game.model.*;
 
+/**
+ * The middleman between our logic and the given GUI.
+ *
+ */
 public class GUIController {
 	//array der holder GUIfelter
 	private GUI_Field[] fieldsGUI;
@@ -143,7 +147,7 @@ public class GUIController {
 				if (b.equals(Language.pink()))
 					a.setPrimaryColor(Color.pink);
 				a.setSecondaryColor(Color.gray);
-				
+
 				players[i] = new GUI_Player(playerNames[i], MasterController.PLAYER_STARTBALANCE,a);
 				gui.addPlayer(players[i]);
 			}
@@ -242,12 +246,28 @@ public class GUIController {
         return new BuildableField("",Color.BLACK,Color.BLACK,0,new int[] {},0,0);
     }
 
-    public BuildableField chooseFieldBuild(String message, BuildableField[] ownedFields){
+    public OwnableField chooseFieldBuild(String message, OwnableField[] ownedFields){
+        int index = 0;
 
-        String[] tempNames = new String[ownedFields.length];
+        for(int i = 0; i < ownedFields.length;i++){
+        	if(ownedFields[i] instanceof BuildableField) {
+				if (((BuildableField) ownedFields[i]).getBuildable()) {
+					index++;
+				}
+			}
+        }
 
-        for(int i = 0; i<ownedFields.length;i++){
-            tempNames[i] = ownedFields[i].getName();
+        OwnableField[] tempFields = new OwnableField[index];
+        String[] tempNames = new String[index];
+        int counter = 0;
+        for(int i = 0; i < ownedFields.length;i++) {
+			if (ownedFields[i] instanceof BuildableField){
+				if (((BuildableField) ownedFields[i]).getBuildable()) {
+					tempFields[counter] = ownedFields[i];
+					tempNames[counter] = ownedFields[i].getName();
+					counter++;
+				}
+		}
         }
 
         String result = gui.getUserSelection(message, tempNames);

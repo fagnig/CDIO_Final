@@ -26,7 +26,7 @@ public class Player {
     
     // "Teleporterer" spilleren til feltet.
     public void forceMove(int newLocation) {
-    	location = newLocation%40;
+    	location = (newLocation+40)%40;
     }
     
     public boolean isFree() {

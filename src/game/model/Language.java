@@ -252,4 +252,8 @@ public class Language {
     public static String safeField() {
 	    return "Du er landet på et sikkert felt";
     }
+
+    public static String continueBuild() {
+	    return "Vil du fortsætte med at bygge?";
+    }
 }

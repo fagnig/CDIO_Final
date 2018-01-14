@@ -5,7 +5,7 @@ import java.util.Random;
 public class Dice {
 	private int faceValue;
 	
-	Random dice = new Random(); 
+	static Random dice = new Random();
 	
 	
 	public int roll() {
