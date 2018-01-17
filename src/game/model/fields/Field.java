@@ -1,4 +1,4 @@
-package spil;
+package game.model.fields;
 
 import java.awt.*;
 
@@ -8,19 +8,12 @@ public abstract class Field {
     protected Color[] color = new Color[2];
     protected int type;
 
-    public Field (String newName, String newSubText, String newDescription, Color primary, Color secondary, int newType){
+    public Field (String newName, Color primary, Color secondary){
         name = newName;
-        subText = newSubText;
-        description = newDescription;
         color[0] = primary;
         color[1] = secondary;
-        type = newType;
-    }
-
-    public abstract void landOnField(Player landingPlayer);
-
-    public int getType() {
-        return type;
+        description = "";
+        subText="";
     }
 
     public String getName() {
@@ -37,10 +30,6 @@ public abstract class Field {
 
     public Color[] getColor() {
         return color;
-    }
-
-    public String getPriceString(){
-        return "";
     }
 
 }
