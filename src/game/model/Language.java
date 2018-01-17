@@ -9,8 +9,8 @@ public class Language {
 	public static String no() {
 		return "Nej";
 	}
-	public static String numberOfPlayers() {
-		return "Hvor mange spillere er i? (2 - 6)";
+	public static String numberOfPlayers(int min, int max) {
+		return "Hvor mange spillere er i? ("+min+" - "+max+")";
 	}
 	public static String okay() {
 		return "Okay";
