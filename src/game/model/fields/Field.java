@@ -6,7 +6,6 @@ public abstract class Field {
 
     protected String name, subText, description;
     protected Color[] color = new Color[2];
-    protected int type;
 
     public Field (String newName, Color primary, Color secondary){
         name = newName;

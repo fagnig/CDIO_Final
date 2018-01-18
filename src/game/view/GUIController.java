@@ -114,6 +114,7 @@ public class GUIController {
 	{
 		return gui.getUserString(message);
 	}
+
 	public String getOk(String message) {
 		return gui.getUserButtonPressed(message,Language.okay());
 	}
@@ -126,12 +127,12 @@ public class GUIController {
 			String[] playerNames = new String[numOfPlayers];
 			for (int i = 0; i<numOfPlayers; i++) {
 				while (true) {
-				playerNames[i] = getString(Language.player()+ " " + (i+1)+ " " + Language.name());
-				if (playerNames[i].equals(" ")|| playerNames[i].length() == 0) {
-					getOk(Language.realName());
-				}
-				else break;
-				}
+                    playerNames[i] = getString(Language.player()+ " " + (i+1)+ " " + Language.name());
+                    if (playerNames[i].equals(" ")|| playerNames[i].length() == 0) {
+                        getOk(Language.realName());
+                    }
+                    else break;
+                    }
 				String b = chooseColor(Language.pickColor(), new String [] {Language.red(), Language.blue(),Language.gray(),Language.yellow(),Language.cyan(),Language.pink()});
 				GUI_Car a = new GUI_Car();
 				if (b.equals(Language.red()))
