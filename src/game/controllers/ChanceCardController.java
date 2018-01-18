@@ -15,7 +15,8 @@ public class ChanceCardController {
 	}
 	
 	public String resolveChance(Player drawingPlayer, Player[] players, Field[] fields ){
-		int number = random.nextInt(23)+1;
+		//int number = random.nextInt(23)+1;
+		int number = 1;
 		String[] returnValues = Language.chanceStrings();
 		switch (number){
 		case 1:
